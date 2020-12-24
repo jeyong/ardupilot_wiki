@@ -29,15 +29,15 @@ AutoTune attempts to automatically tune the Stabilize P, Rate P and D, and maxim
 
 오토튠 모드에서 비행하기 전에 설정
 ====================================
-#. Set up one flight mode switch position to be AltHold.
-#. Set an RC channel :ref:`Auxiliary Function <common-auxiliary-functions>` switch or an :ref:`Auxiliary Function Switch <channel-7-and-8-options>` (prior to version 4.0) to AutoTune to allow you to turn the auto tuning on/off with the a switch.
-#. Remove the camera gimbal or any other parts of the frame that could wobble in flight
-#. Select which combination of axis (roll, pitch, yaw) you wish to tune using the :ref:`AUTOTUNE_AXES <AUTOTUNE_AXES>` parameter
-#. Set the autotune's aggressiveness using the :ref:`AUTOTUNE_AGGR <AUTOTUNE_AGGR>` parameter (0.1=agressive, 0.075=medium, 0.050=weak), normally start with the default 0.1.
-#. For large copters (with props at least 13inch or 33cm diameter) set the Rate Roll and Pitch filters to 10hz, these are: :ref:`ATC_RAT_RLL_FLTT <ATC_RAT_RLL_FLTT__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_RLL_FLTD<ATC_RAT_RLL_FLTD__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_PIT_FLTT <ATC_RAT_PIT_FLTT__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_PIT_FLTD <ATC_RAT_PIT_FLTD__AC_AttitudeControl_Multi>` , (in Copter-3.4 they are ATC_RAT_RLL_FILT and ATC_RAT_PIT_FILT) 
-#. It is recommended to enable :ref:`battery voltage scaling of PID gains <current-limiting-and-voltage-scaling>`
+#. 비행 모드 스위치의 위치를 AltHold 모드로 설정한다.
+#. RC 채널 :ref:`Auxiliary Function <common-auxiliary-functions>` 스위치 혹은 :ref:`Auxiliary Function Switch <channel-7-and-8-options>` ( 4.0 이전 버전) 을 이용해서 오토튠을 켜기/끄기를 할 수 있다.
+#. 카메라 짐벌이나 비행 중에 흔들릴 수 있는 프레임의 부분을 제거한다.
+#. :ref:`AUTOTUNE_AXES <AUTOTUNE_AXES>` 파라미터를 이용해서 튜닝을 원하는 축의 조합(roll, pitch, yaw)을 선택한다.
+#. :ref:`AUTOTUNE_AGGR <AUTOTUNE_AGGR>` 파라미터를 이용해서 오토튠의 공격도(aggressiveness)를 설정한다. (0.1=agressive, 0.075=medium, 0.050=weak) 보통 기본값인 0.1로 시작한다.
+#. 큰 비행체인 경우(프로펠러가 13 인치 이상 혹은 33cm 반경 이상) Rate Roll과 Pitch 필터를 10hz로 설정한다. :ref:`ATC_RAT_RLL_FLTT <ATC_RAT_RLL_FLTT__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_RLL_FLTD<ATC_RAT_RLL_FLTD__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_PIT_FLTT <ATC_RAT_PIT_FLTT__AC_AttitudeControl_Multi>` , :ref:`ATC_RAT_PIT_FLTD <ATC_RAT_PIT_FLTD__AC_AttitudeControl_Multi>` , (Copter-3.4에서  ATC_RAT_RLL_FILT와 ATC_RAT_PIT_FILT이다.)
+#. :ref:`battery voltage scaling of PID gains <current-limiting-and-voltage-scaling>` 를 활성화시키는 것을 추천한다.
 
-How to invoke AutoTune
+오토튠(AutoTune)을 호출하는 방법
 ======================
 #. Wait for a calm day and go to a large open area.
 #. Ensure the ch7 or ch8 switch is in the LOW position.

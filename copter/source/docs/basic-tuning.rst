@@ -1,50 +1,32 @@
 .. _basic-tuning:
 
 ============
-Basic Tuning
+기본 튜닝(Basic Tuning)
 ============
 
-This topic covers basic Roll and pitch and throttle tuning.
+기본적인 roll, pitch, throttle 튜닝에 대해서 알아보자.
 
-Overview
+개요
 ========
 
-After your first flight, you may notice that you copter doesn't respond
-to control inputs the way you want it to or you may have trouble
-maintaining control of your copter. If you are familiar with PID
-controllers, check out the :ref:`advanced tuning guide here <tuning>`. If
-you are an experienced operator, try out :ref:`the autotune feature <autotune>`. This page will cover the basic tuning section of
-Mission Planner and APM Planner that simplified the complex tuning
-process into a few simple sliders. This is the best tuning method for
-new operators.
+첫비행을 하고 난 후에, 비행체가 조정기 입력에 원하는 만큼 제어가 되지 않는다는 것을 알게 된다. 만약 PID 제어기에 대해서 어느 정도 지식이 있다면 :ref:`advanced tuning guide here <tuning>`를 확인하자.
+만약 경험이 많은 조정자라면 :ref:`the autotune 기능 <autotune>`을 사용해보자. 여기서는 미션 플래너의 기본 튜닝을 다루기 때문에 복잡한 튜닝 과정을 몇 개의 간략화 시킨 슬라이드로 대체한다.
+이렇게 하는 것이 초보 조정자에게는 최고의 튜닝 방법일 것이다.
 
-Roll and pitch tuning
+Roll과 pitch 튜닝
 =====================
 
-Tuning is easiest at the field using a :ref:`telemetry radio <common-telemetry-landingpage>`. Perform an initial flight with
-the following questions in mind:
+:ref:`telemetry radio <common-telemetry-landingpage>`를 사용하여 필드에서 가장 쉬운 튜닝 방법이다. 아래 질문을 명심하고 초기 빌행을 수행하자. :
 
--  How does the copter respond to roll and pitch? Is the response more
-   sluggish or twitchy than you want?
--  When the copter is hover, what level is the throttle set at? Does it
-   hover at the middle position of the stick or is it above or below the
-   center position?
--  When raising the throttle, what rate does the copter accelerate at?
-   Does it gain altitude more slowly or more quickly than you want?
+-  비행체가 roll과 pitch에 어떻게 반응하는가? 원하는 것보다 느리거나 너무 빠르게 반응하는가?
+-  비행체가 호버링 상태일때, 쓰로틀 스틱을 어느 위치에 둬야하는가? 스틱을 중간 지점에 두는 경우 호버링하는지 아니면 중간 보다 위 혹은 아래 지점에서 호버링이 되는지?
+-  쓰로틀 스틱을 올리면 비행체는 어느 정도로 가속이 되는가? 원하는 것보다 천천히 혹은 빠르게 고도가 바뀌는가?
 
-Connect the telemetry radio ground module to your ground station
-computer and open either Mission Planner or APM Planner. Select the
-correct COM port and select Connect. You should see live data on the
-Flight Data screen. To begin tuning, select Config/Tuning and Basic
-Tuning.
+텔레메트리 라디오 그라운드 모듈을 미션 플래너가 설치된 컴퓨터에 연결하고 미션 플래너를 실행한다. COM 포트를 선택하고 'Connect' 버튼을 누른다. 미션 플래너 화면에 비행체의 실시간 정보를 확인할 수 있다.
+튜닝을 시작하기 위해서 Config/Tuning와 Basic Tuning을 선택한다.
 
-Start with the Roll/Pitch slider at the top of the page. If you observed
-that your copter was too twitchy in response to roll and pitch controls,
-move the slider one tick mark to the left, or, if you observed that your
-copter was too sluggish, move the slider one tick mark to the right.
-Repeat your flight to determine if the change was beneficial. Repeat the
-process until you are satisfied with the way your copter responds to
-roll and pitch.
+페이지 상단에서 Roll/Pitch 슬라이더를 시작하라. 만약 비행체가 roll과 pitch 제어가 너무 빨랐다면 슬라이더를 한 칸 왼쪽으로 옮기고 비행체의 반응이 너무 느리면 슬라이더를 오른쪽으로 한 칸 옮긴다.
+변경 내용이 적합한지 확인하기 위해서는 다시 비행한다. 만족스러운 roll/pitch 반응이 될때까지 이 과정을 반복한다.
 
 .. image:: ../images/apm-planner-basic-tuning2.png
     :target: ../_images/apm-planner-basic-tuning2.png
@@ -52,19 +34,13 @@ roll and pitch.
 .. image:: ../images/mission-planner-basic-tuning.png
     :target: ../_images/mission-planner-basic-tuning.png
 
-Throttle tuning
+쓰로틀 튜닝(Throttle tuning)
 ===============
 
-The bottom two sliders allows you to tune the throttle control. Adjust
-the slider marked Throttle Hover until the copter hovers at the throttle
-stick's middle position. If the copter hovers with the throttle stick
-above middle position, move the slider to the left by one tick-mark
-until it hovers at mid-stick, testing as you go. If the copter hovers
-with the throttle stick below middle position, move the slider to the
-right by single tick-mark increments until it does. Make sure to test
-each set of tuning settings as you go.
+맨밑에 있는 2개 슬라이더로 쓰로틀 제어를 튜닝할 수 있다. 비행체가 조정기의 쓰로틀 스틱의 가운데 위치해서 호버링이 될때까지 슬라이더의 Throttle Hover를 조정한다.
+만약 비행체가 조정기 스틱의 중간보다 위에 두는 경우 호버링이 된다면 스틱이 중간 위치에서 호비링될때까지 슬라이더를 왼쪽으로 한 칸씩 옮기는 과정을 반복한다.
+만약 비행체가 조정기 스틱의 중간보다 아래에 두는 경우 호버링이 된다면 스틱이 중간 위치에서 로비링될때까지 슬라이더를 오른쪽으로 한 칸씩 옮기는 과정을 반복한다.
+각 설정에 대해서 튜닝 설정에 대해서 테스트를 수행해야한다.
 
-Move the slider marked Throttle Accel or Climb Sensitivity to the right
-to have the copter gain altitude more aggressively or to the left to
-have the copter gain altitude more gently. Test each increment after
-setting to evaluate the tune.
+쓰로틀 가속(Throttle Accel)이나 상승 민감도(Climb Sensitivity)의 슬라이더를 오른쪽으로 이동시키면 고도가 빠르게 그리고 슬라이더를 왼쪽으로 이동시키면 고도가 천천히 이동하게 된다. 
+매번 설정마다 동작을 테스트해야한다.

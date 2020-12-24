@@ -1,42 +1,39 @@
 .. _arming_the_motors:
 
 =================
-Arming the motors
+모터 Arming
 =================
 
-Arming the vehicle allows the motors to start spinning.  Before arming,
-make sure all people, objects, and any body parts (e.g., hands) are
-clear of the propellers. Then do the following:
+비행체를 arming시키면 모터가 회전하기 시작한다. arming하기 전에 주변에 사람이나 물체가 없는지 확인해야만 한다.
+다음을 진행해 나간다:
 
 .. note::
 
-   You can only arm or disarm in Stabilize, ACRO, AltHold, Loiter,
-   and PosHold modes.  You cannot arm your copter in AUTO
-   mode.
+   arm/disarm이 가능한 비행 모드 : 스테빌라이즈, 아크로, 알티튜드 홀드, 로이터, 포지션 홀드 모드
+   AUTO 모드에서 arm이 불가능하다.
 
-#. Turn on your transmitter.
-#. Plug in the LiPo battery.  The red and blue lights should flash for a few seconds as the gyros are calibrated (do not move the copter)
-#. The pre-arm checks will run automatically and if any problems are found the RGB LED will blink yellow and the failure will be displayed on the ground station.  Please refer to :ref:`this page <common-prearm-safety-checks>`
-#. Check that your flight mode switch is set to Stabilize, ACRO, AltHold, Loiter, or PosHold
-#. If using a autopilot with a safety switch, press it until the light goes solid
-#. If you are planning on using an autonomous mode (i.e. Loiter, RTL, Auto, etc) swith the vehicle to Loiter or PosHold and wait until the LEDs blink green indicating a good GPS lock
-#. Arm the motors by holding the throttle down, and rudder right for 5 seconds.  Do not hold the rudder right for too long (>15 seconds) or you will begin the :ref:`AutoTrim <autotrim>` feature
-#. Once armed, the LEDs will go solid and the propellers will begin to spin
-#. Raise the throttle to take-off
+#. 조정기 전원 켜기
+#. Lipo 배터리 연결. 몇 초간 비행제어기에서 빨강/파랑 불이 깜빡인다.(자이로 센서 칼리브리에션이며 이때는 비행체가 움직이지 않도록 한다.)
+#. 사전 arm 체크는 자동으로 실행된다. 만약 문제가 발생한 경우라면 노랑색 빛이 나고 미션 플래너에 체크 내용을 확인할 수 있다. :ref:`this page <common-prearm-safety-checks>` 을 참고하자.
+#. 비행 모드 스위치가 스테빌라이즈, 아크로, 알티튜드 홀드, 로이터, 포지션 홀드 모드 중에 하나로 설정되어 있는지 확인한다.
+#. 안전 스위치가 비행체에 연결된 경우, 비행제어기의 빛이 고정될때까지 안전 스위치를 누르고 있는다.
+#. 자동 비행 모드(로이터, RTL, 오토 등)중에 하나를 사용할 예정이라면 LED가 녹색으로 깜빡일때까지 기다려야한다. 녹색불은 GPS가 제대로  기다 계획이라면 If you are planning on using an autonomous mode (i.e. Loiter, RTL, Auto, etc) swith the vehicle to Loiter or PosHold and wait until the LEDs blink green indicating a good GPS lock
+#. arm을 하기 위해서 조정기 스틱 중에 쓰로틀을 아래로 러더를 오른쪽 방향으로 5초 동안 유지한다. 러더를 오른쪽 방향으로 너무 오래 유지하지 않도록 한다.(15초 이상 유지하지 않도록 한다.) 15초 이상 유지할 경우 :ref:`AutoTrim <autotrim>` 기능을 구동된다. 
+#. 일단 arm 상태가 되면 LED가 깜빡이지 않게 되며 프로펠러가 회전하기 시작한다.
+#. 이륙시키기 위해서 조정기의 쓰로틀을 올린다.
 
 .. note::
 
-   If you leave the throttle at minimum for 15 seconds while in any
-   of the above modes the motors will automatically disarm.
+   조정기의 쓰로틀 스틱을 15초 동안 맨 아래로 유지하면 비행체는 자동으로 disarm이 된다.
 
-Disarming the motors
+모터 Disarming
 ====================
 
-Disarming the motors will cause the motors to stop spinning. To disarm the motors do the following:
+모터 disarming 상태가 되면 모터의 회전이 멈추게 된다. disarm 방법은 다음 절차를 따른다.:
 
-#. Check that your flight mode switch is set to Stabilize, ACRO, AltHold, Loiter, or PosHold
-#. Hold throttle at minimum and rudder to the left for 2 seconds
-#. The LED will start flashing indicating the vehicle is disarmed
-#. If using a autopilot with a safety switch, press it until the LED begins flashing
-#. Disconnect the Lipo battery.
-#. Turn off your transmitter.
+#. 비행 모드 스위치가 다음 모드 중에 하나로 설정되었는지 확인한다. 스테빌라이즈, 아크로, 알티튜드 홀드, 로이터, 포지션 홀드 모드
+#. 조정기의 쓰로틀 스틱을 맨 아래로, 러더 스틱은 왼쪽 방향으로 2초간 유지한다.
+#. LED가 깜빡이면 비행체가 disarm이 되었다는 것을 의미한다.
+#. 안전 스위치를 사용하는 경우 LED가 깜빡일때까지 누르고 있는다.
+#. Lipo 배터리 연결 해제
+#. 조정기 끄기

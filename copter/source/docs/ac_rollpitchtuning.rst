@@ -1,46 +1,40 @@
 .. _ac_rollpitchtuning:
 
 ============================
-Manual Roll and Pitch Tuning
+수동 roll 및 pitch 튜닝 (Manual Roll and Pitch Tuning)
 ============================
 
-Although there are many gains that can be tuned in Copter to get optimal
-performance, the most critical is the Rate Roll and Pitch P values which
-convert the desired rotation rate into a motor output.  This alone will
-likely get it flying reasonably well at least in Stabilize mode.
+비행체가 최적의 성능을 내기 위해서 튜닝할 수 있는 다양한 gain들이 있다.
+가장 중요한 것은 Rate Roll과 Pitch P 값이다. 이 값들로 원하는 회전 rate가 모터 출력으로 변환된다.
+적어도 Stabilize 모드에서 이 값만 가지고도 꽤 비행이 잘되도록 할 수 있다.
 
-This guide assumes you are using Mission Planner as your Ground Control software.
-Other software, such as QGroundControl or APM Planner can also be used.
+미션 플래너를 이용하여 설정을 진행하도록 한다.
 
-Some general advice on how to tune this parameter:
+이 파라미터 튜닝과 관련된 일반적인 조언 :
 
--  Too high and the copter will oscillate quickly in roll and/or pitch
--  Too low and the copter will become sluggish
--  High powered copter should use a lower gain, under powered copters
-   are a higher gain
+-  이 파라미터 값이 너무 높은 값이면 비행체가 roll과 pitch로 빠르게 진동(oscillation)이 발생한다.
+-  이 파라미터 값이 너무 낮은 값이면 비행체가 느리게 반응한다.
+-  높은 전원을 사용하는 비행체는 낮은 gain을 사용해야만 하고 낮은 전원을 사용하는 비행체는 더 높은 gain을 사용해야만 한다.
 
 .. _ac_rollpitchtuning_in-flight_tuning:
 
-Transmitter based tuning
+조정기를 이용한 튜닝
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the :ref:`Transmitter based tuning <common-transmitter-tuning>` page for information on how to tune these values, as well as other parameters while in the air.
+:ref:`Transmitter based tuning <common-transmitter-tuning>` 를 참고하면 비행 중에 이 파라미터와 다른 파라미터도 튜닝하는 방법에 대한 정보를 얻을 수 있다.
 
-Video of in-flight tuning
+비행 중 튜닝 비디오
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  youtube:: NOQPrTdrQJM#t=145
     :width: 100%
 
-Verifying performance with dataflash logs
+로그를 이용한 성능 검증
 =========================================
 
-Viewing the stabilize mode performance is best done by downloading a
-dataflash log from your flight, then open it with the mission planner
-and graph the ATT message’s Roll-In or DesRoll (pilot desired roll
-angle) vs Roll (actual roll) and Pitch-In or DesPitch (desired pitch
-angle) vs Pitch (actual pitch angle). These two should track well as
-shown below.
+스테빌라이져 모드 선응을 보기 위한 최선의 방법은 비행 로그를 받아서 확인할 수 있다.
+log를 미션 플래너를 통해서 열고 ATT 메시지의 Roll-In 이나 DesRoll 그래프와 Roll (actual roll)과 Pitch-In 혹은 DesPitch(desired pitch angle)과 Pitch(실제 pitch angle) 그래프를 확인할 수 있다.
+이렇게 2개는 아래와 같이 잘 추적할 수 있다.
 
 .. image:: ../images/Tuning_StabilizeCheck.png
     :target: ../_images/Tuning_StabilizeCheck.png

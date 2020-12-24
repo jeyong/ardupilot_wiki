@@ -1,19 +1,21 @@
 .. _autotrim:
 
 ========
-AutoTrim
+오토트림(AutoTrim)
 ========
 
-Wind of course has a strong effect on your copter and will push it around. However you may also find that while flying in stabilize mode, even in a windless environment your copter tends to always drift away in the same direction. This can largely be corrected using the "Save Trim" or "Automatic Trim" functions.
+비행중에 바람으로 인해 비행체에 영향을 미쳐서 비행체가 밀려나기도 한다.
+스테빌라이즈 모드에서 비행하더라도 이런 현상은 발생할 수 있다. 바람이 없는 환경에서도 비행체가 동일한 방향으로 드리프트 되는 경향이 발생할 수 있다.
+"Save Trim" 혹은 "Automatic Trim" 기능을 사용해서 보정할 수 있다.
 
 .. note::
 
-    For most users this procedure is not necessary because the :ref:`accelerometer calibration <common-accelerometer-calibration>` does a good job of setting the trim values.
+    대부분 사용자에게 이런 과정이 필요하지 않을 것이다. 왜냐하면 :ref:`accelerometer calibration <common-accelerometer-calibration>` 으로 trim 값 설정하기 떄문이다.
 
-Save Trim
+Trim 저장(Save Trim)
 ~~~~~~~~~
 
-Save trim is the simpler method and involves essentially transferring your radio transmitter's trims to the autopilot (`video demo here <https://www.youtube.com/watch?v=ayA0uYOqKX4>`__).
+Save Trim은 가장 간단한 방법으로 본질적으로 라디오 트랜스 미터의 trim값이 비행제어기로 전송되는 것과 관련이 있다. (`비디오 데모 <https://www.youtube.com/watch?v=ayA0uYOqKX4>`__)
 
 1. Check that your CH7 switch goes above 1800 on the MissionPlanner's Hardware > Mandatory Hardware > Radio Calibration screen
 
@@ -33,7 +35,7 @@ Save trim is the simpler method and involves essentially transferring your radio
 
 6. Reset your transmitters roll and pitch trims back to the center and fly again and it should fly level now. If it does not repeat steps 3, 4 & 5
 
-Auto Trim
+자동 Trim(Auto Trim)
 ~~~~~~~~~
 
 With auto trim the roll and pitch trim are captured as you fly in a stable hover.

@@ -1,7 +1,7 @@
 .. _initial-setup:
 
 ================
-First Time Setup
+맨 처음 셋업
 ================
 
 .. image:: ../images/Quad_Color6.jpg
