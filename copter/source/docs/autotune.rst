@@ -1,31 +1,33 @@
 .. _autotune:
 
 ========
-AutoTune
+오토튠(AutoTune)
 ========
 
+오토튭은 자동으로 
 AutoTune attempts to automatically tune the Stabilize P, Rate P and D, and maximum rotational accelerations to provide the highest response without significant overshoot. Copter needs to be "basically" flyable in :ref:`AltHold mode <altholdmode>` before attempting to use AutoTune as the feature needs to be able to "twitch" the copter in the roll and pitch axis.
 
-.. warning::
+.. 경고::
 
-   AutoTune is not always able to determine a good tune for the vehicle and may result in gains that lead to an unflyable vehicle that may crash.  Please follow the :ref:`Tuning Process Instructions <tuning-process-instructions>` before attempting to use AutoTune. After following those instructions, and have :ref:`evaluated your initial tune <evaluating-the-aircraft-tune>`, should to try AutoTune.
+   오토튠은 항상 완벽하게 튜닝을 제공하지는 않습니다. 제대로 비행이 되지 않는 gain값들을 결과로 얻을 수 있으므로 주의기 필요합니다. 오토튠을 사용하기 전에  :ref:`Tuning Process Instructions <tuning-process-instructions>` 과정을 진행하세요.
+   다음으로 :ref:`evaluated your initial tune <evaluating-the-aircraft-tune>` 과정을 진행한 후에 오토튠을 진행합니다.
 
 ..  youtube:: js2GzeRysAc
     :width: 100%
 
 
-There a number of problems that can prevent AutoTune from providing a good tune. Some of the reasons AutoTune can fail are:
+다음과 같은 문제가 있는 경우 오토튠으로 제대로 튜닝이 되지 않습니다. 오토튠을 방해하는 요소들은 다음과 같습니다:
 
-- High levels of gyro noise.
-- Incorrect value of :ref:`MOT_THST_EXPO <MOT_THST_EXPO>`.
-- Flexible frame or payload mount.
-- Overly flexible vibration isolation mount.
-- Non-linear ESC response.
-- Very low setting for :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`.
-- Overloaded propellers or motors.
+- 자이로 센서의 노이즈가 높은 경우
+- :ref:`MOT_THST_EXPO <MOT_THST_EXPO>` 의 값이 올바르지 않은 경우
+- 프레임이나 장착물이 단단하지 않고 유연한 경우(낭창거리는 경우 진동 유발)
+- 진동 차단 마운트가 너무 유연한 경우(낭창거리는 경우)
+- 비선형의 ESC 응답
+- :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`에 대한 매우 낮은 설정값
+- 프로펠러나 모터가 기체의 크기에 맞지 않는 경우
 
 
-Setup before flying in AutoTune mode
+오토튠 모드에서 비행하기 전에 설정
 ====================================
 #. Set up one flight mode switch position to be AltHold.
 #. Set an RC channel :ref:`Auxiliary Function <common-auxiliary-functions>` switch or an :ref:`Auxiliary Function Switch <channel-7-and-8-options>` (prior to version 4.0) to AutoTune to allow you to turn the auto tuning on/off with the a switch.

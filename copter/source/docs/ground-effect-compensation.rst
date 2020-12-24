@@ -1,23 +1,24 @@
 .. _ground-effect-compensation:
 
 ==========================
-Ground Effect Compensation
+그라운드 이펙트 보상(Ground Effect Compensation)
 ==========================
 
-Copter 3.4 (and higher) includes ground effect compensation which reduces the weighting of the barometer (in favour of the accelerometers) when the vehicle is likely taking off or landing.  This reduces the bounce sometimes seen when landing vehicles with short legs compared to the length of their propellers.
+Copter 3.4 이상 버전에는 그라운드 이펙트 보상 기능이 포함되어 있습니다. 비행체가 이륙/착륙시에 바로미터 센서보다 가속도 센서를 활용하는 기능입니다.
+프롤펠러 길이 대비 다리가 짧은 비행체가 착륙할 때 통통 튀는 현상을 줄일 수 있습니다.
 
-If your vehicle is not suffering from the bounce on landing it's best to leave this feature disabled because it slightly increases the risk of high vibration levels upsetting the altitude estimate.
+비행체에 착륙시에 바운스가 발생하지 않는 경우라면 이 기능을 비활성화 시켜두는게 좋습니다. 이 기능을 활성화 시키면 고도값 추정에 문제가 발생하여 높은 진동 발생의 위험이 증가되기 때문입니다.
 
 .. note::
 
-    Ground Effect compensation was introduced in Copter 3.4.
+    그라운드 이펙트 보상은 Copter 3.4 버전부터 지원합니다.
 
-Setup
+설정
 =====
 
-Connect to the flight contrller using your ground station (i.e. Mission Planner) and set the :ref:`GND_EFFECT_COMP <GND_EFFECT_COMP>` parameter to "1".
+Mission Planner와 비행제어기를 연결하여 :ref:`GND_EFFECT_COMP <GND_EFFECT_COMP>` 파라미터를 "1"로 설정하세요.
 
-Video
+비디오
 =====
 
 ..  youtube:: ljSV-36MOOU

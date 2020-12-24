@@ -1,42 +1,32 @@
 .. _esc-calibration:
 
 =============================================
-Electronic Speed Controller (ESC) Calibration
+변속기(Electronic Speed Controller (ESC)) 칼리브레이션
 =============================================
 
-Electronic speed controllers are responsible for spinning the motors at
-the speed requested by the autopilot. Most ESCs need to be calibrated so
-that they know the minimum and maximum pwm values that the flight
-controller will send.  This page provides instructions for calibrating
-ESCs.
+ESC는 비행제어기가 요청한 속도로 모터를 회전시키는 역할을 수행합니다. 대부분의 ESC에 대해서 칼리브레이션이 필요한데 제어기가 보내는 PWM의 최대/최소값을 알기 위해서입니다.
+여기서는 ESC를 칼리브레이션하는 절차에 대해서 설명합니다.
 
 .. note::
 
-   Please complete :ref:`radio calibration <common-radio-control-calibration>` before performing ESC
-   calibration.
+   ESC 칼리브레이션을 수행하기 전에 :ref:`라디오 칼리브레이션 <common-radio-control-calibration>` 을 완료해야 합니다.
 
-About ESC Calibration
+ESC 칼리브레이션에 대해서
 =====================
 
-ESC calibration will vary based on what brand of ESC you are using, so
-always refer to the documentation for the brand of ESC you are using for
-specific information (such as tones).  "All at once" calibration works
-well for most ESCs, so it is good idea to attempt it first and if that
-fails try the "Manual ESC-by-ESC" method.
+ESC 칼리브레이션은 사용하는 ESC 제조사에 따라 달라립니다. 따라서 사용하는 ESC의 제조사가 제공하는 문서를 참고하세요.(ex) 소리 정보). 대부분 경우 "한꺼번에" 칼리브레이션이 되므로 먼저 수행해 보고 만약 제대로 되지 않는다면 하나씩 수동으로 칼리브레이션을 수행합니다.
 
--  If using BLHeli and/or DShot ESC's, please refer to :ref:`DShot and BLHeli ESC Support <common-dshot>` for setup.
+-  BLHeli나 DShot ESC를 사용하는 경우 :ref:`DShot and BLHeli ESC Support <common-dshot>` 를 참고하세요.
 -  Some ESCs like the DJI Opto ESCs do not require and do not support calibration, so skip this page completely
 -  Some brands of ESC do not allow calibration and will not arm unless you adjust your radio's throttle end-points so that the minimum throttle is around 1000 PWM and maximum is around 2000.  Note that if you change the end-points on your TX you must re-do the :ref:`Radio Calibration <common-radio-control-calibration>`.  Alternatively with Copter-3.4 (and higher) you may manually set the :ref:`MOT_PWM_MIN <MOT_PWM_MIN>` to 1000 and :ref:`MOT_PWM_MAX <MOT_PWM_MAX>` to 2000.
 -  If using OneShot ESCs set the :ref:`MOT_PWM_TYPE <MOT_PWM_TYPE>` to 1 (for regular OneShot) or 2 (for OneShot125).  Note only supported in Copter-3.4 (and higher).
 -  Begin this procedure only after you have completed the :ref:`radio control calibration <common-radio-control-calibration>` and :ref:`Connect ESCs and motors <connect-escs-and-motors>` part of the :ref:`Autopilot System Assembly Instructions <autopilot-assembly-instructions>`.  Next follow these steps:
 
-.. warning::
+.. 경고::
 
-   **Safety Check!**
+   **안전 점검!**
 
-   Before calibrating ESCs, please ensure that your copter has NO PROPS on
-   it and that the APM is NOT CONNECTED to your computer via USB and the
-   Lipo battery is disconnected.
+   ESC를 칼리브레이션하기 전에 프로펠러를 제거합니다. 그리고 USB로 연결 제거 및 Lipo 배터리 연결을 해제합니다.
 
    .. image:: ../images/copter_disconnect_props_banner.png
        :target: ../_images/copter_disconnect_props_banner.png
@@ -46,7 +36,7 @@ fails try the "Manual ESC-by-ESC" method.
        :target: ../_images/MicroUSB1__57056_zoom.jpg
        :width: 400px
 
-All at once calibration
+한꺼번에 칼리브레이션하기
 =======================
 
 #. Turn on your transmitter and put the throttle stick at maximum.
