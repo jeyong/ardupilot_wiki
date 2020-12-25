@@ -1,96 +1,70 @@
 .. _ac_tipsfornewpilots:
 
 ===================
-Tips For New Pilots
+초보 조정자를 위한 팁
 ===================
 
-This page gives some advice on initial flying strategies for those with
-limited or no previous experience flying RC aircraft or multicopters.
+RC 비행체를 날리는 경험을 처음하는 경우 처음 비행을 어떻게 진행해야하는지에 대한 조언을 제공한다.
 
-First flight
+처음 비행
 ============
 
-Place the copter on level ground and connect the battery — do not move
-the copter until gyroscope calibration is completed (LED's flashing red
-and blue). Ensure that your RC mode toggle switch is in Stabilize mode.
-Slowly raise the throttle until the copter just lifts off the ground.
+비행체를 평평한 땅에 놓고 배터리를 연결한다. - 자이로센서 칼리브레이션이 완료될때까지(LED가 빨강/파랑으로 깜빡임) 비행체를 고정된 상태로 둔다.
+RC 비행 모드 스위치를 스테빌라이져 모드로 설정한다. 쓰로틀을 천천히 올려서 비행체가 땅에서 살짝 뜨도록 한다. (10cm ~ 50cm 정도 추천)
     
-If it seems like it's going to flip or otherwise isn't lifting straight up
-it is possible that you've set the wrong +/x orientation, hooked up your motors
-in the wrong order or have the prop direction or pusher/puller order wrong.
-You can test this by following the instructions in 
-:ref:`connect-escs-and-motors_testing_motor_spin_directions`.
 
-If any of the controls are reversed (pitch or roll are backwards,
-meaning the copter moves in the opposite direction as your stick),
-you'll need to reverse the affected channel at your RC transmitter side.
-Please see your RC transmitter's manual if you're not familiar with the
-process. It's a good idea to re-do your RC calibration in the Mission
-Planner after you've reversed a channel.
+이 과정에서 비행체가 뒤집어 질려고 하거나 똑바로 이륙하지 못할꺼 같은 징조가 보인다면, +/x 방향을 잘못 설정하였는지 모터의 순서나 프로펠러의 회전 방향을 확인한다.
+테스는 :ref:`connect-escs-and-motors_testing_motor_spin_directions`를 참고한다.
 
-If it lifts off smoothly, you may see a little yaw. That shouldn't be
-more than about 30 degrees and will correct itself with more flying
-time. There should be no pronounced wobble (if there is, you may have an
-unbalanced prop or out-of-true motor).
+조정기 스틱의 제어가 거꾸로 되어 있는 경우라면 스틱 방향과 반대로 비행체가 움직이게 된다.
+RC 조정기에서 문제가 되는 채널을 반전시키는 설정을 할 수 있다.
+이런 설정에 대해서 익숙하지 않다면 사용하고 있는 RC 조정기의 매뉴얼을 참고하도록 하자.
+만약 조정기의 채널을 반전시킨 경우에는 미션 플래너를 통해서 RC 칼리브레이션을 다시 진행하도록 한다.
 
-The copter should also tend to stay in place, and you shouldn't have to
-fight strong tendencies to move left or right or forward or back. If you
-do see that behavior, do NOT use your RC trims to correct (this just
-throws off the calibration). Instead, it probably means that the copter
-may not have been completely flat during calibration or the airframe is
-out of true (one motor tilted). Land and correct that.
+천천히 비행체가 뜨기 시작하는 경우에는 비행체의 yaw 방향으로 돌아가는 현상이 생길 수 있다.
+비행체가 30도 이상 yaw 방향이 돌아가면 문제가 있는 것이다.
+기체의 좌우로 크게 흔들리는 현상이 없어야 한다. 만약 이런 현상이 발생한다면 프로펠러의 밸런스가 맞지 않거나 모터가 똑바로 장착되지 않았는지 확인한다.
 
-If you're having trouble and the copter is not hovering smoothly, run
-through the :ref:`troubleshooting guide <troubleshooting>`.
+비행체는 비행 위치를 유지해야하는데 왼쪽/오른쪽, 앞/뒤로 움직이지 않아야 한다.
+만약 이런 현상이 발생한다면 이 문제를 잡기 위해서 조정기의 trim 기능을 사용하는데 이렇게 하지 않도록 한다.
+왜냐하면 설정된 칼리브레이션을 제대로 사용하지 못하게 된다.
+대신에 비행체를 완전히 평평하게 둔 상태로 칼리브레이션 진행할지 않았거나 비행체의 모터가 수평이 되지 않았을 수 있다.
+착륙 시킨 후에 문제점을 확인 후 보정하도록 한다.
 
-Assuming that all is fine so far, you're ready for more advanced modes,
-such as Alt Hold and Loiter.
+만약 계속 문제를 갖고 있다면 비행체가 호버링을 제대로 되지 않는다.
+:ref:`troubleshooting guide <troubleshooting>`를 보고 문제를 해결하도록 하자.
 
-Tips for your first flights
+모든 것이 제대로 보완되었다면 Alt Hold와 Loiter와 같은 다른 비행 모드에서 비행이 가능한 상태가 된 것이다.
+
+
+처음 비행을 위한 팁
 ===========================
 
--  Make sure you are in a wind free environment
-   (wind will play against you on in air auto trim).
--  Make sure you have no trim on your Radio 
-   (the APM is what we want to trim, the radio should never get trimmed).
--  Hold the copter still and level after connecting the battery to allow
-   the gyroscopes to initialize.
--  Get above ground effect, around 3-4 feet is enough on most models.
--  Make sure to practice a lot before you actually try the auto trim to
-   find the sweet spot on the Radio right stick to have the copter super
-   stable and not moving
-   (This is where wind affect your inputs).
--  We recommend not starting in Simple mode. Begin your flying in the
-   basic Stabilize mode.
--  Copter establishes its home position at the time of arming, so arm
-   your copter in the location you wish to designate as the home
-   position.
+-  바람이 없는 환경인지 확인하기
+   (바람이 있는 경우 자동 trim에 방해가 된다.)
+-  조정기에 trim이 0으로 설정되었는지 확인하기
+   (조정기에서 trim 기능을 사용하지 말고 비행제어기에서 trim이 되도록 한다.)
+-  비행체를 평평한 땅에 두고 배터리를 연결하고 자이로센서가 칼리브레이션이 될때까지 기다린다.
+-  대략 1m 이상이면 그라운드 이펙트를 받지 않는다.
+-  auto trim을 실제로 수행하기 전에 연습을 많이 해야한다. 비행체가 아주 안정적이고 움직이지 않게 하는 조정기의 stick 위치를 찾아야 한다.
+-  Simple 모드에서는 시작하지 않는 것을 추천한다. 시작은 기본 스테빌라이즈 모드에서 비행하도록 한다.
+-  비행체는 arming 시점에 home position이 설정된다. 따라서 home position으로 설정하고자 하는 위치에서 비행체를 arming하도록 하자.
 
-Warning about low batteries
+
+low 배터리 경고
 ===========================
 
-When flying Copter, you need to keep in mind that it flies much
-differently than a winged airplane. In an airplane, lift is generated by
-the wing and you still have control surfaces for maneuvering if the
-motor were to stop. Multicopters generate lift solely from the thrust of
-the motors, so if your battery is excessively depleted, you have no lift
-and no control over your Copter, and it may flip over and crash without
-a gradual warning. During first flights, fly only short durations until
-you know your battery consumption and use one of the following batteries
-monitoring methods to ensure that you always have enough power remaining
-to safely land your copter (and not ruin the battery).
+멀티로터를 날릴때, 고정익 비행체와는 많이 다르다는 것을 명심하자. 고정익에서는 날개에서 lift가 발생하고 조작은 control surface를 통해서 가능하다.
+멀티로터는 모터의 추력만으로 lift를 생성한다.
+따라서 배터리가 급속도로 떨어지면 lift와 제어를 할 수 없게 된다. 따라서 사전 경고 없이 추락하게 된다.
+처음 비행시에는 배터리가 얼마나 소모되는지 감을 잡을 정도로 짧게 비행을 한다.
+안전하게 착륙시킬 수 있을 정도의 충분한 배터리가 남아 있는지 확인하는 여러가지 배터리 모니터링 방법 중에 하나를 사용한다.
 
--  ArduPilot support Battery voltage monitoring. For more information, visit the :ref:`3DR Power Module for Measuring Voltage and Current <common-3dr-power-module>` page.
--  You may also program your ESCs to use a slow or no cutoff at low
-   voltages.
--  For APM 2 or 2.5 without power module it is HIGHLY recommended you
-   install a `Battery Voltage Monitor <https://hobbyking.com/en_us/catalogsearch/result/?q=Battery+Voltage+Monitor>`__.
-
-   -  For 3S LiPo batteries, the two wires can be soldered to the P-PCB
-      directly, or you can connect to the balancing plug of your
-      battery.
-   -  The battery voltage monitor linked above has a buzzer and LEDs
-      that function as follows:
+-  ArduPilot은 배터리의 전압으로 모니터링을 지원한다. 더 상세는 정보는 :ref:`3DR Power Module for Measuring Voltage and Current <common-3dr-power-module>` 를 참조하자.
+-  낮은 전압에서는 slow나 cutoff 되지 않는 기능을 사용하기 위해서 ESC에 프로그램할 수도 있다.
+-  이전 버전인 APM 2나 2.5에는 파워 모듈이 없다. `Battery Voltage Monitor <https://hobbyking.com/en_us/catalogsearch/result/?q=Battery+Voltage+Monitor>`__ 장착을 강력히 추천한다.
+   -  3S LiPo 배터리를 위해서 2개의 전선을 P-PCB에 직접 납땜할 수 있다. 혹은 배터리의 밸런스 플러그에 연결할 수 있다.
+   -  위에서 언급한 배터리 전압 모니터는 부저와 LED가 있어서 다음과 같이 동작한다.:
 
       .. raw:: html
 
@@ -126,6 +100,4 @@ to safely land your copter (and not ruin the battery).
 
 .. note::
 
-   If you are using a battery monitor, always connect the main LiPo
-   battery wire before connecting the balancing port wire to the
-   APM.
+   만약 배터리 모니터를 사용하고 있다면 연결할때, 항상 밸런스 포트 전선을 APM에 연결하기 전에 메인 LiPo 배터리 전선을 연결하도록 한다. (메인 LiPo 전선부터 연결)   
