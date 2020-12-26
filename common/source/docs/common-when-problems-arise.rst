@@ -1,53 +1,41 @@
 .. _common-when-problems-arise:
 
 ===================
-When Problems Arise
+문제가 발생했을때
 ===================
 
-ArduPilot, is extremely capable and flexible. But with high performance and flexibility comes a lot of configurations, parameters, and complexity.
+Ardupilot은 아주 다양한 기능과 유연성을 제공한다. 하지만 높은 성능과 유연성을 제대로 사용하기 위해서는 다양한 설정, 파라미터 및 복잡성도 동반된다.
 
-This WIKI documentation attempts to reduce the effort of configuring and operating your ArduPilot based vehicle by providing as much accurate information on configuration, parameters, and operating modes as possible, and is continuously being updated as new releases occur or areas needing further explanation arise. Your assistance in that effort is welcomed and solicited. See :ref:`common_wiki_editing_guide`
+이 문서는 최대한 설정, 파라미터, 운영 모드 등에 대한 정보를 최대한 상세히 제공해서 설정과 운영에 드는 시간과 노력을 줄이는데 도움을 주고자한다. 지속적으로 새로운 버전을 내면서 더 설명이 필요한 부분에 대해서 업데이트를 진행해 나갈 예정이다. 수정 및 보완은 :ref:`common_wiki_editing_guide`을 참고한다.
 
-What to do if you have an issue
+이슈가 발생했을때 무엇을 해야할까?
 ===============================
 
-1. Make sure you have followed the vehicle's "First Time Setup" and "First Flight/Drive" Sections and carefully read the provided documentation. If dealing with advanced configuration or hardware options, thoroughly read the appropriate documentation.
+1. 먼저 "처음 셋업하기"와 "처음 비행하기" 섹션을 따라하면서 관련된 자료를 꼼꼼히 읽도록 한다. 만약 고급 설정과 하드웨어 옵션을 처리해야하는 경우에는 관련 문서를 꼼꼼히 읽고 진행해야 한다.
 
-2. If this does not help you resolve the issue, then seek help on the `Discuss Forum <https://discuss.ardupilot.org/>`__ section appropriate to your vehicle or ground station. Do not enter issues on the GitHub software repositories or Gitter Developer Channels unless it has been confirmed as an actual issue in the code or documentation. Support will be given in the appropriate Discuss Forum.
+2. 여기서 제공되는 자료가 이슈를 해결하는데 도움이 되지 않았다면 `Discuss Forum <https://discuss.ardupilot.org/>`__ 섹션에 도움을 요청하라. 
 
-3. Having a :Ref:`dataflash log <common-diagnosing-problems-using-logs>` will help you, or someone helping you, to diagnose the issue.
+3. :Ref:`dataflash log <common-diagnosing-problems-using-logs>`에서 도움을 얻을 수 있다. 이 정보를 가지고 이슈를 분석해서 다른 사람으로부터 도움을 받을 수 있다.
 
-.. note:: WatchDog resets ("WDG:") should be reported `on this page <https://github.com/ArduPilot/ardupilot/issues/15915>`_ , Internal Errors ("Internal Error:") should be reported `here <https://github.com/ArduPilot/ardupilot/issues/15916>`_
+.. note:: WatchDog resets ("WDG:")은 `이 페이지 <https://github.com/ArduPilot/ardupilot/issues/15915>`_ 로 Internal Errors ("Internal Error:")는 `여기 <https://github.com/ArduPilot/ardupilot/issues/15916>`_ 에 리포팅하면 된다.
 
 
 [site wiki="copter"]
 
 
-Copter Common Problems
+Copter 일반적인 문제들
 ======================
 
--  new copter flips immediately upon take-off.  This is usually caused
-   by the motor order being incorrect or spinning in the wrong direction
-   or using an incorrect propeller (clockwise vs counter-clockwise). 
-   Check the rc connections for your autopilot.
--  copter wobbles on roll or pitch axis.  This usually means the Rate P
-   values are incorrect.  See :ref:`common-tuning` section for some hints as to
-   how to adjust these gains.
--  copter wobbles when descending quickly.  This is caused by the copter
-   falling through its own prop wash and is nearly impossible to  tune
-   out although raising the Rate Roll/Pitch P values may help.
--  copter yaws right or left 15degrees on take-off.  Some motors may not
-   be straight or the :ref:`ESCs have not been calibrated <esc-calibration>`.
--  copter always tends to fly in one direction even in a windless
-   environment.  Try :ref:`SaveTrim or AutoTrim <autotrim>` to level the
-   copter.
--  copter climbs rapidly even if the pilot pulls the throttle down. This is likely caused by high vibrations. See https://ardupilot.org/copter/docs/common-vibration-damping.html for methods to improve vibration isolation.
--  occasional twitches in roll or pitch.  Normally caused by some kind
-   of interference on the receiver (for example FPV equipment placed too
-   close to the receiver) or by ESC problems that may be resolved by
-   :ref:`calibrating them <esc-calibration>`.
--  sudden flips during flight.  This is nearly always caused by
-   :ref:`mechanical failures <common-diagnosing-problems-using-logs_mechanical_failures>`
-   of the motor or ESCs.
-
+-  새로 설정한 비행체가 이륙시 뒤집어 지는 문제에 대한 원인들 :
+   모터 순서나 회전 방향이 제대로 설치했는지 확인
+   혹은 프로펠러의 ccw/cw 맞게 설치했는지 확인
+   Pixhawk와 RC수신치 연결 확인  
+-  roll 혹은 pitch 축으로 흔들리는 현상. 보통은 Rate P 값이 제대로 설정되지 않은 경우다. :ref:`common-tuning` 섹션을 보고 이 gain 값들을 조정하도록 한다.
+-  빠르게 하강할때 비행체가 흔들리는 현상. prop wash로 생기는 문제일 확률이 높다. 이 경우 Roll/Pitch P 값을 올리더라도 튜닝하기가 거의 불가능하다.
+-  이륙시에 오른쪽 혹은 왼쪽으로 yaw가 15도 정도 생기는 현상. 모터가 기울어져 있거나 :ref:`ESC가 제대로 칼리브레이션 되어 있지 않아서 <esc-calibration>` 발생할 수 있다.
+-  바람이 없는 상황에서도 비행체가 항상 특정 방향으로 기울어져 날라가는 경우. 비행체의 수평 비행을 위해서 `SaveTrim 혹은 AutoTrim <autotrim>`을 수행해 본다.
+-  조정기 쓰로틀 스틱을 내리더라도 비행체가 빠르게 올라가는 현상. 비행체 자체 진동에 의해서 발행할 수 있으며 https://ardupilot.org/copter/docs/common-vibration-damping.html 를 참고한다.
+-  roll 혹은 pitch 축으로 가끔씩 경련을 일으키는 원인은
+   Pixhawk에 연결된 조정 수신게에 간섭이 발생하는 경우(FPV 장치들을 수신기 주변에 설치하지 않는다.) 혹은 ESC 문제일 수도 있는데 이 경우 :ref:`calibrating them <esc-calibration>`를 참고한다.
+-  비행 중에 갑자기 뒤집히는 경우의 원인. 이 경우 거의 대부분 모터나 ESC의 :ref:`기계적 이상 <common-diagnosing-problems-using-logs_mechanical_failures>`이 원인이다.
 [/site]
