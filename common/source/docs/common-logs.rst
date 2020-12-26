@@ -4,14 +4,14 @@
 Logs
 ====
 
-Topics related to logging and analysis
+로깅과 분석과 관련된 주제
 --------------------------------------
 
 .. toctree::
     :maxdepth: 1
 
 [site wiki="plane,copter,dev,planner,rover"]
-    Diagnosing problems using Logs <common-diagnosing-problems-using-logs>
+    Log를 이용한 문제 진단 <common-diagnosing-problems-using-logs>
     Dataflash Logs <common-downloading-and-analyzing-data-logs-in-mission-planner>
 [/site]
 [site wiki="plane"]
@@ -31,13 +31,13 @@ Topics related to logging and analysis
     Log Analysis Case Study: Turn Rate Adjustment <case-study-turn-rate>
 [/site]
 [site wiki="plane,copter,rover,dev,planner"]
-    Measuring Vibration <common-measuring-vibration>
-    Measuring Vibration with "Batch Sampling" <common-imu-batchsampling>
+    진동 측정하기 <common-measuring-vibration>
+    "Batch Sampling"로 진동 측정하기 <common-imu-batchsampling>
     Telemetry Logs <common-mission-planner-telemetry-logs>
 [/site]
 
 
-Tools for log analysis
+log 분석 도구들
 ----------------------
     
 .. toctree::
