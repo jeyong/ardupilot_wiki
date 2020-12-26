@@ -1,12 +1,12 @@
 .. _common-autopilots:
 
 ==========================
-Autopilot Hardware Options
+Autopilot 하드웨어 옵션
 ==========================
 
-This section provides information about ArduPilot Autopilot Hardware options.  The list below is sorted by manufacturer and product name.
+선택가능한 ArduPilot 비행제어기 하드웨어에 대해서 알아보자. 아래 목록은 제조사와 제품 이름을 기준으로 정렬하였다.
 
-Open hardware
+오픈 하드웨어
 -------------
 
 .. toctree::
@@ -34,11 +34,11 @@ Open hardware
     PocketPilot* (Linux) <https://github.com/PocketPilot/PocketPilot>
     TauLabs Sparky2** <common-taulabs-sparky2>
 
-\* these devices are sensor add-on boards for a Beagle Bone microcomputer. See board links for details 
+\* 이 장치들은 Beagle Bone 마이크로 컴퓨터에 센서를 추가한 보드이다. 상세한 내용은 보드 링크에서 확인하자. 
 
-\** due to flash memory limitations, these boards do not include all ArduPilot features. See :ref:`Firmware Limitations <common-limited_firmware>` for details.
+\** flash 메모리의 제약으로 이 보드들은 ArduPilot의 모든 기능을 담을 수 없다. 상세 내용은 :ref:`펌웨어 제약사항 <common-limited_firmware>`을 참고하자.
 
-Closed hardware
+Closed 하드웨어
 ---------------
 
 .. toctree::
@@ -74,14 +74,14 @@ Closed hardware
     VR Brain 5 <http://www.virtualrobotix.it/index.php/en/shop/autopilot/vrbrain5-detail>
     VR uBrain 5.1 <http://www.virtualrobotix.it/index.php/en/shop/autopilot/vrbrainmicro51-detail>
 
-\* due to flash memory limitations, these boards do not include all ArduPilot features. See :ref:`Firmware Limitations <common-limited_firmware>` for details.
+\* flash 메모리의 제약으로 이 보드들은 ArduPilot의 모든 기능을 담을 수 없다. 상세 내용은 :ref:`펌웨어 제약사항 <common-limited_firmware>`을 참고하자.
 
-.. note:: For more information on using ArduPilot on Linux based boards, see :ref:`building-the-code`
+.. note:: Linux 보드를 기반으로 ArduPilot을 사용하는 경우 :ref:`building-the-code` 를 참고하자.
 
-Firmware Limitations
+펌웨어 제약사항
 --------------------
 
-Some boards have features removed in order to fit the firmware into their memory capacity. See the section below:
+일부 보드는 해당 보드의 메모리 용량에 맞게 기능을 줄여서 펌웨어를 만든다. 아래 내용을 참조 :
 
 .. toctree::
     :maxdepth: 1
@@ -89,9 +89,10 @@ Some boards have features removed in order to fit the firmware into their memory
     Firmware Limitations <common-limited-firmware>
     
 
-Discontinued boards
+더이상 생산되지 않는 보드
 -------------------
-The following boards are no longer produced, however documentation is still available in the wiki or online, and recent builds are still expected to work.  These boards are not recommended for new projects.
+아래 보드는 더 이상 생산되지 않는다. 하지만 문서는 제공되며 최근 빌드도 동작한다.
+아래 보드는 새로운 프로젝트에서 사용은 추천하지 않는다.
 
 .. toctree::
     :maxdepth: 1
@@ -103,10 +104,9 @@ The following boards are no longer produced, however documentation is still avai
     Intel Aero <common-intel-aero-overview>
     Intel Aero RTF vehicle <common-intel-aero-rtf>
 
-The following boards are no longer supported. The documentation is :ref:`archived<common-archived-topics>`, but
-available if you're still working on those platforms:
+아래 보드는 더이상 지원하지 않는다. 문서는 :ref:`archived<common-archived-topics>`를 참고하자.
 
-   APM 2.x (APM 2.6 and later) are no longer supported for Copter, Plane or Rover. The last firmware builds that fit on this board are Copter 3.2.1, and Plane 3.4.0, and Rover 2.5.1. 
+   APM 2.x (APM 2.6 and later)는 더이상 Copter, Plane, Rover에서 지원하지 않는다. Copter 3.2.1과 Plane 3.4.0, Rover 2.5.1이 최종 지원하는 펌웨어 빌드 버전이다.
    NAVIO+ 
    PX4FMU
    Qualcomm Snapdragon Flight Kit

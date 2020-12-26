@@ -1,10 +1,10 @@
 .. _common-flysky-rc:
 
 =================
-FLYSKY RC Systems
+FLYSKY RC 시스템
 =================
 
-`FLYSKY home page <https://www.flysky-cn.com/home>`__
+`FLYSKY 홈페이지 <https://www.flysky-cn.com/home>`__
 
 .. image:: ../../../images/flysky-tx.jpg
     :width: 450px

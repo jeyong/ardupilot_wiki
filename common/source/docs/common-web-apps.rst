@@ -4,18 +4,14 @@
 Web Apps
 ========
 
-There are several web applications which can be used with Copter/Plane/Rover to allowing sharing flight data, videos or even allowing web based control.  
-Below is the list of known applications (in alphabetical order).
+비행 데이터, 비디오나 웹 기반으로 제어가 가능한 여러 가지 웹 어플리케이션이 있다. 이미 알려진 어플리케이션의 목록은 아래와 같다.(알파벳 순서)
 
 .. image:: ../../../images/webapps_titleimage2.jpg
     :target: ../_images/webapps_titleimage2.jpg
 
-`dronetrack.org <http://www.dronetrack.org/>`__ - Real-Time tracking and
-sharing of flight paths
+`dronetrack.org <http://www.dronetrack.org/>`__ - 실시간 트랙킹 및 비행 경로 공유
 
-`EXmaps.com <https://www.exmaps.com/>`__ - online flight logbook made for
-the ArduPilot system. Just drag and drop log files for post flight
-analysis and cumulative flight time
+`EXmaps.com <https://www.exmaps.com/>`__ - ArduPilot 시스템용으로 제작된 온라인 비행 logbook. 로그 파일을 드래그하면 분석 및 누적 비행 시간을 확인할 수 있다.
 
 `UAViators.org <http://uaviators.org/>`__ - video sharing site to aid
 humanitarian organizations and disaster affected communities with

@@ -1,14 +1,12 @@
 .. _common-antenna-design:
 
 =======================
-Antenna Design Overview
+안테나 설계 개요
 =======================
 
-This article provides an overview of the the fundamental principles of
-antenna design. Antenna design is an important factor in using UAVs over
-extended range and where there are obstructed views. While this is not
-directly related to Antenna Tracking/autopilots, it may be
-useful for some readers.
+안테나 설계의 기본 원칙에 대해서 알아보자.
+안테나 설계는 원거리 비행 및 비행 가능한 범위를 정하는데 아주 중요한 요소이다.
+직접적으로 Antenna Tracking/autopilots와 관련되어 있지 않으며 일부 독자에게는 유용할 것이다. 
 
 .. image:: ../../../images/Cupoblique.jpg
     :target: ../_images/Cupoblique.jpg
@@ -16,11 +14,11 @@ useful for some readers.
 .. image:: ../../../images/SideDlinkw.jpg
     :target: ../_images/SideDlinkw.jpg
 
-Antenna fundamentals
+안테나 기초
 ====================
 
-When we speak of antenna radiation it also includes the reverse, that
-is, the antenna 'collecting' radiated energy.
+antenna radiation을 이야기할때 antenna가 에너지를 수집하는 것도 포함된다.
+
 
 Any piece of wire will radiate energy when connected to a source of RF (
 Your transmitter or receiver). How WELL it radiates that applied

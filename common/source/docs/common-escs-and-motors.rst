@@ -1,19 +1,19 @@
 .. _common-escs-and-motors:
 
 ===============
-ESCs and Motors
+ESCs 와 모터
 ===============
 
 .. image:: ../../../images/motors-and-escs-topimage.png
 
-ArduPilot supports a wide variety of ESCs and motors.  The pages below provide setup instructions for the most popular types
+ArduPilot은 다양한 ESC와 모터를 지원한다. 아래는 가장 일반적인 타입을 위한 셋업 방법을 제공한다. 
 
 .. toctree::
     :maxdepth: 1
 
-    Brushless ESC Related Configuration <common-dshot>
+    브러쉬리스 ESC와 관련된 설정 <common-dshot>
 [site wiki="copter,rover"]
-    Brushed motors <common-brushed-motors>
+    브러쉬 모터 <common-brushed-motors>
 [/site]
 [site wiki="copter"]
     Booster motor <booster-motor>

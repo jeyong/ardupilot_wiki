@@ -1,18 +1,18 @@
 .. _common-all-vehicle-types:
 
 ====================================
-Vehicle Types Supported by ArduPilot
+Ardupilot에서 지원하는 비행체 타입
 ====================================
 
-Overview
+개요
 ========
 
-ArduPilot is capable of controlling many vehicles.
+ArduPilot로 다양한 비행체 타입을 제어할 수 있다.
 
-This document attempts to enumerate these options.  It is a work in progress and is nowhere near complete.
+이 문서에서는 선택 가능한 비행체 옵션에 대해서 알아보자.
 
 
-Supported Vehicles
+지원하는 비행체
 ==================
 
 .. note::

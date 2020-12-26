@@ -1,26 +1,25 @@
 .. _common-ublox-gps:
 
 =======================
-UBlox GPS Configuration
+UBlox GPS 설정
 =======================
 
-This article explains how to connect to u-center to change the configuration of a :ref:`3DR uBlox <common-installing-3dr-ublox-gps-compass-module>` module. 
-This is not expected to be necessary for normal users.
+:ref:`3DR uBlox <common-installing-3dr-ublox-gps-compass-module>` 모듈의 설정을 변경하기 위해서 u-center에 연결하는 방법에 대해서 소개한다.
+일반 사용자에게는 해당되는 내용은 아니다.
 
 .. image:: ../../../images/3DR-ublox.jpg
     :target: ../_images/3DR-ublox.jpg
 
-Connection Option #1 - Mission Planner and Pixhawk as Passthrough
+연결 옵션 #1 - 미션 플래너와 Pixhawk를 통한 연결
 =================================================================
 
-Mission planner and pixhawk can pass through the communication
-between u-center and the GPS by doing the following:
+미션 플래너와 Pixhawk는 u-center와 GPS가 다음을 통해서 통신할 수 있다:
 
--  Connect Pixhawk to your PC and connect with the Mission Planner
--  On the Flight Data screen press Ctrl-F and then select "MAVSerial pass"
--  Open u-center and select Receiver, TCP Client and in the Network
-   Connection window set Address to "localhost" and Port to "500" and press OK.
--  See instructions below as to how to upload config with u-center.
+-  Pixhawk를 PC에 연결하고 미션 플래너와 연결한다.
+-  비행 데이터 화면에서 Ctrl-F를 누르고 "MAVSerial pass"를 선택한다.
+-  u-center를 열고 Receiver, TCP Client를 선택한다.
+   Connection 윈도우에서 주소를 "localhost"로 Port는 "500"으로 선택하고 OK를 누른다.
+-  u-center로 설정을 업로드하는 방법은 아래와 같다.
 
 .. image:: ../../../images/GPS_PassThrough_MP.jpg
     :target: ../_images/GPS_PassThrough_MP.jpg
@@ -28,14 +27,11 @@ between u-center and the GPS by doing the following:
 .. image:: ../../../images/GPS_PassThrough_Ucenter.png
     :target: ../_images/GPS_PassThrough_Ucenter.png
 
-Connection Option #2 - FTDI cable
+연결 옵션 #2 - FTDI 케이블
 =================================
 
-You will need an `FTDI cable <http://store.jdrones.com/cable_ftdi_6pin_5v_p/cblftdi5v6p.htm>`__ and
-a `GPS adapter cable <http://store.scoutuav.com/product/cables-connectors/gps-cable-10-cm/>`__ to
-connect the GPS to your computer. If you have never plugged an FTDI
-device into your computer, you may need to download and install
-the `Virtual COM port driver <http://www.ftdichip.com/Drivers/VCP.htm>`__.
+GPS를 컴퓨터로 연결하기 위해서 
+`FTDI 케이블 <http://store.jdrones.com/cable_ftdi_6pin_5v_p/cblftdi5v6p.htm>`__ 와 `GPS 어댑터 케이블 <http://store.scoutuav.com/product/cables-connectors/gps-cable-10-cm/>`__ 이 필요하다. FTDI 장치를 컴퓨터에 처음 연결하는 경우라면 `Virtual COM port driver <http://www.ftdichip.com/Drivers/VCP.htm>`__ 를 다운받아서 설치해야 할 수도 있다.
 
 .. image:: ../../../images/ublox_gps_ftdi_connection.jpg
     :target: ../_images/ublox_gps_ftdi_connection.jpg

@@ -1,10 +1,11 @@
 .. _common-understanding-altitude:
 
 ===================================
-Understanding Altitude in ArduPilot
+ArduPilot에서의 고도(Altitude) 이해하기
 ===================================
 
-ArduPilot documentation uses the word "altitude" often and in many different ways and contexts. Not all "altitudes" mean the same thing, and an good understanding of what altitude means in any given context is important to understand expected operation and behavior.
+ArduPilot 문서에서 "고도(altitude)"라는 단어는 문맥에 따라서 여러 가지 의미로 사용된다.
+ 항상 같은 의미로 사용되지 않으며 해당 문맥에서 고도의 의미를 제대로 이해해야만 제대로 비행체를 운용할 수 있다.
 
 
 .. image:: ../../../images/altitudes.jpg
