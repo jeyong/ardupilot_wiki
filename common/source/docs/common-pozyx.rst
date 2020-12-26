@@ -1,7 +1,7 @@
 .. _common-pozyx:
 
 ============================
-Pozyx for Non-GPS Navigation
+GPS 없이 네비게이션을 위한 Pozyx
 ============================
 
 [copywiki destination="copter,rover"]
