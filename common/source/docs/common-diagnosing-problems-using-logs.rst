@@ -1,34 +1,34 @@
 .. _common-diagnosing-problems-using-logs:
 
 ==============================
-Diagnosing problems using Logs
+Logs를 이용해서 문제 진단하기
 ==============================
 
-This page show how to diagnose the six most common problems affecting Copter in particular but to some extent Plane and Rover as well.
+비행체에 영향을 미치는 가장 일반적인 6가지 문제를 진단하는 방법에 대해서 알아보자.
 
 [copywiki destination="copter,plane,rover,dev,planner"]
 
-Log Types (Dataflash vs tlogs)
+Log 타입 (Dataflash vs tlogs)
 ==============================
 
-There are two ways to record your flight data. With some exceptions, the
-two methods record very similar data but in different ways:
+비행 데이터를 기록하는 2가지 방식이 있다. 몇 가지 차이는 있지만 대체로 아주 비슷한 데이터를 기록하지만 아래와 같은 차이점이 있다. :
 
--  :ref:`Dataflash logs <common-downloading-and-analyzing-data-logs-in-mission-planner>` are recorded on the autopilot (often to the SD card) so they must be downloaded from the autopilot after a flight
--  :ref:`Telemetry logs <planner:common-mission-planner-telemetry-logs>` (also known as "tlogs") are recorded by the ground station (i.e. Mission Planner) on the local PC when the autopilot is connected via a :ref:`telemetry link <common-telemetry-landingpage>`
+-  :ref:`Dataflash logs <common-downloading-and-analyzing-data-logs-in-mission-planner>`는 Pixhawk의 SD 카드에 저장된다. 따라서 비행 후에 다운받을 수 있다.
+-  :ref:`Telemetry logs <planner:common-mission-planner-telemetry-logs>` ("tlogs")는 지상국 SW인 미션 플래너에 저장된다. Pixhawk에와 미션 플래너 사이에 텔레메트리를 통해 저장된다. :ref:`telemetry link <common-telemetry-landingpage>` 참고
 
-If you are not yet familiar with the basics of these log files, first review the introductory pages to understand where these logs are stored and how you can download and view the information held within them.
+아직 이런 log 파일에 대한 기본 개념에 익숙하지 않다면 먼저 log가 어디에 저장되는지, 어떻게 다운받는지, 어떤 정보를 담고 있는지에 대한 개요를 파악하는 것을 추천한다.
 
 .. _common-diagnosing-problems-using-logs_mechanical_failures:
 
-Mechanical Failures
+기계적 고장
 ===================
 
-Common mechanical failures include a motor or ESC failure (`including ESC sync failures <https://www.youtube.com/watch?v=hBUBbeyLe0Q>`__), the propeller breaking or coming off, etc.  These appear in the log as a sudden divergence in the desired roll and pitch vs the vehicle's actual roll and pitch.  This divergence is visible by graphing the ATT message's DesRoll vs Roll, DesPitch vs Pitch and to a lesser extent DesYaw vs Yaw.
+일반적인 기계 고장의 원인은 모터와 ESC이다. (`ESC 동기화 문제 <https://www.youtube.com/watch?v=hBUBbeyLe0Q>`__) 그리고 프로펠러가 부서지거나 빠지는 경우가 있다. log에서 이런 현상은 desired roll와 pitch <-> actual roll와 pitch 값이 갑자기 차이가 나게 된다. 이런 차이가 나는 것은 ATT message의 DesRoll vs Roll과 DesPitch vs Pitch 그래프로 시각적으로 확인이 가능하다. (DesYaw vs Yaw 의 차이는 적다.)
 
 .. image:: ../../../images/DiagnosingWithLogs_RollInVsRoll.png
     :target: ../_images/DiagnosingWithLogs_RollInVsRoll.png
 
+위에 예제에서 log의 처음 부분에서는 비행체의 actual roll ("Roll")와 거의 desired roll ("DesRoll")가 비슷하다. 갑자기 차이가 나는 부분에서 비행제어기는 roll이 수평("Roll"=0)상태를 유지하기를 원했지만 기계적인 문제로 수평을 유지하지 못했다. 이런 현상은 SW 오작동과
 In the example above the vehicle's actual roll ("Roll") closely follows the desired roll ("DesRoll") for the first part of the log but then suddenly diverges.  The autopilot wanted the roll to remain level ("Roll" = 0) but it was unable to likely meaning there was a mechanical failure.  This is very different from a software failure in which the autopilot freaked out and for some strange reason suddenly wanted the copter up-side-down because in such cases the DesRoll would be also be crazy and actual Roll would follow.
 
 Tlogs contain the same data.  Compare NAV_CONTROLLER_OUTPUT's nav_roll (desired roll) and nav_pitch (desired pitch) to ATTITUDE.roll (actual roll) and pitch (actual pitch).
