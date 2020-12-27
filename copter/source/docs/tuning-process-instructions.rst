@@ -1,46 +1,46 @@
 .. _tuning-process-instructions:
 
 ===========================
-Tuning Process Instructions
+튜닝 과정(Tuning Process Instructions)
 ===========================
 
-Setting the aircraft up ready for tuning
+비행체를 튜닝 가능한 상태로 설정하기(Setting the aircraft up ready for tuning)
 ----------------------------------------
 
-The following parameters should be set correctly based on the specifications of your aircraft.
+자신의 비행체의 사양에 맞게 아래의 파라미터를 제대로 설정해야만 한다.
 
-Battery setting
+배터리 설정(Battery setting)
 ^^^^^^^^^^^^^^^
-Parameters used to linearise your motor thrust curve.
+모터 thrust 커브를 선형으로 증가시키기 위한 파라미터
 
 - :ref:`MOT_BAT_VOLT_MAX <MOT_BAT_VOLT_MAX>` : 4.2v x No. Cells
 - :ref:`MOT_BAT_VOLT_MIN <MOT_BAT_VOLT_MIN>` : 3.3v x No. Cells
-- :ref:`MOT_THST_EXPO <MOT_THST_EXPO>` : 0.55 for 5 inch props, 0.65 for 10 inch props, 0.75 for 20 inch props. This parameter should be derived by thrust stand measurements for best results (don’t trust manufacturer data).
+- :ref:`MOT_THST_EXPO <MOT_THST_EXPO>` : 5인치 프로펠러인 경우 0.55, 10인치 프로펠러인 경우 0.65, 20인치 프로펠러인 경우 0.75. 이 프라미터는 최적의 결과를 얻기 위해서 thrust 표준 측정에서 얻어야만 한다.(제조사의 데이터를 믿지마라!)
 
 .. image:: ../images/tuning-process-instructions-1.hires.png
     :target: ../_images/tuning-process-instructions-1.hires.png
 
-Motors setup
+모터 셋업(Motors setup)
 ^^^^^^^^^^^^
-Parameters used to define the output range sent to the ESC.
+ESC에 전달되는 출력 범위를 정의하는데 사용하는 파라미터
 
-- :ref:`MOT_PWM_MAX <MOT_PWM_MAX>` : Check ESC manual for fixed range or 2000us
-- :ref:`MOT_PWM_MIN <MOT_PWM_MIN>` : Check ESC manual for fixed range or 1000us
-- :ref:`MOT_SPIN_ARM <MOT_SPIN_ARM>` : use the :ref:`motor test feature <connect-escs-and-motors_testing_motor_spin_directions>`
+- :ref:`MOT_PWM_MAX <MOT_PWM_MAX>` : 고정 범위를 위해서 ESC 메뉴얼 확인하거나 2000us
+- :ref:`MOT_PWM_MIN <MOT_PWM_MIN>` : 고정 범위를 위해서 ESC 메뉴얼 확인하거나 1000us
+- :ref:`MOT_SPIN_ARM <MOT_SPIN_ARM>` : :ref:`motor 테스트 기능 <connect-escs-and-motors_testing_motor_spin_directions>` 사용
 - :ref:`MOT_SPIN_MAX <MOT_SPIN_MAX>` : 0.95
-- :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>` : use the :ref:`motor test feature <connect-escs-and-motors_testing_motor_spin_directions>`
-- :ref:`MOT_THST_HOVER <MOT_THST_HOVER>` : 0.25 or below the expected hover thrust percentage (low is safe)
+- :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>` : :ref:`motor 테스트 기능 <connect-escs-and-motors_testing_motor_spin_directions>` 사용
+- :ref:`MOT_THST_HOVER <MOT_THST_HOVER>` : 0.25 혹은 기대한 hover thrust 퍼센트 아래 (낮은 값이 안전하다)
 
-PID Controller Initial Setup
+PID 제어기 초기화 셋업
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - :ref:`INS_ACCEL_FILTER <INS_ACCEL_FILTER>` :  10Hz to 20Hz
-- :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` : 80Hz for 5 inch props, 40Hz for 10 inch props, 20Hz for 20 inch props
-- :ref:`ATC_ACCEL_P_MAX <ATC_ACCEL_P_MAX>` : 110000 for 10 inch props, 50000 for 20 inch props, 20000 for 30 inch props
+- :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` : 5인치 프로펠러인 경우 80Hz, 10인치 프로펠러인 경우 40Hz, 20인치 프로펠러인 경우 20Hz
+- :ref:`ATC_ACCEL_P_MAX <ATC_ACCEL_P_MAX>` : 10인치 프로펠러인 경우 110000, 20인치 프로펠러인 경우 50000, 30인치 프로펠러인 경우 20000
 - :ref:`ATC_ACCEL_R_MAX <ATC_ACCEL_R_MAX>` : 110000 for 10 inch props, 50000 for 20 inch props, 20000 for 30 inch props
 - :ref:`ATC_ACCEL_Y_MAX <ATC_ACCEL_Y_MAX>` : 27000 for 10 inch props, 18000 for 20 inch props, 9000 for 30 inch props
 - :ref:`ACRO_YAW_P <ACRO_YAW_P>` : 0.5 x :ref:`ATC_ACCEL_Y_MAX <ATC_ACCEL_Y_MAX>` / 4500
 
-For Copter-4.0 (and later):
+Copter-4.0 이후 버전:
 
 - :ref:`ATC_RAT_PIT_FLTD <ATC_RAT_PIT_FLTD__AC_AttitudeControl_Multi>` : :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` / 2
 - :ref:`ATC_RAT_PIT_FLTT <ATC_RAT_PIT_FLTT__AC_AttitudeControl_Multi>` : :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` / 2
@@ -49,7 +49,7 @@ For Copter-4.0 (and later):
 - :ref:`ATC_RAT_YAW_FLTE <ATC_RAT_YAW_FLTE__AC_AttitudeControl_Multi>` : 2
 - :ref:`ATC_RAT_YAW_FLTT <ATC_RAT_YAW_FLTT__AC_AttitudeControl_Multi>` : :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` / 2
 
-For Copter-3.6 (and earlier):
+Copter-3.6 이전 버전:
 
 - ``ATC_RAT_PIT_FILT`` : :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` / 2
 - ``ATC_RAT_RLL_FILT`` : :ref:`INS_GYRO_FILTER <INS_GYRO_FILTER>` / 2
@@ -64,16 +64,16 @@ For Copter-3.6 (and earlier):
 .. image:: ../images/tuning-process-instructions-4.hires.png
     :target: ../_images/tuning-process-instructions-4.hires.png
 
-The initial tune of the aircraft should be done **in the aircrafts most agile configuration**. This generally means that the aircraft will be at its minimum take off weight with fully charged batteries.
+비행체의 초기 튜닝은 비행체에서 가장 간편하게 설정이 완료되어야만 한다. 이것이 일반적으로 의미하는 바는 완충된 배터리를 가지고 최소 이륙 무게인 상태를 말한다.
 
-Pilot's preparation for first flight
+처음 비행을 위해 조정사가 준비할 것들(Pilot's preparation for first flight)
 ------------------------------------
 
-The first takeoff of an untuned multirotor is the most dangerous seconds of the aircraft’s life. This is where the aircraft could be very unstable causing a sudden increase in power when then results in the aircraft jumping into the air, or it may be so poorly tuned that you have insufficient control over the aircraft once it is airborne. The pilot should be extremely diligent during the tuning flights to avoid a situation that could result in injury or damage.
+튜닝을 하지 않은 비행체를 처음으로 이륙시킬 때가 가장 위험한 시기다. 비행체에 갑자기 전원 공급이 늘어나면 비행체는 매우 불안전한 상태가 되어 갑자기 공중으로 튀어 오르게 될 수 있다. 그리고 제대로 튜닝이 안된 상태라면 비행체 제어하기가 어려운 상태이다. 조정사는 비행체 손상이나 사람이 다칠 수 있는 상황이 발생하지 않도록 튜닝 비행을 하는 동안은 아주 충실히 임해야만 한다.
 
-There are several things that the pilot can do to minimise the risk during the early tuning process:
+조종사가 초기 튜닝 단계에서 위험을 최소화시키기 위해서 할 수 있는 몇 가지 일에 대해서 소개한다. :
 
-1. The pilot should conduct a motor number and orientation check (see :ref:`Checking the motor numbering with the Mission Planner Motor test <connect-escs-and-motors_testing_motor_spin_directions>`). Care should be taken to ensure that the correct frame type is selected. Incorrect frame type can result in a very fast yaw rotation or complete loss of control. Take note of the output percentage required to spin the propellers and ensure that:
+1. 조종사는 모터 번호 확인 및 방향 검사를 해야만 한다.(참고 :ref:`미션 프래너 모터 테스트를 이용한 모터 번호 확인 <connect-escs-and-motors_testing_motor_spin_directions>`). Care should be taken to ensure that the correct frame type is selected. Incorrect frame type can result in a very fast yaw rotation or complete loss of control. Take note of the output percentage required to spin the propellers and ensure that:
 
 - :ref:`MOT_SPIN_ARM <MOT_SPIN_ARM>` is set high enough to spin the motors cleanly.
 - :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>` is set high enough to spin the motors win a minimal level of thrust.
@@ -116,15 +116,15 @@ This flight will allow to setup your aircraft in a "flyable for tuning" state.
 
 Next section will explain how to remove the oscillations.
 
-Initial aircraft tune
+초기 비행체 튜닝
 ---------------------
 
-The first priority when tuning an multirotor aircraft is to establish a stable tune, free of oscillations, that can be used to do further tests.
+비행체를 튜닝할때 가장 높은 우선순위는 비행체가 안정적 비행하도록 튜닝하고 진동이 없어야 한다. 이를 위해서 다음과 같은 테스트를 수행한다.
 
-1. Arm the aircraft in STABILIZE
-2. Increase the throttle slowly until the aircraft leaves the ground
-3. If the aircraft starts to oscillate immediately abort the takeoff and/or land the aircraft
-4. Reduce all the following parameters by 50%
+1. 스테빌라이즈 모드에서 arming하기
+2. 비행체가 땅위에서 뜨도록 천천히 쓰로틀을 증가시킨다.
+3. 이때 비행체가 바로 진행이 감지된다면 이륙시키지 말고 바로 착륙시킨다.
+4. 아래 모든 파라미터 값을 50% 감소시킨다.
 
 a. :ref:`ATC_RAT_PIT_P <ATC_RAT_PIT_P__AC_AttitudeControl_Multi>`
 b. :ref:`ATC_RAT_PIT_I <ATC_RAT_PIT_I__AC_AttitudeControl_Multi>`
@@ -133,8 +133,9 @@ d. :ref:`ATC_RAT_RLL_P <ATC_RAT_RLL_P__AC_AttitudeControl_Multi>`
 e. :ref:`ATC_RAT_RLL_I <ATC_RAT_RLL_I__AC_AttitudeControl_Multi>`
 f. :ref:`ATC_RAT_RLL_D <ATC_RAT_RLL_D__AC_AttitudeControl_Multi>`
 
-This process is repeated until the aircraft can hover without oscillations being detectable visually or audibly.
+호버링 하는 동안 비행체가 진동하지 않는 것처럼 보일때까지 이 과정을 반복한다.
 
+만약 비행체가 아주 길고 유연한 landing gear를 가지고 있다면 ground resonance가 멈추기 전에 ...
 If the aircraft has very long or flexible landing gear then you may need to leave the ground before ground resonance stops.
 
 Be aware that in this state the aircraft may be very slow to respond to large control inputs and disturbances. The pilot should be extremely careful to put minimal stick inputs into the aircraft to avoid the possibility of a crash.
@@ -301,10 +302,10 @@ The full list of input shaping parameters are:
 - :ref:`LOIT_BRK_JERK <LOIT_BRK_JERK>`
 - :ref:`LOIT_SPEED <LOIT_SPEED>`
 
-Advanced Tuning
+고급 튜닝(Advanced Tuning)
 ---------------
 
-Arducopter has an extremely flexible controller design that can been used with great results on aircraft from 100g to 500 kg. There are a number of difficult control problems that provide a greater depth of understanding that can be provided here. Some of these issues include:
+100g ~ 500kg까지의 비행에 대해서 훌륭한 성능을 보여주는 매우 유연한 제어기로 설계되었다. 좀더 깊이 이해해야 하는 많은 어려운 제어 문제가 있다. 다음과 같은 이슈가 여기에 포함된다 :
 
 - High gyro noise levels
 - Flexible airframes

@@ -1,50 +1,33 @@
 .. _checklist:
 
 =============================
-Pre-Flight Checklist (Copter)
+비행전 체크 목록(Pre-Flight Checklist (Copter))
 =============================
 
-This page is provides a list of things to check following configuration,
-and before your first flight.
+여기서는 처음 비행을 하기전에 체크해야할 목록을 제공한다.
 
-Summary Checklist
+체크리스트 요약
 =================
 
 .. image:: ../images/Copter-Checklist-1.jpg
     :target: ../_images/Copter-Checklist-1.jpg
 
-Configuration
+설정
 =============
 
--  Spin up the propellers on the ground and check they are all moving
-   :ref:`in the correct orientation <connect-escs-and-motors_attach_propellers>`.
--  Check that your copter knows what level is. With the copter on a flat
-   surface connect to Mission Planner and ensure the artificial horizon
-   display shows level.
--  Check all failsafe settings are enabled. Instructions are here for
-   :ref:`radio <radio-failsafe>`, :ref:`battery <failsafe-battery>`,
-   and :ref:`ekf/gps <ekf-inav-failsafe>`.
+-  지상에서 프로펠러를 돌려보고 모두 :ref:`올바른 방향으로 <connect-escs-and-motors_attach_propellers>` 회전하는지 확인한다.
+-  비행체의 수평 상태를 확인한다. 평평한 지면에서 비행체를 두고 미션 플래너와 연결하면 화면에 수평 상태를 확인할 수 있다.
+-  모든 failsafe 설정을 활성화 시킨다. :ref:`radio <radio-failsafe>`, :ref:`battery <failsafe-battery>`,
+   와 :ref:`ekf/gps <ekf-inav-failsafe>`에 대한 방법을 참고하자.
 
-Flying
+비행
 ======
 
--  Make sure you have a GPS lock before flying if you intend to use any
-   auto modes. Even if you're only flying in Stabilized mode this is a
-   good idea so you can invoke Return To Launch if you get into trouble.
--  Test RTL before sending your copter off on an auto waypoint flight.
-   This is to check that the compass and GPS are working, and that it
-   knows where home is before heading off on a more complex flight.
--  Ensure that flight in Stabilize works well before you attempt any
-   more complex flight modes. Ensure loiter works before trying RTL.
-   Ensure RTL works before trying auto.
--  Once armed stand 3m-6m away from the arming point as when in RTL the
-   copter will be returning to this point.
--  When testing more complex flight modes, be ready to switch back to
-   Stabilize mode at any moment if it does anything strange. Stabilize
-   or Acro are the only modes which can save you from a problem with the
-   software or sensors. RTL is a good mode to save you from human error,
-   but relies on the copter being able to locate and fly itself, so this
-   should not be used as an emergency mode if other auto flight modes go
-   wrong.
--  Be sure you have a way of knowing when your battery is getting low,
-   and land before you have used more than 80% of your battery capacity.
+-  자동 비행 모드를 사용할 예정이라면 비행전에 GPS lock 상태인지 확인한다. 스테빌라이저 비행 모드로 비행하더라도 문제가 발생할 때 RTL(Return To Launch)를 사용할 수도 있으므로 GPS lock 상태는 유용하다.
+-  비행체에 자동 waypoint 명령을 수행하기 전에 RTL 기능이 동작하는지 테스트한다.
+   이렇게 하면 비행체의 컴파스와 GPS가 잘 동작하는지 확인된다. 좀더 복잡한 비행을 하기 전에 home의 위치가 확인된다.
+-  좀더 복잡한 비행 모드를 시도하기 전에 스테빌라이저 비행 모드가 잘 동작하는지 확인한다.
+   오토 비행 모드를 시도하기 전에 RTL이 동작하는지 확인한다.
+-  일단 arming이 되면 arming 위치로부터 3m-6m 떨어진 위치에 서있는다. RTL 기능을 수행하면 arming한 위치로 오기 때문에 좀 떨어져서 자리를 잡니다.
+-  좀더 복잡한 비행 모드를 테스트하는 경우에 만약 비행체 동작에 이상이 느껴지면 언제든 스테빌라이저 모드로 전환할 준비를 하라. 스테빌라이저 혹은 Acro 비행 모드는 SW나 센서에 문제가 발생하는 경우 뭔가 해결을 해볼 수 있는 유일한 비행 모드이다. RTL은 사람에 의한 문제가 발생했을 때 도움이 되는 비행 모드이다. 하지만 비행하는 위치와 비행 상태에 따라 달라질 수 있다. 따라서 자동 비행 모드에서 문제 발생하는 경우에는 긴급 모드로 RTL을 사용할 수 없다.
+-  배터리가 부족한 상태라는 인지할 수 있는 방법을 확인하고 배터리 용량의 80% 소모한 상태가 되기 전에 착륙시켜야 한다.

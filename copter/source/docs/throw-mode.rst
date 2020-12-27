@@ -1,24 +1,24 @@
 .. _throw-mode:
 
 ==========
-Throw Mode
+던지기 모드(Throw Mode)
 ==========
 
-This slightly dangerous flight mode allows the pilot to throw the vehicle into the air (or drop the vehicle) in order to start the motors.
-Once in the air, this mode does not accept any input from the pilot.  This mode requires GPS.
+모터를 구동시키기 위해서 비행체를 공중으로 던지는 조금 위험한 비행 모드이다.
+일단 공중에서는 이 모드에서는 조정사의 입력을 받아들이지 않는다. 이 모드는 GPS가 필요하다.
 
 .. warning::
 
-   Use with caution!  It is dangerous to get close to an armed multicopter as is required to throw the vehicle.  It is recommended to takeoff normally instead of using throw mode whenever possible.
+   주의해서 사용한다. 비행체를 던져야 하므로 arming된 비행체 근처에 있으면 위험하다. 가능하다면 던지기 모드를 사용하는 대신에 일반적인 takeoff를 사용하는 것을 추천한다.
 
 .. note::
 
-   The Throw flight mode was introduced in AC3.4.
+   던지기 비행 모드는 AC3.4에서 지원되었다.
 
 ..  youtube:: JIPMpDJqdJ8
     :width: 100%
 
-How To Use
+사용하는 방법
 ==========
 
 #. Disarm copter
