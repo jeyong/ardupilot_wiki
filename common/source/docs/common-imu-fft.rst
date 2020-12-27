@@ -3,14 +3,15 @@
 [copywiki destination="copter,plane"]
 
 ======================================
-Managing Gyro Noise with In-Flight FFT
+비행 중 FFT로 gyro 노이즈 관리 (Managing Gyro Noise with In-Flight FFT)
 ======================================
 
-.. note:: This feature will be released in ArduPilot 4.1. Most likely, the feature will only be included in autopilots with 2MB of memory. Check your autopilot's :ref:`firmware limitations<common-limited_firmware>` after the release to determine if your autopilot has this feature.
+.. note:: 이 기능은 ArduPilot 4.1에서 추가된다. 이 기능은 2MB 메모리를 가지는 Pixhawk에만 탑재가 가능하다. :ref:`firmware limitations<common-limited_firmware>` 에서 어떤 Pixhawk 버전에서 지원되는지 확인한다.
 
-As :ref:`discussed<common-imu-notch-filtering>`, the effect of motor vibration on gyros in ArduPilot autopilot installations can be managed effectively through the use of targeted notch filtering. Dynamic notch filtering is most effective when the dynamic notch center frequency can be driven by ESC telemetry, but not all aircraft have access to ESC telemetry or the ESC telemetry is not entirely representative of the dominant noise.
-One alternative to ESC telemetry is to measure the noise peak directly through the use of digital signal processing techniques, most notably the Fast Fourier Transform or FFT.
+:ref:`discussed<common-imu-notch-filtering>`에 따르면, notch filtering의 사용해서 모터 진동의 영향을 효과적으로 관리할 수 있다. 동적 notch filtering이 효과를 극대화하려면 dynamic notch center frequency가 ESC 텔레메트리로 유도될 수 있을 때이다. 하지만 모든 비행체가 ESC 텔레메트리에 접근할 수 없고 ESC 텔레메트리가 전체 noise를 완전히 대표하지 않기 때문이다.
+ESC 텔레메트리에 대한 다른 대안은 디지털 신호 처리 기술을(FFT(Fast Fourier Transform)) 사용해서 직접 noise peak를 측정하는 것이다.
 
+헬리콥터인 경우 이 기능의 사용은 로터 속도가 얼마나 잘 유지되는냐에 달려있다. ESC governor를 사용하는 어떤 헬리콥터라도 
 For helicopters, use of this feature depends on how well the rotor speed is being held. Any helicopter using an ESC governor will not need this feature even if the ESC cannot provide ArduCopter with the rotor speed. ESC governors hold rotor speed very well and the harmonic notch frequency can be set to the rotor speed set in the ESC governor. If the internal rotor speed controller governor is used, which requires an RPM sensor, then it is recommended that the harmonic notch use the measured RPM to set the notch frequency. This feature would be most useful for throttle curve method for controlling rotor speed.
 
 

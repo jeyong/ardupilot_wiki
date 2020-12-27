@@ -3,55 +3,52 @@
 [copywiki destination="copter,plane,rover"]
 
 ===================================
-Sensor Position Offset Compensation
+센서 위치 Offset 보상 (Sensor Position Offset Compensation)
 ===================================
 
-ArduPilot includes compensation for sensor placement on the vehicle.  This page clarifies what parameters can be set and how they should be set.
+ArduPilot은 비행체에 센서 장착 위치에 따른 보상이 가능하다. 여기서는 어떤 파라미터를 어떻게 설정해야하는지에 대해서 정리한다.
 
 .. note::
 
-     In most vehicles which have all their sensors (IMU, GPS, optical flow, etc) within 15cm of each other, it is unlikely that providing the offsets will provide a noticeable performance improvement.
+     대부분의 비행체내에 모든 센서들(IMU, GPS, optical flow 등)이 서로 15cm 내에 위치하는 경우에는 offset을 제공하더라도 차이날만한 성능개선을 얻기는 어렵다.
 
 .. image:: ../../../images/sensor-position-offsets-xyz.png
 
-The sensor's position offsets are specified as 3 values (X, Y and Z) which are distances in meters from the IMU (which can be assumed to be in the middle of the autopilot board) or the vehicle's center of gravity.
+센서의 위치 offset은 3개 값(X, Y, Z)로 설정한다. 이 값은 IMU가 Pixhawk의 가운데 있다고 가정하거나 비행체의 무게 중심으로부터 해당 센서의 떨어진 거리를 의미한다. (단위는 m)
 
-- X : distance forward of the IMU or center of gravity.  Positive values are towards the front of the vehicle, negative values are towards the back.
-- Y : distance to the right of the IMU or center of gravity.  Positive values are towards the right side of the vehicle, negative values are towards the left.
-- Z : distance *below* the IMU or center of gravity.  Positive values are *lower*, negative values are *higher*.
+- X : IMU나 무게 중심의 정면 방향의 거리. 양수 값은 비행체의 정면 방향이고 음수 값은 뒤 방향이다.
+- Y : IMU나 무게 중심의 오른쪽 방향의 거리. 양수 값은 비행체의 오른쪽 방향이고 음수는 왼쪽 방향이다.
+- Z : IMU나 무게 중심의 아래 방향의 거리. 양수 값은 *낮은* 방향이고 음수 값은 *높은* 방향이다.
 
-In practice the distance to the sensor can be measured from the center of the autopilot unless the autopilot itself is placed a significant distance from the vehicle's center of gravity in which case
-the IMU position offsets can be specified and then the other sensor's position offsets can be specified from the vehicle's center of gravity.
+Pixhawk가 비행체의 무게 중심과 떨어진 곳에 장착하는 경우 실제로 센서까지의 거리는 Pixhawk의 중심으로부터 측정할 수 있다. 이 경우 IMU position offset은 별도로 지정할 수 있고 다른 센서의 위치는 비행체의 무게 중심으로부터의 거리는 지정할 수 있다.
 
-Parameter Details
+파라미터 상세
 =================
 
 **IMU (aka INS):**
 
-For the best results the autopilot (and thus the IMUs) should be placed at the center-of-gravity of the vehicle but if this is physically impossible the offset can be partially compensated for by setting the following parameters.
+최상의 결과를 얻기 위해서 Pixhawk는 비행체의 무게 중심에 둬야만 한다. 만약 물리적으로 그렇게 설치하기가 불가능한 경우에는 offset은 다음 파라미터를 서절해서 부분적으로 보상할 수 있다.
 
-- :ref:`INS_POS1_X <INS_POS1_X>`, :ref:`INS_POS1_Y <INS_POS1_Y>`, :ref:`INS_POS1_Z <INS_POS1_Z>` the first IMU's position from the vehicle's center-of-gravity
-- :ref:`INS_POS2_X <INS_POS2_X>`, :ref:`INS_POS2_Y <INS_POS2_Y>`, :ref:`INS_POS2_Z <INS_POS2_Z>` the second IMU's position from the vehicle's center-of-gravity
-- :ref:`INS_POS3_X <INS_POS3_X>`, :ref:`INS_POS3_Y <INS_POS3_Y>`, :ref:`INS_POS3_Z <INS_POS3_Z>` the third IMU's position from the vehicle's center-of-gravity
+- :ref:`INS_POS1_X <INS_POS1_X>`, :ref:`INS_POS1_Y <INS_POS1_Y>`, :ref:`INS_POS1_Z <INS_POS1_Z>` 비행체의 무게 중심으로부터의 첫번째 IMU의 위치
+- :ref:`INS_POS2_X <INS_POS2_X>`, :ref:`INS_POS2_Y <INS_POS2_Y>`, :ref:`INS_POS2_Z <INS_POS2_Z>` 비행체의 무게 중심으로부터의 두번째 IMU의 위치
+- :ref:`INS_POS3_X <INS_POS3_X>`, :ref:`INS_POS3_Y <INS_POS3_Y>`, :ref:`INS_POS3_Z <INS_POS3_Z>` 비행체의 무게 중심으로부터의 세번째 IMU의 위치
 
-The compensation is only *partial* because ArduPilot can correct the vehicle's velocity and position estimate but it does not correct the acceleration estimate.
-For example if the autopilot was placed on the nose of a vehicle and the vehicle suddenly leans back (i.e. rotates so that its nose points up) with no offset compensation the vehicle velocity
-estimate would momentarily show the vehicle is climbing when it's not.  With the position offsets added the velocity would not show this momentary climb.  The EKF would still show a momentary vertical acceleration and
-because we use the acceleration in our altitude hold controllers this could still lead to the vehicle momentary reducing throttle.
+보상은 *부분적으로* 적용된다. 왜냐하면 ArduPilot은 비행체의 속도와 위치 추정을 할 수 있지만 가속도 추정은 보정할 수 없다.
+예제로 만약 Pixhawk가 비행체의 앞쪽에 설치하고 offset 보상을 하지 않고 비행체가 갑자기 뒤로 기울어지면(nose가 올라가도록 회전하는 경우), 비행체의 속도 추정은 모멘텀적으로 비행체가 상승하는 것을 볼 수 있다. 위치 offset을 비행체에 추가하면 이런 모멘텀 상승은 나타나지 않는다. EKF는 여전히 모멘텀 수직 가속도를 보여준다. Altitude hold 제어기에서 가속도를 사용하기 때문에 이렇게 하면 비행체는 모멘텀적으로 쓰로톨을 줄이게 된다.
 
-Although individual position offsets can be set for each IMU, the difference between the placement of IMUs on most autopilot boards is so small that the same values can be used for all IMUs
+비록 개별 position offset은 각 IMU에 대해서 설정할 수 있다. Pixhawk 보드 내부에서 IMU 센서들의 위치 차이는 아주 작아서 모든 IMU에 대해서 동일한 값을 사용한다.
 
 **GPS:**
 
-- :ref:`GPS_POS1_X <GPS_POS1_X>`, :ref:`GPS_POS1_Y <GPS_POS1_Y>`, :ref:`GPS_POS1_Z <GPS_POS1_Z>` the first GPS's position from the vehicle's IMU or center-of-gravity
-- :ref:`GPS_POS2_X <GPS_POS2_X>`, :ref:`GPS_POS2_Y <GPS_POS2_Y>`, :ref:`GPS_POS2_Z <GPS_POS2_Z>` the second GPS's position from the vehicle's IMU or center-of-gravity
+- :ref:`GPS_POS1_X <GPS_POS1_X>`, :ref:`GPS_POS1_Y <GPS_POS1_Y>`, :ref:`GPS_POS1_Z <GPS_POS1_Z>` 비행체의 IMU나 무게 중심으로부터의 첫번째 GPS 위치
+- :ref:`GPS_POS2_X <GPS_POS2_X>`, :ref:`GPS_POS2_Y <GPS_POS2_Y>`, :ref:`GPS_POS2_Z <GPS_POS2_Z>` - :ref:`GPS_POS2_X <GPS_POS2_X>`, :ref:`GPS_POS2_Y <GPS_POS2_Y>`, :ref:`GPS_POS2_Z <GPS_POS2_Z>` 비행체의 IMU나 무게 중심으로부터의 두번째 GPS 위치
 
 **Range Finder (Sonar or Lidar):**
 
-- :ref:`RNGFND1_POS_X <RNGFND1_POS_X>`, :ref:`RNGFND1_POS_Y <RNGFND1_POS_Z>`, :ref:`RNGFND1_POS_Z <RNGFND1_POS_Z>` the first RangeFinder's position from the vehicle's IMU or center of gravity
-- :ref:`RNGFND2_POS_X <RNGFND2_POS_X>`, :ref:`RNGFND2_POS_Y <RNGFND2_POS_Z>`, :ref:`RNGFND2_POS_Z <RNGFND2_POS_Z>` the second RangeFinder's position from the vehicle's IMU or center of gravity
+- :ref:`RNGFND1_POS_X <RNGFND1_POS_X>`, :ref:`RNGFND1_POS_Y <RNGFND1_POS_Z>`, :ref:`RNGFND1_POS_Z <RNGFND1_POS_Z>` 비행체의 IMU나 무게 중심으로부터의 첫번째 RangeFinder의 위치
+- :ref:`RNGFND2_POS_X <RNGFND2_POS_X>`, :ref:`RNGFND2_POS_Y <RNGFND2_POS_Z>`, :ref:`RNGFND2_POS_Z <RNGFND2_POS_Z>` 비행체의 IMU나 무게 중심으로부터의 두번째 RangeFinder의 위치
 
 **Optical Flow:**
 
-- :ref:`FLOW_POS_X <FLOW_POS_X>`, :ref:`FLOW_POS_Y <FLOW_POS_Y>`, :ref:`FLOW_POS_Z <FLOW_POS_Z>` distance from the IMU or center of gravity
+- :ref:`FLOW_POS_X <FLOW_POS_X>`, :ref:`FLOW_POS_Y <FLOW_POS_Y>`, :ref:`FLOW_POS_Z <FLOW_POS_Z>` 비행체의 IMU나 무게 중심으로부터의 거리
 
