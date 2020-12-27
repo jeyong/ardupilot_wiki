@@ -1,31 +1,31 @@
 .. _common-optitrack:
 
 ================================
-Optitrack for Non-GPS Navigation
+Optitrack을 이용하여 GPS 없이 네비게이션하기
 ================================
 
 [copywiki destination="copter"]
 
-This article explains how a `OptiTrack <https://optitrack.com/>`__ motion catpure system can be used as a short-range substitute for a GPS allowing position control modes like Loiter, Guided, RTL, and Auto indoors.
+`OptiTrack <https://optitrack.com/>`__ 모션 캡쳐 시스템을 사용하여 GPS 포지션 제어 모드를 제어하여 Loiter, Guided, RTL, Auto 비행 모드를 사용하는 방법에 대해서 설명한다.
 
 .. note::
 
-   This is an new feature released in Copter-3.6 and currently only supported in EKF2.
+   이 기능은 Copter-3.6에 신기능으로 추가되었고 EKF2만 지원한다.
 
 .. youtube:: IocykCXJmhw
    :width: 100%
 
-Required hardware
+필요한 하드웨어
 =================
 
-Please refer to OptiTrack `build your own <https://optitrack.com/systems/>`__ tool for all hardware required to setup a motion capture system.
+모션 캡쳐 시스템을 설정하기 위해서 필요한 모든 하드웨어에 대해서 OptiTrack의 `build your own <https://optitrack.com/systems/>`__ 도구를 참고하자.
 
 .. note::
 
-   In order to track the both location and orientation of a drone, you need at least 4 markers.
+   드론의 위치와 방향 모두를 추적하기 위해서는 최소한 4개의 마커가 필요하다.
 
 
-Motion capture system setup
+모션 캡쳐 시스템 셋업
 ===========================
 
 Please refer to OptiTrack `quick start guides <https://v20.wiki.optitrack.com/index.php?title=Quick_Start_Guide:_Getting_Started>`__ for hardware and software setup. When you set the ground plane, do not forget to mark the origin and the axis. The positive X will point to the "north" of our indoor flight environment (because we do not use compass, it do not need pointing to the real/magnetic north)

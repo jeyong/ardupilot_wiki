@@ -1,12 +1,13 @@
 .. _ros-object-avoidance:
 
 ========================
-ROS for Object Avoidance
+ROS를 이용한 장애물 회피
 ========================
 
 .. image:: ../images/ros-object-avoidance.png
     :target: ../_images/ros-object-avoidance.png
     :width: 450px
+
 
 This page describes how to setup `ROS's base local planner <http://wiki.ros.org/base_local_planner>`__ to provide velocity commands to ArduPilot to steer a rover around obstacles.  This assumes all the previous setup including :ref:`Cartographer <ros-cartographer-slam>` and :ref:`rviz <ros-rviz>` have already been completed.
 

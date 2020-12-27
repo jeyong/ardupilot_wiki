@@ -1,31 +1,28 @@
 .. _connect-escs-and-motors:
 
 =======================
-Connect ESCs and Motors
+ESC와 모터 연결
 =======================
 
-This article explains how to connect the ESCs, motors and propellers to a autopilot.  The Pixhawk is used as an example but other autopilots are connected in a similar way.
+ESC, 모터 그리고 프로펠러를 Pixhawk에 연결하는 방법을 설명한다.
 
-Connect the power (+), ground (-), and signal (s) wires for each ESC to
-the autopilot's main output pins by motor number. Find your frame type
-below to determine the assigned order of the motors.
+Pixhawk의 main output에 숫자가 적혀 있고 이는 각 모터 번호를 의미한다. 각 ESC들에 대해서 전원 (+), 그라운드 (-), 신호 (s) 선들을 여기에 연결한다.
 
 .. figure:: ../images/Pixhwak_outputs.jpg
    :target: ../_images/Pixhwak_outputs.jpg
 
-   Pixhawk Outputpins (numbered). First 4 pins are colour-coded for connecting a Quadframe
+   Pixhawk 출력핀은 숫자로 표시되어 있다. 처음 4개 핀은 쿼드프레임에 연결하기 위해서 색깔로 표시하였다.
 
-Motor order diagrams
+Motor 순서 다이어그램
 ====================
 
-The diagrams below show motor order for each frame type.
-The numbers indicate which output pin from the autopilot shoould be connected to each motor/propeller.
-The propeller direction is shown in green (clockwise, CW) or blue (counter-clockwise, CCW)
+아래 다이어그램에서는 각 프레임 타입에 대한 모터 순서를 보여준다.
+숫자는 Pixhawk에서 어떤 출력 핀을 어떤 모터/프로펠러에 연결해야하는지를 표시한다. 프로펠러 방향은 시계 방향인(clockwise, CW) 경우 녹색이고 반시계 방향인(counter-clockwise, CCW) 경우 파랑색으로 표시한다.
 
 .. figure:: ../images/MOTORS_CW_CCWLegend.jpg
    :target: ../_images/MOTORS_CW_CCWLegend.jpg
 
-   Legend for motor-order diagrams
+   모터 순서 다이어그램 도표
 
 Quadcopter
 ----------

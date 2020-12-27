@@ -1,30 +1,30 @@
 .. _common-radio-control-calibration:
 
 =========================
-Radio Control Calibration
+라디오 콘트롤 칼리브레이션
 =========================
 
-This article shows how to perform radio control calibration using Mission Planner
+미션 플래너를 이용해서 라디오 컨트롤 칼리브레이션 방법에 대해서 알아보자.
 
-Overview
+개요
 ========
 
-RC transmitters allow the pilot to set the flight mode, control the vehicle's movement and orientation and also turn on/off auxiliary functions (i.e. raising and lowering landing gear, etc).
+조정사는 RC 조정기로 비행 모드 설정, 비행체의 움직임 및 방향 제어 및 추가 기능을 켜고/끄기가 가능하다. (예로 랜딩기어 올리기/내리기)
 
-RC Calibration involves capturing each RC input channel's minimum, maximum and "trim" values so that ArduPilot can correctly interpret the input.
+RC 칼리브레이션으로 각 RC 입력 채널의 최소/최대 값과 "trim" 값을 캡쳐링할 수 있다. 이를 통해서 Pixhawk는 입력을 제대로 해석할 수 있다.
 
-Check the Transmitter's Setup
+조정기 셋업 확인
 -----------------------------
 
-- Ensure the battery is disconnected (this is important because it is possible to accidentally arm the vehicle during the RC calibration process)
-- Ensure the RC receiver is connected to the autopilot
-- Turn on your RC transmitter and if it has "trim tabs" ensure they are in the middle
-- Connect the autopilot to the PC using a USB cable
-- On the Mission Planner press the "Connect" button and open Mission Planner's **INITIAL SETUP \| Mandatory Hardware \| Radio Calibration** screen
-- Some green bars should appear showing the ArduPilot is receiving input from the Transmitter/Receiver. If no bars appear check the receiver's LED:
+- 배터리가 연결 해제되어 있는지 확인(RC 칼리브레이션하는 동안 비행체가 arming되는 것을 막기 위해서)
+- RC 수신기를 Pixhawk에 연결했는지 확인
+- RC 조정기를 켜고 "trim tabs"이 가운데로 맞춰져 있는지 확인
+- Pixhawk와 PC를 USB로 연결하기
+- 미션 플래너에서 "Connect" 버튼을 클릭하고 **INITIAL SETUP \| Mandatory Hardware \| Radio Calibration** 화면을 열기
+- 녹색바가 나타나는 것은 Pixhawk가 조정기/수긴기간 통신이 정상적으로 된다는 것을 보여준다. 만약 바가 나타나지 않는다면 수신기의 LED를 확인한다:
 
-   -  No lights may indicate that it is incorrectly wired to the autopilot.  Look for connectors that may have been inserted upside down
-   -  A Red or flashing LED may indicate that your RC transmitter/receiver need be bound.  See the manual that came with your RC equipment for instructions
+   -  불빛이 보이지 않는다는 것은 Pixhawk에 제대로 연결이 되지 않았다는 것을 뜻한다. 위/아래가 반대로 끼운 것은 아닌지 확인하자.
+   -  붉은색 혹은 LED가 반쪽이는 경우는 RC 조정기/수신기가 바인딩이 필요하다는 뜻일 수도 있다. 본인이 사용하는 RC 장비의 메뉴얼을 읽어 보도록 하자.
 
 .. figure:: ../../../images/mp_radio_calibration.png
    :target: ../_images/mp_radio_calibration.png
