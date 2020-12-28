@@ -7,7 +7,7 @@
 비행체를 튜닝 가능한 상태로 설정하기(Setting the aircraft up ready for tuning)
 ----------------------------------------
 
-자신의 비행체의 사양에 맞게 아래의 파라미터를 제대로 설정해야만 한다.
+자신의 비행체의 사양에 맞게 아래의 파라미터를 바르게 설정해야만 한다.
 
 배터리 설정(Battery setting)
 ^^^^^^^^^^^^^^^
@@ -78,43 +78,43 @@ Copter-3.6 이전 버전:
 - :ref:`MOT_SPIN_ARM <MOT_SPIN_ARM>` is set high enough to spin the motors cleanly.
 - :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>` is set high enough to spin the motors win a minimal level of thrust.
 
-2. All flights after a significant tuning change should be done in Stabilize. Stabilize provides the pilot with significantly more control over the aircraft in the event that the attitude controllers are unstable.
-3. The pilot should not take off in AltHold until the altitude controller has been tested in flight. This should be done by taking off in Stabilize and switching to Alt Hold. While Alt Hold is rarely a problem unless the aircraft has a very low hover throttle.
-4. For the initial flights the pilot should ensure that these parameters are set:
+2. 중요 튜닝 파리미터를 변경한 후에는 비행을 하는 경우 항상 스테빌라이저 모드로 비행해야만 한다. 스테빌라이저 모드는 자세 제어가 불안정한 경우가 발생하면 조종사가 비행체에 대한 제어할 수 있도록 허용하기 떄문이다.
+3. 조종사는 고도 제어기를 테스트하기 전까지 AltHold 모드에서 비행체를 이륙시키지 말아야 한다. 테스트는 스테빌라이저 모드로 이륙시켜서 Alt Hold로 전환하는 방법으로 테스트한다. 매우 낮은 hover 쓰로틀이 아닌 경우라면 Alt Hold는 거의 문제가 되지 않는다.
+4. 초기 비행 동안에 조종사는 아래 파라미터들이 설정되었는지 확인해야만 한다. :
 
-- :ref:`ATC_THR_MIX_MAN <ATC_THR_MIX_MAN>` to 0.1
-- :ref:`MOT_THST_HOVER <MOT_THST_HOVER>` to 0.25 (or lower than the expected hover throttle)
+- :ref:`ATC_THR_MIX_MAN <ATC_THR_MIX_MAN>` 가 0.1로 설정
+- :ref:`MOT_THST_HOVER <MOT_THST_HOVER>` 가 0.25로 설정 (혹은 예상하는 hover 쓰로틀보다 낮게)
 
-5. Use a radio and calibrate the radio correctly (see :ref:`common-radio-control-calibration`).
-6. Configure an Emergency Stop Motors switch and test it (see :ref:`Auxiliary Functions <common-auxiliary-functions>`).
-7. Do tuning flights in low-wind condition and normal weather (no rain and between 15°C/59°F and 25°C/77°F).
-8. Practice STABILIZE flight in simulator or on a low-end drone first, you should be confident to be able to takeoff and land with your untuned aircraft.
+5. 조정기를 사용하는 경우 조정기를 제대로 칼리브레이션이 되었는지 확인 (참고 :ref:`common-radio-control-calibration`).
+6. 모터 긴급 정지 스위치 설정 및 테스트 하기 ( 참고 :ref:`Auxiliary Functions <common-auxiliary-functions>`).
+7. 바람이 불지 않는 보통 날씨 환경에서 튜닝 비행을 시도한다. (맑은 날 온도는 15°C/59°F ~ 25°C/77°F).
+8. 시뮬레이터로 스테빌라이저 비행을 연습하거나 저가 드론으로 먼저 연습한다. 튜닝이 안된 비행체로 이착륙을 할 수 있는 자신감이 생길떄까지 연습한다.
 
 
-First Flight
+첫 비행
 ------------
 
-The first take off is the most dangerous time for any multirotor. Care must be taken to ensure the aircraft is not destroyed in the first seconds of flight and nobody is injured.
+첫 이륙 비행이 가장 위험하다. 따라서 비행을 시작하고 처음 몇 초 만에 비행체가 부서지지 않도록 주의하고 주변에 사람들이 다치지 않도록 주의한다.
 
-- **Ensure that all spectators are at a safe distance**.
-- **Ensure the pilot is at a safe distance and position**.
-- The pilot should refresh themselves on the method used to disarm the aircraft (using :ref:`Auxiliary Functions <common-auxiliary-functions>` for Motor Interlock or Arm/Disarm may be beneficial).
+- **주변에 구경하는 사람들은 안정 거리를 확보해야 한다.**.
+- **조종사는 안전거리와 위치를 확보해야 한다.**.
+- 조종사는 기체를 모터 interlock으로 disarm 시키는 방법에 대해서 알고 Arm/Disarm이 나은 방법인지 판단할 수 있어야 한다.
 
-This flight will allow to setup your aircraft in a "flyable for tuning" state.
+이번 비행은 "튜닝을 위해서 비행 가능한" 상태에서 비행체를 셋업하는 방법이다.
 
-1. Ensure the aircraft is in STABILIZE mode
-2. Arm the aircraft
-3. Immediately disarm the aircraft to ensure your disarm procedure is correct
-4. Arm the aircraft
-5. Slowly increase the throttle looking for signs of oscillation. (long or flexible landing gear may cause some landing gear oscillation that will only go away after the aircraft leaves the ground)
-6. As soon as the aircraft lifts off the ground immediately put the aircraft back down as gently as possible
-7. Disarm the aircraft
-8. Evaluate what you observed to decide if you need to make adjustments to the tuning parameters or if it is safe to take off again
-9. Arm and increase the throttle to initiate a takeoff
-10. Hover at approximately 1m altitude and apply small (5 degrees) control inputs into roll and pitch
-11. Immediately land if any oscillation is observed
+1. 비행체는 스테빌라이저 비행 모드인지 확인한다.
+2. 비행체를 arming한다.
+3. disarm 절차가 제대로 알고 있는지 확인하기 위해서 즉시 비행체를 disarm 시켜본다.
+4. 비행체를 arming한다.
+5. 비행체에 진동이 발생하는지 찾아보기 위해서 천천히 쓰로틀을 증가시킨다. (랜딩 기어가 길고 유연한 소재인 경우 랜딩 기어 진동을 발생시킬 수 있다. 이륙을 하고 나서야 랜딩 기어 진동 영향을 받지 않게 된다.)
+6. 비행체가 지상으로 이륙하자마자 즉시 천천히 착륙 시킨다.
+7. 비행체를 disarm 시킨다.
+8. 관찰한 결과로 파라미터 튜닝이 필요한지 아니면 다시 이륙시켜도 괜찮은지 판단한다.
+9. arming하고 쓰로틀을 올려서 이륙시킨다.
+10. 대략 1m 고도에서 호버링을 시킨 상태로 조정기의 roll/pitch로 약 5도 정도만 약간씩 움직여본다.
+11. 만약 비행체 진동이 발생하면 바로 착륙 시킨다.
 
-Next section will explain how to remove the oscillations.
+다음 섹션에서는 비행체 진동을 제거하는 방법에 대해서 설명한다.
 
 초기 비행체 튜닝
 ---------------------
@@ -181,64 +181,64 @@ Halt the tests if the aircraft overshoots level significantly or if the aircraft
 
 Set :ref:`ATC_RATE_FF_ENAB <ATC_RATE_FF_ENAB>` to 1 after the tests are complete.
 
-Manual tuning of Roll and Pitch
+수동으로 Roll과 Pitch 튜닝하기
 -------------------------------
 
-Manual tuning may be required to provide a stable tune before Autotune is run, or if Autotune does not produce an acceptable tune. The process below can be done on roll and pitch at the same time for a quick manual tune provided the aircraft is symmetrical. If the aircraft is not symmetrical then the process should be repeated for both roll and pitch individually.
+Autotune을 실행하기 전에 수동 튜닝으로 어느 정도 안정적인 비행이 가능한 상태를 제공해야 한다. 혹은 Autotune이 제대로 동작지 않는 경우에 필요하다. 아래 절차는 대칭인 비행체가 주어진 경우 빠르게 수동으로 튜닝을 위해서 roll과 pitch를 동시에 튜닝할 수 있다. 만약 비행체가 대칭이 아니라면 roll과 pitch 각각에 대해서 튜닝 절차를 수행해야만 한다.
 
-The pilot should be especially careful to ensure that :ref:`ATC_THR_MIX_MAN <ATC_THR_MIX_MAN>` and :ref:`MOT_THST_HOVER <MOT_THST_HOVER>` are set correctly before manual tuning is started.
+조정사는 수동 튜닝을 시작하기 전에 특별히 :ref:`ATC_THR_MIX_MAN <ATC_THR_MIX_MAN>` 와 :ref:`MOT_THST_HOVER <MOT_THST_HOVER>`가 제대로 설정되어 있는지 확인해야만 한다.
 
-When oscillations start do not make large or sudden stick inputs. Reduce the throttle smoothly to land the aircraft while using very slow and small roll and pitch inputs to control the aircraft position.
+비행체 진동이 시작될때, 조정기로 큰 입력이나 갑잡스러운 조정을 하지 않도록 한다. 비행체의 위치를 제어하기 위해서 roll과 pitch 조정 스틱을 천천히 그리고 조금씩만 움직여서 비행체를 천천히 착륙시킨다.
 
-1. Increase the D term in steps of 50% until oscillation is observed
-2. Reduce the D term in steps of 10% until the oscillation disappears
-3. Reduce the D term by a further 25%
-4. Increase the P term in steps of 50% until oscillation is observed
-5. Reduce the P term in steps of 10% until the oscillation disappears
-6. Reduce the P term by a further 25%
+1. 비행체 진동 발생이 관측될때까지 D term을 50%씩 증가시킨다.
+2. 비행체 진동 발생이 관측되지 않을때까지 D term을 10%씩 줄인다.
+3. D term을 25% 더 줄인다.
+4. 비행체 진동 발생이 관측될때까지 50%씩 P term을 증가시킨다.
+5. 비행체 진동 발생이 관측되지 않을때까지 P term을 10%씩 줄인다.
+6. P term을 25% 더 줄인다.
 
-Each time the P term is changed set the I term equal to the P term. Those parameters can be changed on ground and preferably disarmed. A confident pilot could set them in flight with GCS or transmitter tuning knob (see :ref:`Transmitter based tuning<common-transmitter-tuning>` section).
+P term을 변경시킬때마다 I term은 P term과 동일하게 설정한다. 이 파라미터들은 지상에서 disarm한 상태로 변경하는 것이 좋다. 경험이 많은 조정사라면 비행 중에 미션 플래너나 조정기를 이용해서 설정이 가능하다.(참고 :ref:`Transmitter based tuning<common-transmitter-tuning>` section).
 
-If using :ref:`Transmitter based tuning<common-transmitter-tuning>` , set the minimum value of the tuning range to the current safe value and the upper range to approximately 4 times the current value. Be careful not to move the slider before the parameter list is refreshed to recover the set value. Ensure the transmitter tuning is switched off before setting the parameter value or the tuning may immediately overwrite it.
+:ref:`조정기로 튜닝<common-transmitter-tuning>`을 사용하는 경우에, 튜닝 범위의 최소 값을 현재 안전 값에서 대략 최대 4배 정도의 값으로 설정한다. 설정한 값으로 복구되기 위해서 화면이 갱신될때까지 슬라이더를 움직이지 않도록 주의하자. 파라미터 값을 설정하기 전에 조정기 튜닝은 꺼야한다. 그렇지 않으면 튜닌ㅇ이 즉시 덮어쓰기가 된다.
 
-Autotune
+오토튠(Autotune)
 --------
 
-If the aircraft appears stable enough to attempt autotune follow the instructions in the autotune page.
+비행체가 오토튠을 할만큼 충분히 안정적이라면 오토튠 페이지에 있는 지시대로 따라해보자.
 
-There a number of problems that can prevent Autotune from providing a good tune. Some of the reasons Autotune can fail are:
+오토튠이 제대로 동작하지 않는데는 다양한 문제점들이 있을 수 있다. 오토튠 시에 실패하는 이유들은 :
 
-- High levels of gyro noise.
-- Incorrect value of :ref:`MOT_THST_EXPO <MOT_THST_EXPO>`.
-- Flexible frame or payload mount.
-- Overly flexible vibration isolation mount.
-- Non-linear ESC response.
-- Very low setting for :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`.
-- Overloaded propellers or motors.
+- 자이로 센서의 노이즈가 큰 경우
+- :ref:`MOT_THST_EXPO <MOT_THST_EXPO>` 파라미터 값이 제대로 설정되지 않은 경우
+- 비행체 프레임 혹은 장착된 물체가 단단하지 않은 경우
+- 진동 차단을 위한 마운트가 과하게 낭창거릴때.
+- 비선형 ESC 응답
+- :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`의 설정값이 너무 낮게 설정한 경우
+- 프로펠러와 모터에 부하가 심한 경우
 
-If Autotune has failed you will need to do a manual tune.
+만약에 오토튠이 실패하면 수동으로 튜닝을 해야한다.
 
-Some signs that Autotune has been successful are:
+오토튠을 성공적으로 수행한 경우 :
 
-- An increase in the values of :ref:`ATC_ANG_PIT_P <ATC_ANG_PIT_P>` and :ref:`ATC_ANG_RLL_P <ATC_ANG_RLL_P>`.
-- :ref:`ATC_RAT_PIT_D <ATC_RAT_PIT_D__AC_AttitudeControl_Multi>` and :ref:`ATC_RAT_RLL_D <ATC_RAT_RLL_D__AC_AttitudeControl_Multi>` are larger than :ref:`AUTOTUNE_MIN_D <AUTOTUNE_MIN_D>`.
+- :ref:`ATC_ANG_PIT_P <ATC_ANG_PIT_P>` 와 :ref:`ATC_ANG_RLL_P <ATC_ANG_RLL_P>` 값의 증가
+- :ref:`ATC_RAT_PIT_D <ATC_RAT_PIT_D__AC_AttitudeControl_Multi>` 와 :ref:`ATC_RAT_RLL_D <ATC_RAT_RLL_D__AC_AttitudeControl_Multi>`는 :ref:`AUTOTUNE_MIN_D <AUTOTUNE_MIN_D>` 보다 크다.
 
-Autotune will attempt to tune each axis as tight as the aircraft can tolerate. In some aircraft this can be unnecessarily responsive. A guide for most aircraft:
+오토튠을 수행하면 비행체는 각 축에 대해서 비행체가 견딜 수 있을 만큼으로 튜닝을 시도한다. 일부 비행체에서는 이러한 작업이 불필요하게 응답성을 보일 수 있다. 대부분 비행체에 대해서는 다음과 같다 :
 
-- :ref:`ATC_ANG_PIT_P <ATC_ANG_PIT_P>` should be reduced from 10 to 6
-- :ref:`ATC_ANG_RLL_P <ATC_ANG_RLL_P>` should be reduced from 10 to 6
-- :ref:`ATC_ANG_YAW_P <ATC_ANG_YAW_P>` should be reduced from 10 to 6
-- :ref:`ATC_RAT_YAW_P <ATC_RAT_YAW_P__AC_AttitudeControl_Multi>` should be reduced from 1 to 0.5
+- :ref:`ATC_ANG_PIT_P <ATC_ANG_PIT_P>` 는 10에서 6으로 줄여야한다.
+- :ref:`ATC_ANG_RLL_P <ATC_ANG_RLL_P>` 는 10에서 6으로 줄여야한다.
+- :ref:`ATC_ANG_YAW_P <ATC_ANG_YAW_P>` 는 10에서 6으로 줄여야한다.
+- :ref:`ATC_RAT_YAW_P <ATC_RAT_YAW_P__AC_AttitudeControl_Multi>` 는 1에서 0.5으로 줄여야한다.
 - :ref:`ATC_RAT_YAW_I <ATC_RAT_YAW_I__AC_AttitudeControl_Multi>` : :ref:`ATC_RAT_YAW_P <ATC_RAT_YAW_P__AC_AttitudeControl_Multi>` x 0.1
 
-These values should only be changed if Autotune produces higher values. Small aerobatic aircraft may prefer to keep these values as high as possible.
+만약 오토튠에서 더 높은 값이 설정된다면 그 값들만 변경해야만 한다. 작은 곡예용 비행체에서는 가능한한 큰 값을 그대로 유지하는게 더 나을 수도 있다.
 
-Setting the input shaping parameters
+input shaping 파라미터 설정하기 (Setting the input shaping parameters)
 ------------------------------------
 
 Arducopter has a set of parameters that define the way the aircraft feels to fly. This allows the aircraft to be set up with a very aggressive tune but still feel like a very docile and friendly aircraft to fly.
 
-The most important of these parameters is:
+이 파라미터들 중에서 가장 중요한 것들은:
 
 - :ref:`ACRO_YAW_P <ACRO_YAW_P>` : yaw rate x 45 degrees/s
 - :ref:`ANGLE_MAX <ANGLE_MAX>` :  maximum lean angle
