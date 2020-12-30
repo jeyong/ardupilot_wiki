@@ -1,106 +1,55 @@
 .. _extended-kalman-filter:
 
 =====================================================
-Extended Kalman Filter Navigation Overview and Tuning
+EKF 네비게이션 개요 및 튜닝(Extended Kalman Filter Navigation Overview and Tuning)
 =====================================================
 
 .. warning::
 
-   **IMPORTANT:** This article is about EKF1 which has been removed
-   from the codebase. It's kept as a reference, as it
-   has been the basis for EKF2 and EKF3. EKF3 is now the default.
+   **IMPORTANT:** 여기 글은 EKF1에 대한 설명이다. 하지만 EKF1은 코드는 더이상 존재하지 않는다. EKF1은 EKF2와 EKF3의 기반이 된다. 현재는 EKF3가 기본으로 사용된다.
 
 
-This article describes the Extended Kalman Filter (EKF) algorithm used
-to estimate vehicle position, velocity and angular
-orientation based on rate gyroscopes, accelerometer, compass
-(magnetometer), GPS, airspeed and barometric pressure measurements. It
-includes both an overview of the algorithm and information about the
-available tuning parameters.
+EKF 알고리즘은 비행체의 위치, 속도, 방향을 추정하는데 사용된다. 사용하는 센서는 자이로, 가속도, 컴파스, GPS, airspeed, 바로미터 등이다. 알고리즘 개요 및 튜닝 파라미터에 대해서 알아보자.
 
-Overview
+개요
 ========
 
-The availability of faster processors (like the one on Pixhawk) have
-enabled more advanced mathematical algorithms to be implemented to
-estimate the orientation, velocity and position of the flight vehicle.
-An Extended Kalman Filter (EKF) algorithm has been developed that uses
-rate gyroscopes, accelerometer, compass, GPS, airspeed and barometric
-pressure measurements to estimate the position, velocity and angular
-orientation of the flight vehicle. This algorithm is implemented in the
-**AP_NavEKF2** and **AP_NavEKF3** libraries and is based on initial work documented here:
-https://github.com/priseborough/InertialNav
+Pixhawk의 프로세서가 더 빠를 수록 비행체의 방향, 속도, 위치를 추정하는데 고급 수학 알고리즘을 활성화시킬 수 있다. EFK 알고리즘은 위치를 추정하기 위해서 자이로, 가속도, 컴파스, GPS, airspeed, 바로미터를 사용하여 계산한다. 이 알고리즘은 **AP_NavEKF2** 와 **AP_NavEKF3** 라이브러리에 구현되었고 초기 작업에 대한 문서에 대한 참고 : https://github.com/priseborough/InertialNav
 
-The advantage of the EKF over the simpler complementary filter
-algorithms used by DCM and Copter's Inertial Nav, is that by fusing all
-available measurements it is better able to reject measurements with
-significant errors so that the vehicle becomes less susceptible to
-faults that affect a single sensor.
+더 단순한 상보 필터 알고리즘보다 뛰어난 EKF의 장점은 가용한 측정값을 모두 이용하여 퓨전한다. 그리고 심각한 에러가 측정된 경우 측정값을 사용하지 않으므로 비행체는 하나의 센서에 문제가 있는 경우 해당 센서의 측정값을 수렴하지 않으므로 추정에 유리하다.
 
-Another feature of the EKF algorithm is that it is able to estimate
-offsets in the vehicles compass readings and also estimate the earth's
-magnetic field for both plane, copter and rover applications. This makes
-it less sensitive to compass calibration errors than current DCM and
-INAV algorithms.
+EKF 알고리즘의 또 다른 특징은 비행체내에 컴파스 측정값에 대한 offset을 추정할 수 있고 지상의 자기장도 추정할 수 있다. 이렇게 하면 DCM과 INAV 알고리즘보다 컴파스 칼리브레이션 에러에 덜 민감하게 만든다.
 
-It also enables measurements from optional sensors such as optical flow
-and laser range finders to be used to assist navigation.
+optical flow나 lidar와 같이 보조 센서로부터 측정을 활성화하여 네비게이션을 보조하는데 사용된다.
 
-Theory
+이론
 ======
 
-The EKF (Extended Kalman Filter) algorithm implemented, estimates a
-total of 22 states with the underlying equations derived using the
-following:
+구현된 EKF 알고리즘은 다음을 사용하여 유도된 기반이 되는 방정식으로 22개 상태를 추정한다.:
 https://github.com/priseborough/InertialNav/blob/master/derivations/GenerateEquations22states.m
 
-The following is a greatly simplified non-mathematical description of
-how the filter works:
+다음은 필터가 어떻게 동작하는지 아주 단순화시킨 비수학적인 설명이다.:
 
-#. IMU angular rates are integrated to calculate the angular position
-#. IMU accelerations are converted using the angular position from body
-   X,Y,Z to earth North,East and Down axes and corrected for gravity
-#. Accelerations are integrated to calculate the velocity
-#. Velocity is integrated to calculate the position
+#. IMU 각속도를 적분하여 angular position을 계산한다.
+#. IMU 가속도는 body의 X, Y, Z로부터 earth의 NED 축으로 angular position을 사용하여 변환하고 중력에 대해서 보정한다.
+#. 가속도는 적분하여 속도를 계산한다.
+#. 속도는 적분하여 position을 계산한다.
 
-   This process from 1) to 4) is referred to as 'State Prediction'. A
-   'state' is a variable we are trying to estimate like roll, pitch, yaw,
-   height, wind speed, etc. The filter has other states besides
-   position, velocity and angles that are assumed to change slowly.
-   These include gyro biases, Z accelerometer bias, wind velocities,
-   compass biases and the earth's magnetic field. These other states
-   aren't modified directly by the 'State Prediction' step but can be
-   modified by measurements as described later.
-#. Estimated gyro and accelerometer noise (``EKF_GYRO_NOISE``
-   and ``EKF_ACC_NOISE``) are used to estimate the growth in error in
-   the angles, velocities and position calculated using IMU data. Making
-   these parameters larger causes the filters error estimate to grow
-   faster. If no corrections are made using other measurements (eg GPS),
-   this error estimate will continue to grow. These estimated errors are
-   captured in a large matrix called the 'State Covariance Matrix'.
+   1)에서 4)까지의 과정은 'State Prediction'이라고 부른다. 'state'는 변수이고 roll, pitch, yaw, 높이, wind speed를 추정하고자 한다. 필터는 천천히 변경되리라고 가정하는 position, velocity, angles 외에도 다른 state들을 가진다. gyro biases, Z 가속도 bias, wind velocities, compass biases, earth 자기장을 포함한다. 이런 달느 state들은 'State Prediction' 단계에서 직접 수정되지는 않는다. 하지만 나중에 설명할 측정에 의해서 수정될 수 있다.
+#. 추정한 gyro와 가속도 noise (``EKF_GYRO_NOISE``
+   와 ``EKF_ACC_NOISE``)는 IMU 데이터를 사용해서 계산한 angle, velocities, position 에 대한 error가 얼마나 커졌는지를 추정하는데 사용한다. 이 파라미터를 증가시키면 필터 error 추정이 더 빠르게 커지게 된다. 만약에 다른 측정(예로 GPS)을 사용해서 보정을 하지 않으면 이 error 추정은 계속해서 커지게 된다. 이 추정된 error들은 'State Covariance Matrix'라고 부르는 큰 배열에서 캡쳐된다.
 
+   단계 1) 에서 5) 는 새로운 IMU 데이터를 얻을 때마다 매번 되풀이 되고 이는 다른 센서로부터 새로운 측정이 가능할때까지 이다. 
    Steps 1) to 5) are repeated every time we get new IMU data until a
    new measurement from another sensor is available.
 
-   If we had a perfect initial estimate, perfect IMU measurements and
-   perfect calculations, then we could keep repeating 1) to 4)
-   throughout the flight with no other calculations required. However,
-   errors in the initial values, errors in the IMU measurements and
-   rounding errors in our calculations mean that we can only go for a
-   few seconds before the velocity and position errors become too large.
+   완벽한 초기 estimate, 완벽한 측정과 완벽한 계산을 가졌다면 비행하는 동안 다른 계산이 필요없이 1) 에서 4) 까지 반복을 유지할 수 있다. 하지만 초기 값에 error, IMU 측정 error, 계산에서의 올림/반올림 error 가 의미하는 것은 velocity와 position error가 매우 커지기 전에 몇 초간만 가능할 수 있다.
 
-   The Extended Kalman Filter algorithm provides us with a way of
-   combining or fusing data from the IMU, GPS, compass, airspeed,
-   barometer and other sensors to calculate a more accurate and reliable
-   estimate of our position, velocity and angular orientation.
+   EKF 알고리즘은 IMU, GPS, compass, airspeed, barometer와 다른 센서들로부터 position, velocity, angular orientation을 보다 정확하고 신뢰할 수 있게 하기 위해서 데이터들을 결합하고 퓨전하는 방법을 제공한다.
 
-   The following example describes how GPS horizontal position
-   measurements are used, however the same principal applies to other
-   measurement types (barometric altitude, GPS velocity, etc)
+   다음 예제는 GPS 수평 위치 측정이 어떻게 사용되는지를 설명한다. 하지만 동일한 원칙이 다른 측정 센서의 경우에도 동일하게 적용된다.(barometer altitude, GPS velocity 등)
 
-#. When a GPS measurement arrives, the filter calculates the difference
-   between the predicted position from 4) and the position from the GPS.
-   This difference is called an 'Innovation'.
+#. GPS 측정 단계에 오면 필터는 4)로부터 predicted position과 GPS로부터의 position  사이의 차이를 계산한다. 이 차리를 'Innovation' 이라고 부른다.
 #. The 'Innovation' from 6), 'State Covariance Matrix' from 5), and the
    GPS measurement error specified by ``EKF_POSNE_NOISE`` are combined
    to calculate a correction to each of the filter states. This is
