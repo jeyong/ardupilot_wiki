@@ -1,39 +1,28 @@
 .. _quadplane-overview:
 
 ==================
-QuadPlane Overview
+QuadPlane 개요
 ==================
 
 .. image:: ../images/quadplane_PorterOctaQuad.png
     :target: ../_images/quadplane_PorterOctaQuad.png
 
-A QuadPlane is a combined fixed wing and MultiCopter aircraft. This sort
-of aircraft brings the benefit of vertical takeoff and landing,
-significantly greater speed and range of travel, and the ability to
-hover and perform copter-like tasks at the destination.
+QuadPlane은 고정익과 멀티콥터가 결합된 형태의 비행체다. 이런 형태의 비행체가 갖는 장점은 수직 이착륙이 가능하고 비행 속도가 빠르고 넓은 범위 비행이 가능하다. 도착지점에서는 호버링이 가능하며 멀티콥터와 같은 형태의 비행이 가능하다.
 
-QuadPlane is built upon Plane, but adds copter like stability control for one or more motors. In some configurations 4 or more additional motors are added . Additional modes and commands allow a QuadPlane to take off, land and fly like a copter, and to smoothly transition
-between the Plane and Copter-like (VTOL) modes in both automatic and
-autopilot-assisted modes. The additional rotors can also provide lift
-and stability in normal Plane modes.
+QuadPlane은 Plane을 기반으로 만들지만 1개 이상의 모터로 안정적인 제어를 하는 콥터와 비슷해진다. 일부 설정에서는 4개 이상의 모터가 추가된다. 추가적인 모드와 명령으로 QuadPlane은 이착륙과 콥터처럼 비행이 가능하다. 자동 및 비행제어 보조 모드에서 Plane과 VTOL 모드 사이에 부드러운 변환이 가능하다. 추가 로터는 일반 Plane 모드에서 양력과 안정성을 제공하는 역할도 한다.
 
-Types and Configurations
+타입과 설정(Types and Configurations)
 ========================
 
-The image below illustrates the wide variety of configurations that are possible. Motors can be under tilt control or not, the number of motors can vary from one to 8 or more, and the VTOL stance of the QuadPlane can either be horizontal, like a plane in normal fixed wing flight, or vertical (called Tailsitters). 
+아래 이미지는 가능한 다양한 여러 설정들을 보여준다. 모터는 tilt 제어를 사용하는 경우도 있다. 모터의 수는 1 ~ 8개 혹은 그 이상으로 다양한다. QuadPlane의 VTOL stance는 수평일 수도 있다. QuadPlane의 VTOL stance는 수평일 수도 있고 수직일 수도 있다. 일반 고정익 비행에서는 수평이고 Tailsitter에서는 수직이다.
 
 .. image:: ../../../images/quadplane.png
   :target: ../_images/quadplane.png
 
 
-Installing the Firmware
+Firmware 설치하기(Installing the Firmware)
 =======================
 
-The normal instructions for installing the Plane firmware apply since QuadPlane functions are an option within the Plane firmware.
+QuadPlane 기능은 Plane 펌웨어 내에서 하나의 옵션이므로 Plane 펌웨어를 설치하는 방법과 동일하다.
 
-When you install the plane firmware and look in the parameter list you
-will see a :ref:`Q_ENABLE<Q_ENABLE>` parameter. That defaults to zero, which disables
-QuadPlane support. Setting :ref:`Q_ENABLE<Q_ENABLE>` to 1 will enable QuadPlane
-support. You then need to refresh your parameter list to see all the
-other QuadPlane options. All QuadPlane specific parameters start with
-\Q_.
+plane 펌웨어를 설치할때, 파라미터 목록에서 :ref:`Q_ENABLE<Q_ENABLE>` 파리미터르 볼 수 있다. 기본값은 0으로 되어 있으며 QuadPlane 지원이 비활성화되어 있는 상태다. :ref:`Q_ENABLE<Q_ENABLE>`을 1로 설정하면 QuadPlane 지원이 활성화된다. 다음으로 파라미터 목록을 refresh하면 다른 QuadPlane 옵션을 볼 수 있다. QuadPlane와 관련된 모든 파라미터들은 \Q_ 로 시작한다.

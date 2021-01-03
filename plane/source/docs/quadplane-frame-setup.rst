@@ -1,17 +1,16 @@
 .. _quadplane-frame-setup:
 
 =====================
-QuadPlane Frame setup
+QuadPlane 프레임 설정
 =====================
 
-The QuadPlane code supports several frame arrangements of quadcopter,
-hexacopter, octacopter and octaquad multicopter frames which use lifting motors in addition to the normal forward motor(s). Also configurations in which the VTOL motors tilt for transitions or control, as well as choice between horizontal VTOL stance or vertical (Tailsitters).
+QuadPlane 코드는 다양한 quadcopter, hexa, octa, octaquad 멀티콥터 프레임을 지원한다. 설정은 VTOL 모터가 transition이나 제어하는 동안 tilt되는지 여부, 수평 VTOL이나 수직 VTOL이냐에 설정.
 
 
 Tailsitters
 ===========
 
-Frame setup for Tailsitters is in this section: :ref:`guide-tailsitter`. Once the frame is configured, proceed with the other :ref:`quadplane-setup` instructions.
+Tailsitters 관련 프레임 설정은 :ref:`guide-tailsitter` 를 참조한다. 일단 프레임 구성이 완료되면 다른 :ref:`quadplane-setup` 를 진행해 나간다. 
 
 Plane VTOL Stance
 =================
