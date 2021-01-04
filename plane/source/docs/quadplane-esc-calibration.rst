@@ -21,69 +21,31 @@ ESC 칼리브레이션 절차 (ESC Calibration Procedure (3.6.0 and later))
 
 Q\_ESC_CAL=1을 사용하는 절차는
 
-#. remove your propellers for safety
-#. power up just the flight board and not your motors. If you don't have
-   the ability to isolate power to the ESCs when on battery power then
-   power up your flight board on USB power
-#. set the Q\_ESC_CAL parameter to 1
-#. change to QSTABILIZE mode
-#. set the safety switch off to activate the outputs
-#. arm your aircraft. The PWM output on all quad motors will now be
-   controlled by your throttle stick
-#. move the throttle stick to maximum
-#. add power to your ESCs by connecting the battery
-#. wait for the ESCs to beep to indicate they have registered the
-   maximum PWM
-#. lower the throttle stick to zero and disarm your aircraft
-#. you should hear a beep from your ESCs to indicate they have
-   registered the throttle range
+#. 안전을 위해서 프로펠러를 제거
+#. Pixhawk에만 전원 넣기. ESC에 별도 전원을 줄 수 없다면 USB로 Pixhawk에 전원넣기.
+#. Q\_ESC_CAL 파라미터를 1로 설정하기
+#. QSTABILIZE 모드로 변경
+#. 출력을 활성화시키기 위해서 스위치를 off로 설정
+#. 비행체 arming. 이제는 모든 quad 모터에 PWM 출력은 쓰로틀 스틱으로 제어된다.
+#. 쓰로틀 스틱을 최대로 이동시키기
+#. 배터리 연결해서 ESC에 전원 넣기
+#. 최대 PWM이 등록되었다는 것을 알리는 beep음이 날때까지 기다리기
+#. 쓰로틀 스틱을 0으로 내리고 비행체 disarm 시키기
+#. ESC에서 beep음이 들리면 쓰로틀 range가 등록되었다는 뜻이다.
 
-The process when using Q\_ESC\_CAL=2 is
+Q\_ESC_CAL=2을 사용하는 절차는
 
-#. remove your propellers for safety
-#. power up just the flight board and not your motors. If you don't have
-   the ability to isolate power to the ESCs when on battery power then
-   power up your flight board on USB power
-#. set the Q\_ESC_CAL parameter to 2
-#. change to QSTABILIZE mode
-#. set the safety switch off to activate the outputs
-#. arm your aircraft. The PWM output on all quad motors will now be at maximum
-#. add power to your ESCs by connecting the battery
-#. wait for the ESCs to beep to indicate they have registered the
-   maximum PWM
-#. disarm your aircraft
-#. you should hear a beep from your ESCs to indicate they have
-   registered the throttle range
+#. 안전을 위해서 프로펠러를 제거
+#. Pixhawk에만 전원 넣기. ESC에 별도 전원을 줄 수 없다면 USB로 Pixhawk에 전원넣기.
+#. Q\_ESC_CAL 파라미터를 2로 설정하기
+#. QSTABILIZE 모드로 변경
+#. 출력을 활성화시키기 위해서 스위치를 off로 설정
+#. 비행체 arming. 이제 모든 quad 모터에 PWM 출력이 최대가 된다.
+#. 배터리를 연결해서 ESC에 전원 추가
+#. 최대 PWM이 등록되었다는 것을 알리는 beep음이 날때까지 기다리기
+#. 비행체 disarm 시키기
+#. ESC에서 beep음이 들리면 쓰로틀 range가 등록되었다는 뜻이다.
 
-Note that using Q\_ESC_CAL=1 can be useful for testing your motors
-response. This is the only mode when you are able to directly control
-the throttle level on all your motors at once. While in this mode you
-can use a laser tachometer to test your motor speeds at different
-throttle levels if you have one.
+Q\_ESC_CAL=1 을 사용하면 모터 반응 테스팅에 유용하다. 한번에 모든 모터의 쓰로틀 레벨을 직접 제어할 수 있는 유일한 방법이다. 이 모드에서 쓰로틀 레벨에 따른 모터 속도를 테스트 하기 위해서 laser tachometer를 사용할 수 있다.
 
-.. warning:: Be sure to set :ref:`Q_ESC_CAL<Q_ESC_CAL>` back to zero after calibrating for normal operation
-
-
-Old ESC Calibration Procedure (3.5.3 and earlier)
--------------------------------------------------
-
-#. remove your propellers for safety
-#. power up just the flight board and not your motors. If you don't have
-   the ability to isolate power to the ESCs when on battery power then
-   power up your flight board on USB power
-#. set both the parameters :ref:`Q_M_SPIN_ARM<Q_M_SPIN_ARM>` and Q_THR_MID to 1000.
-   This sets the PWM output when armed at zero throttle to full power
-#. set the safety switch off to activate the outputs
-#. arm your aircraft. The PWM output on all quad motors will now climb
-   to maximum.
-#. add power to your ESCs by connecting the battery
-#. wait for the ESCs to beep to indicate they have registered the
-   maximum PWM
-#. disarm your aircraft. The ESCs should beep again indicating they have
-   registered minimum PWM
-
-Now set the :ref:`Q_M_SPIN_ARM<Q_M_SPIN_ARM>` and Q_THR_MID parameters back to the
-correct values. A value of 50 for :ref:`Q_M_SPIN_ARM<Q_M_SPIN_ARM>` is a reasonable
-starting point. For Q_THR_MID a value of between 500 and 600 is good
-depending on the power of your motors
-
+.. warning:: 칼리브레이션을 마치면 :ref:`Q_ESC_CAL<Q_ESC_CAL>` 을 0으로 돌려놔야 일반 비행이 가능하다.

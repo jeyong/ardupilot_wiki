@@ -1,47 +1,30 @@
 .. _quadplane-parameters:
 
-QuadPlane Parameter setup
+QuadPlane 파라미터 셋업(QuadPlane Parameter setup)
 =========================
 
-All QuadPlane specific parameters start with a "Q\_" prefix. The
-parameters are very similar to the equivalent Copter parameters so if
-you are familiar with those you should find setting up a QuadPlane is
-easy.
+모든 QuadPlane 관련 파라미터는 "Q\_" 로 시작한다. 파라미터들은 Copter 파라미터와 아주 유사해서 경험이 있다면 쉬울 것이다.
 
-Key parameters are:
+핵심 파라미터들 :
 
--  To enable QuadPlane functionality you need to set the :ref:`Q_ENABLE<Q_ENABLE>`
-   parameter to 1 and then refresh the parameter list
--  The :ref:`Q_THR_MIN_PWM<Q_THR_MIN_PWM>` and :ref:`Q_THR_MAX_PWM<Q_THR_MAX_PWM>` parameters used to set the
-   PWM range of the quad motors (this allows them to be different from
-   the range for the forward motor). These need to be set to the range
-   your ESCs expect.
--  The most critical tuning parameters are :ref:`Q_A_RAT_RLL_P<Q_A_RAT_RLL_P>` and
-   :ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>`. These default to 0.25 but you may
-   find significantly higher values are needed for a QuadPlane.
--  The :ref:`Q_M_SPIN_ARM<Q_M_SPIN_ARM>` parameter is important for getting the right
-   level of motor output when armed in a quad mode
--  It is recommended that you set :ref:`ARMING_RUDDER<ARMING_RUDDER>` to 2 to allow for
-   rudder disarm. Alternatively you could have :ref:`MANUAL <manual-mode>`
-   as one of your available flight modes (as that will shut down the
-   quad motors). Please be careful not to use hard left rudder and zero
-   throttle while flying or you risk disarming your motors.
+-  QuadPlane 기능을 활성화 시키기 위해서 :ref:`Q_ENABLE<Q_ENABLE>` 파라미터를 1로 설정하고 파라미터 목록을 refresh한다.
+-  :ref:`Q_THR_MIN_PWM<Q_THR_MIN_PWM>` 와 :ref:`Q_THR_MAX_PWM<Q_THR_MAX_PWM>` 파라미터는 quad motor의 PWM 범위를 설정하는데 사용한다. (이렇게 하면 전면 motor를 위해서 해당 범위와 다른 설정할 수 있다.) 비행체의 ESC가 기대하는 범위로 설정할 필요가 있다.
+-  가장 중요한 튜닝 파리미터는 :ref:`Q_A_RAT_RLL_P<Q_A_RAT_RLL_P>` 와
+   :ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>` 이다. 이것들의 기본값은 0.25이지만 QuadPlane에는 더 높은 값일 수 있다.
+-  :ref:`Q_M_SPIN_ARM<Q_M_SPIN_ARM>` 파라미터는 quad 모드로 arming되는 때에 모터 출력의 올바른 레벨을 얻기 위해서 중요하다.
+-  :ref:`ARMING_RUDDER<ARMING_RUDDER>` 을 2로 설정하는 것을 추천한다. 이렇게 하면 rudder의 disarm을 허용한다. 대안으로 유효한 비행 모드 중에 하나로 :ref:`MANUAL <manual-mode>` 를 가질 수 있다. (quad motor를 shut down 가능) 비행하는 동안 모터를 disarm 시키는 hard left rudder와 zero throttle하지 않도록 주의하자.
 
-In addition, the behavior of Quadplane can be modified by the setting of the :ref:`Q_OPTIONS<Q_OPTIONS>` bitmask parameter (no bits are set, by default):
+추가로 QuadPlane의 동작은 :ref:`Q_OPTIONS<Q_OPTIONS>` bitmask 파라미터의 설정으로 수정할 수 있다. (기본적으로 어떤 bit도 설정되어 있지 않다.):
 
-- bit 0, if set, will force the transition from VTOL to Plane mode to keep the wings level and not begin climbing with the VTOL motors (as in a mission to a higher waypoint after VTOL takeoff) during the transition.
-- bit 1, if set, will use a fixed wing takeoff instead of a VTOL takeoff for ground stations that can only send TAKEOFF instead of a separate VTOL_TAKEOFF mission command. Otherwise, QuadPlane will use VTOL takeoffs for a TAKEOFF mission command.
--  bit 2, if set, will use a fixed wing landing instead of a VTOL landing for ground stations that can only send LAND instead of a separate VTOL_LAND mission command. Otherwise, QuadPlane will use VTOL_LAND for a LAND mission command.
--  bit 3, if set, will interpret the takeoff altitude of a mission VTOL_TAKEOFF as specified when setup in Mission Planner (ie Relative to Home/Absolute {ASL}/Terrain {AGL}). Otherwise, it is relative to the takeoff point's altitude (AGL).
--  bit 4, if set, for “Use a fixed wing approach”  then during a VTOL_LAND mission command,instead of transitioning to VTOL flight and doing a VTOL landing, it will remain in plane mode, and proceed to the landing position, climbing or descending to the altitude set in the VTOL_LAND waypoint. When it reaches within :ref:`Q_FW_LND_APR_RAD<Q_FW_LND_APR_RAD>` of the landing location, it will perform a LOITER_TO_ALT to finish the climb or descent to that altitude set in the waypoint, then, turning into the wind, transition to VTOL mode and proceed to the landing location and land. Otherwise, a standard VTOL_LAND will be executed. See :ref:`quadplane-auto-mode` for more information.
--  bit 5, if set,  it will replace QLAND with QRTL for failsafe actions when in VTOL modes. See the Radio and Throttle Failsafe section of :ref:`quadplane-flying` for more information.
+- bit 0 : 설정한 경우 날개 레벨을 유지하기 위해서 VTOL에서 Plane 모드로 강제 전이시키고, 전이가 일어나는 동안 VTOL 모터에서 climbing 하지 않게 한다. (미션에서 VTOL takeoff 후에 더 높은 waypoint로 이동하는 것처럼)
+- bit 1 : 설정한 경우 VTOL takeoff 대신에 고정익 takeoff을 사용한다. 별도의 VTOL_TAKEOFF 미션 명령 대신에 TAKEOFF만 보낼 수 있다. 반면에 QuadPlane은 TAKEOFF 미션 명령을 위해서 VTOL takeoff를 사용할 것이다.
+-  bit 2 : 설정한 경우 VTOL 착륙 대신에 고정익 착륙을 사용한다. 별도의 VTOL_LAND 미션 명령 대신에 LAND만 보낼 수 있다. 반면에 QuadPlane은 LAND 미션 명령에 대해서 VTOL_LAND 를 사용한다.
+-  bit 3 : 설정한 경우 미션 VTOL_TAKEOFF의 takeoff 고도를 Mission Planner에서 설정한 대로 해석한다.(ie Relative to Home/Absolute {ASL}/Terrain {AGL}) 그렇지 않으면 takeoff 지점의 고도와 관련된다. (AGL)
+-  bit 4 : 설정한 경우 "고정익 접근법 사용"에 대해서 VTOL_LAND 미션 명령 동안 VTOL 비행으로 전이되는 대신에 VTOL 착륙을 수행하며 plane 모드로 남아서 착륙 위치로 가서 VTOL_LAND waypoint에 설정한 고도로 상승/하강을 한다. 착륙 지점의 :ref:`Q_FW_LND_APR_RAD<Q_FW_LND_APR_RAD>` 내에 도착하면 waypoint에서 설정한 해당 고도로 상승/하강을 마치기 위해서 LOITER_TO_ALT을 수행한다. 바람으로 VTOL 모드로 전이되고 착륙지점으로 가서 착륙한다. 그렇지 않으면 표준 VTOL_LAND가 실행된다. 추가 정보는 :ref:`quadplane-auto-mode` 를 참고하자.
 
-Behavior can be modified as well as by the :ref:`Q_RTL_MODE<Q_RTL_MODE>` and :ref:`Q_GUIDED_MODE<Q_GUIDED_MODE>` parameters.
+동작은 :ref:`Q_RTL_MODE<Q_RTL_MODE>` 나 :ref:`Q_GUIDED_MODE<Q_GUIDED_MODE>` 파라미터로 수정할 수 있다.
 
 .. note::
 
-   The QuadPlane code requires GPS lock for proper operation. This is
-   inherited from the plane code, which disables inertial estimation of
-   attitude and position if GPS lock is not available. Do not try to fly a
-   QuadPlane indoors. It will not fly well
+   QuadPlane code는 제대로 동작하기 위해서는 GPS lock이 필요하다. 이는 plane code의 속성을 그대로 따르는 것이고 GPS lock이 되지 않은 경우에는 자세와 위치의 inertial estimation이 비활성화된다. QuadPlane을 실내에서 날리지 말자. 잘 안난다.
 
