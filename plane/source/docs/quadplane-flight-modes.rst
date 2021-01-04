@@ -1,10 +1,9 @@
 .. _quadplane-flight-modes:
 
-QuadPlane Flight modes
+QuadPlane 비행 모드 (QuadPlane Flight modes)
 ======================
 
-The QuadPlane code is based upon the Plane master firmware but with 6
-extra modes. Most are identical to equivalent Copter modes:
+QuadPlane 코드는 Plane master 펌웨어를 기반으로 하지만 6개의 추가 모드가 있다. 대부분은 Copter 모드와 동일하다:
 
 .. toctree::
     :maxdepth: 1
@@ -18,24 +17,18 @@ extra modes. Most are identical to equivalent Copter modes:
     QACRO     (Mode 23) <qacro-mode>
     AIRMODE** <airmode>
 
-** not actually a flight mode, but rather a feature of QACRO and QSTABILIZE
+** 실제로는 flight mode가 아니라 QACRO와 QSTABILIZE의 기능이라고 볼 수도 있다.
 
 .. tip::
 
-   You may need to set the ``FLTMODE*`` parameters for these
-   extra modes as numeric values if your GCS doesn't understand these
-   values yet.
+   GCS가 이 값을 이해하지 못하는 경우 ``FLTMODE*`` 파라미터를 숫자 값으로 추가 모드를 설정할 수 있다.
 
-If you are familiar with the equivalent Copter flight modes then you
-should be comfortable flying a QuadPlane. The most significant difference comes
-during transition between fixed wing and QuadPlane flight, which is
-described :ref:`here <quadplane-flying>`.
+동일한 Copter 비행 모드에 익숙하다면 QuadPlane로 비행이 쉽게 느껴질 수 있다.
+고정익과 QuadPlane 사이의 가장 큰 차이점은 전이하는 동안에 있다. 이에 대한 설명은 :ref:`여기 <quadplane-flying>` 를 참고하자.
 
 .. tip::
 
-   There is also a difference in throttle channel parameters from Copter: instead of :ref:`THR_DZ<THR_DZ>` for setting the deadzone, QuadPlane uses RCn_DZ (where n is the channel mapped to throttle input). 
-   The default for throttle channel deadzone is 60 (+/- 6%).
-   If your Quadplane does not hover at mid-stick (+/- 6%) in QSTABILIZE, you will need to center it using :ref:`Q_M_THST_HOVER<Q_M_THST_HOVER>` to set the throttle percentage applied at mid-stick in QSTABILIZE such that switching to QHOVER or QLOITER does not result in an altitude change. This value can be automatically learned and applied during QLOITER and QHOVER modes, by enabling :ref:`Q_M_HOVER_LEARN<Q_M_HOVER_LEARN>` .
+   Copter로부터 쓰로틀 채널 파라미터에도 차이점이 있다.: deadzone 설정을 위한 :ref:`THR_DZ<THR_DZ>` 대신에 QuadPlane은 RCn_DZ을(n은 쓰로틀 입력으로 매핑된 채널이다.) 사용한다. 쓰로틀 채널 deadzone을 위한 기본값은 60 (+/- 6%)이다. 만약 QuadPlane이 QSTABILIZE에서 중간 스틱 위치(+/- 6%)에서 호버링하지 않는 경우 :ref:`Q_M_THST_HOVER<Q_M_THST_HOVER>` 을 이용하여 중간을 맞춰야 한다. 중간을 맞추는 방법은 QSTABILIZE에서 스틱 중간 지점에 고도 변화가 없도록 쓰로틀 퍼센트를 적용한다. 이 값은 :ref:`Q_M_HOVER_LEARN<Q_M_HOVER_LEARN>` 를 활성화해서 자동으로 학습되고 QLOITER와 QHOVER 모드에서 적용된다.
 
 .. tip::
 
