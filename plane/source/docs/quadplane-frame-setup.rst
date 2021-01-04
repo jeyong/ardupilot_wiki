@@ -12,16 +12,15 @@ Tailsitters
 
 Tailsitters 관련 프레임 설정은 :ref:`guide-tailsitter` 를 참조한다. 일단 프레임 구성이 완료되면 다른 :ref:`quadplane-setup` 를 진행해 나간다. 
 
-Plane VTOL Stance
+Plan VTOL 자세(Plane VTOL Stance)
 =================
 
-These configurations add multicopter style lifting motors to a conventional fixed wing configuration. Some or all of these motors may also be configured as tilting motors to be used in fixed wing flight.
+이 설정은 멀티로터 스타일 lift 모터를 기존 고정익 설정에 추가한다. 이 모터들은 고정익에서 사용하는 tilt 모터로 구성할 수도 있다.
 
-Frame Types and Classes
+frame 타입과 분류(Frame Types and Classes)
 -----------------------
 
-To use a different frame type you can set :ref:`Q_FRAME_CLASS<Q_FRAME_CLASS>` and
-:ref:`Q_FRAME_TYPE<Q_FRAME_TYPE>` . :ref:`Q_FRAME_CLASS<Q_FRAME_CLASS>` can be:
+다른 frame 타입을 사용하기 위해서 :ref:`Q_FRAME_CLASS<Q_FRAME_CLASS>` 와 :ref:`Q_FRAME_TYPE<Q_FRAME_TYPE>` 를 설정할 수 있다. :ref:`Q_FRAME_CLASS<Q_FRAME_CLASS>` 은 다음과 같이 설정할 수 있다.:
 
 -  1 for quad
 -  2 for hexa
@@ -31,8 +30,7 @@ To use a different frame type you can set :ref:`Q_FRAME_CLASS<Q_FRAME_CLASS>` an
 -  7 for Tri
 -  10 for Tailsitter
 
-Within each of these frame classes the :ref:`Q_FRAME_TYPE<Q_FRAME_TYPE>` chooses the motor
-layout. For Tri and Y6 this parameter is ignored.
+이 frame 분류의 각 내부에서 :ref:`Q_FRAME_TYPE<Q_FRAME_TYPE>` 은 motor 레이아웃을 선택한다. Tri와 Y6을 위해서 이 파라미터는 무시된다.
 
 -  0 for plus frame
 -  1 for X frame
@@ -40,26 +38,23 @@ layout. For Tri and Y6 this parameter is ignored.
 -  3 for H frame
 -  11 for FireFly6Y6 (for Y6 only)
 
-Motor Ordering
+모터 순서(Motor Ordering)
 --------------
 
-The motor order and output channel is the same as for copter (see :ref:`Copter motor layout <copter:connect-escs-and-motors>`)
-except that the default output channel numbers start at 5 instead of 1.
+모터 순서와 출력 채널은 기본 출력 채널 번호가 1대신 5부터 시작한다는 것을 제외하고는 copter와 동일하다. (:ref:`Copter motor layout <copter:connect-escs-and-motors>` 참고)
 
-.. note:: :ref:`guide-tailsitter` configuration is a special case. See Tailsitter notes below
+.. note:: :ref:`guide-tailsitter` 설정은 특별한 경우이다. Tailsitter는 아래를 참고하자.
 
-For example, with the default Quad-X frame the motors are on outputs
-5 to 8. The arrangement is:
+예제로 기본 Quad-X 프레임 내부에서 모터 출력은 5에서 8이다.  다음과 같은 순서를 따른다 :
 
 -  **Output 5:** Front right motor, counter-clockwise
 -  **Output 6:** Rear left motor, counter-clockwise
 -  **Output 7:** Front left motor, clockwise
 -  **Output 8:** Rear right motor, clockwise
 
-You can remember the clockwise/counter-clockwise rule by "motors turn
-in towards the fuselage", except for the H configuration, there all directions are inverted!
-   
-Another common setup is an octa-quad, which uses the following ordering
+H 설정을 제외하고 "motor는 기체 방향으로 회전한다"는 CW/CCW 법칙을 명심하자. 모든 방향은 invert된다.
+
+다른 공통 셋업은 octa-quad이다. 다름 순서를 따라 사용한다.
 
 -  **Output 5:** Front right top motor, counter-clockwise
 -  **Output 6:** Front left top motor, clockwise
@@ -70,43 +65,33 @@ Another common setup is an octa-quad, which uses the following ordering
 -  **Output 11:** Rear right bottom motor, counter-clockwise
 -  **Output 12:** Rear left bottom motor, clockwise
 
-You can remember the clockwise/counter-clockwise rule for an octa-quad
-by "top motors turn in towards the fuselage, bottom motors turn out
-away from the fuselage".
+octa-quad에 대해서는 "top motor는 기체 방향으로 회전하고 bottom motor는 기체로부터 먼 방향으로 회전한다"는 CW/CCW 법칙을 명심하자. 
 
-The normal plane outputs are assumed to be on 1 to 4 as usual. Only
-vertical lift outputs (5 to 8 on a quad setup) run at high PWM rate
-(400Hz). In a quad setup you can also use channels 9 to 14 in any way
-you like, just as with the normal Plane code.
+일반 plane 출력은 1 ~ 4를 사용한다. 오직 수직 lift 출력만(quad 설정시 5 ~ 8 사용) high PWM rate(400Hz)로 실행된다. 일반 Plan 코드에서 원한다면 quad 설정에서 9 ~ 14 출력도 사용할 수 있다.
 
-You can optionally move the quad motors to be on any other channel above
-4, using the procedure outlined in the section further below.
+아래 섹션에서 소개하는 절차를 이용하면 quad motor를 4 이상의 다른 채널로 옮기는 것도 가능하다. 
 
 Tricopter
 ---------
 
-Frame Type 7 is Tricopter and can be either non-Tiltrotor configuration, or :ref:`Tiltrotor<guide-tilt-rotor>` configured using either Vectored or Non-Vectored yaw control. If using non-Tiltrotor or Non-Vectored Yaw Tilt-rotor, the yaw control output is setup as Motor 7 (``SERVOn_FUNCTION`` = 39) using a tilt mechanism for the yaw motor, Motor 4. You should set up the yaw servo’s maximum lean angle in degrees with :ref:`Q_M_YAW_SV_ANGLE<Q_M_YAW_SV_ANGLE>`. This lean angle assumes that ``SERVOn_MIN`` and ``SERVOn_MAX``, represent +/- 90 degrees, with ``SERVOn_TRIM`` representing 0 degrees lean.
+Frame Type 7은 Tricopter이다. Vectored이냐 Non-Vectored yaw 제어냐에 따라서 :ref:`Tiltrotor<guide-tilt-rotor>` 설정과 비 Tiltrotor로 설정할 수 있다.
+non-Tiltrotor 혹은 Non-Vectored Yaw Tilt-rotor를 사용한다면 yaw 제어 출력은 Motor 7(``SERVOn_FUNCTION`` = 39)로 설정되고 yaw 모터에 대한 tilt 매커니즘은 Motor 4로 설정된다. yaw servo의 최대 lean angle을 :ref:`Q_M_YAW_SV_ANGLE<Q_M_YAW_SV_ANGLE>` 각도로 설정해야만 한다. 이 lean angle은 ``SERVOn_MIN`` 와 ``SERVOn_MAX``는 +/- 90도를 ``SERVOn_TRIM``는 0 도 lean을 표현한다.
 
 
 Tilt-Rotors
 ===========
 
-See :ref:`guide-tilt-rotor`
+참고 :ref:`guide-tilt-rotor`
 
-Using different channel mappings
+다른 채널 매핑 사용하기(Using different channel mappings)
 ================================
 
-You can remap what output channels the lifting motors are on by setting
-values for SERVOn_FUNCTION. This follows the same approach as :ref:`other output functions <common-rcoutput-mapping>`.
+lifting motors의 output 채널은 SERVOn_FUNCTION에 대한 값을 설정해서 remap한다. 이것은 :ref:`other output functions <common-rcoutput-mapping>` 과 동일한 접근법을 따른다.
 
 .. note::
-   Note that you do not need to set any of the SERVOn_FUNCTION values unless
-   you have a non-standard motor ordering, using vectored thrust, or are a Tailsitter. It is highly recommended that
-   you use the standard ordering and do not set the SERVOn_FUNCTION
-   parameters, leaving them at zero. They will be automatically set to
-   the right values for your frame on boot.
+   비표준 motor 순서, vectored thrust, Tailsitter인 경우에 SERVOn_FUNCTION 값 설정이 필요하다. motor 표준 순서를 따르는 것을 추천하며 SERVOn_FUNCTION 파라미터를 설정하지 말고 0으로 남겨둔다. 부팅시에 frame을 위한 올바른 값을 자동으로 설정할 것이다.
 
-The output function numbers are:
+output function numbers :
 
 -  33: motor1
 -  34: motor2
@@ -117,11 +102,10 @@ The output function numbers are:
 -  39: motor7
 -  40: motor8
 
-So to put your quad motors on outputs 9 to 12 (the auxillary channels on
-a Pixhawk) you would use these settings in the advanced parameter list:
+quad motor를 outputs 9 ~ 12로(Pixhawk에 auxillary channels) 설정하려면 advanced parameter list에서 아래 값들을 설정해야한다. :
 
 -  :ref:`SERVO9_FUNCTION<SERVO9_FUNCTION>` = 33
 -  :ref:`SERVO10_FUNCTION<SERVO10_FUNCTION>` = 34
 -  :ref:`SERVO11_FUNCTION<SERVO11_FUNCTION>` = 35
--  :ref:`SERVO12_FUNCTION<SERVO12_FUNCTION>` = 36
+-  :ref:`SERVO12_FUNCTION<SERVO12_FUNCTION>` = 36ㅌㅍ1
 
