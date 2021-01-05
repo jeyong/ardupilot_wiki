@@ -18,48 +18,37 @@ Mission Planner와 Pixhawk 연결하기
 
 .. note::
 
-   The driver for your connection hardware must be present on Windows
-   as this makes your connection's COM port and default data rate available
-   to *Mission Planner*.
+   Windows에서 연결 HW를 위한 드라이버는 COM 포트와 기본 data rate 설정은 *Mission Planner*에서 가능하다.
 
 .. figure:: ../../../images/pixhawk_usb_connection.jpg
    :target: ../_images/pixhawk_usb_connection.jpg
    :width: 450px
 
-   Pixhawk USB Connection
+   Pixhawk USB 연결
 
 .. figure:: ../../../images/new-radio-laptop.jpg
    :target: ../_images/new-radio-laptop.jpg
    :width: 450px
 
-   Connection using SiK Radio
+   SiK Radio를 사용해서 연결
 
-On *Mission Planner*, the connection and data rate are set up using the
-drop down boxes in the upper right portion of the screen.
+*Mission Planner*에서 연결 및 data rate는 화면 우상단에 있는 드롭다운 메뉴를 이용해서 셋업한다.
 
 .. image:: ../../../images/MisionPlanner_ConnectButton.png
     :target: ../_images/MisionPlanner_ConnectButton.png
 
-Once you've attached the USB or Telemetry Radio, Windows will
-automatically assign your autopilot a COM port number, and that will
-show in the drop-down menu (the actual number does not matter). The
-appropriate data rate for the connection is also set (typically the USB
-connection data rate is 115200 and the radio connection rate is 57600).
+일단 USB나 텔레메트리에 연결되면 Windows는 자동으로 Pixhawk에 COM 포트 숫자가 부여한다. 이렇게 부여한 숫자는 드롭다운 메뉴에서 확인할 수 있다.(숫자 자체가 중요한 것은 아니다.) 연결에 대한 적절한 data rate도 설정된다. (일반적으로 USB 연결 data rate는 115200이고 라디오 연결 rate는 57600이다.)
 
-Select the desired port and data rate and then press the **Connect**
-button to connect to the autopilot. After connecting **Mission Planner**
-will download parameters from the autopilot and the button will change
-to **Disconnect** as shown:
+포트와 data rate를 선택하고 **Connect** 버튼을 눌러서 Pixhawk와 연결한다. 연결하고 난 후에 **Mission Planner** 는 Pixhawk로부터 파라미터를 다운로드 받는다. 그리고 버튼은 **Disconnect** 로 변경된다.:
 
 .. image:: ../../../images/MisionPlanner_DisconnectButton.png
     :target: ../_images/MisionPlanner_DisconnectButton.png
 
 .. tip::
 
-   The "select port" dropdown also contains TCP or UDP port options
-   that can be used to connect to an autopilot over a network.
+   "select port" 드롭다운은 TCP나 UDP 포트 옵션도 포함되어 있다. 네트워크로 비행제어기에 연결하는 경우 사용할 수 있다.
 
-The "Stats..." hotlink beneath the port selection box, if clicked, will give information about the connection, such as if :ref:`Signing security<common-MAVLink2-signing>` is active, link stats, etc. Sometimes this window pops up beneath the current screen and will have to be brought to the front to be seen.
+포트 선택 박스 아래에 "Stats..." 핫링크를 클릭하면 연결과 관련된 정보를 제공한다. :ref:`Signing security<common-MAVLink2-signing>` 가 활성화된 경우처럼. 가끔 이 윈도우는 현재 화면 아래에 팝업으로 나타날 수 있고 전면에 보여줘야 한다.
 
 .. image:: ../../../images/MP-stats.png
    :target: ../_images/MP-stats.png
@@ -68,23 +57,19 @@ The "Stats..." hotlink beneath the port selection box, if clicked, will give inf
 Troubleshooting
 ===============
 
-If Mission Planner is unable to connect:
+Mission Planner가 연결되지 않으면:
 
--  Check that the correct baud rate is used for the selected method
-   (115200 on USB or 57600 on Radio/Telemetry)
--  If attaching via USB, be sure that a few seconds after power up have passed before attempting to connect. If you attempted to connect during the bootloader initialization time, Windows may get the wrong USB information. Connection attempts after this may require that the USB connection be  unplugged and re-plugged,then wait for bootloader to enter the main code ( few seconds), then attempt the connection. Occasionally, MP must be restarted if an attempt to connect is made while in the bootloader initialization period.
--  If using a COM port on Windows, check that the connection's COM port
-   exists in the Windows Device Manager's list of serial ports.
--  If your autopilot has an F7 or H7 processor and has CAN ports, then see the section below, :ref:`Troubleshooting Composite Connections <troubleshooting-composite-connections>` 
--  If using a USB port, try a different physical USB port
--  If using a UDP or TCP connection, check that your firewall is not blocking IP traffic
+-  올바른 baud rate로 설정하였는지 확인하기(USB는 115200이고 텔레메트리는 57600이다.)
+-  USB로 연결하면 전원이 들어오고 몇 초 후에 연결된다. 만약 bootloader 초기화 시간 동안 연결을 시도하면 Windows는 제대로된 USB 정보를 가져오지 못한다.
+-  Windows에서 COM 포트를 사용하면 연결 COM 포트가 장치관리자의 시리얼 포트 목록에 존재한다.
+-  비행제어기가 F7 혹은 H7 프로세서면서 CAN 포트를 가지는 경우라면 아래 섹션 :ref:`Troubleshooting Composite Connections <troubleshooting-composite-connections>` 를 참고하자.
+-  USB 포트를 사용하면 다른 물리적인 USB 포트에 시도하자.
+-  UDP나 TCP 연결을 사용하면 방화벽이 IP 트래픽을 블록키하고 있는지 확인한다.
 
-You should also ensure that the autopilot controller board has
-appropriate ArduPilot firmware installed and has booted correctly (on
-Pixhawk there are useful :ref:`LEDs <common-leds-pixhawk>` and
-:ref:`Sounds <common-sounds-pixhawkpx4>` which can tell you the state of the autopilot).
+Pixhawk에 ArduPilot 펌웨어가 설치되어 있고 제대로 부팅되는지 확인해야 한다. (Pixhawk에는 비행제어장치의 상태를 알려주는 :ref:`LEDs <common-leds-pixhawk>` 와
+:ref:`Sounds <common-sounds-pixhawkpx4>` 가 있다.)
 
-If using a remote link (not USB) and Mission Planner connects, but does not download parameters or you cannot get commands, like mode changes acted upon,then the autopilot probably has Signing turned on. See :ref:`common-MAVLink2-signing`.
+리모트 링크(USB 아니고)를 사용해서 Mission Planner와 연결하지만 모드 변경과 같은 명령이나  파라미터를 다운받지 못한다면 아마 비행제어기의 Signing이 켜져있어서일 수도 있다. :ref:`common-MAVLink2-signing` 를 참고하자.
 
 .. _troubleshooting-composite-connections:
 
