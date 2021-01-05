@@ -1,26 +1,20 @@
 .. _common-connect-mission-planner-autopilot:
 
 ====================================
-Connect Mission Planner to AutoPilot
+Mission Planner와 Pixhawk 연결하기
 ====================================
 
-This article explains how to connect *Mission Planner* to an autopilot
-in order to receive telemetry and control the vehicle.
+여기서는 텔레메트리로 데이터 송수신 및 비행체 제어를 위해서 *Mission Planner* 를 Pixhawk에 연결하는 방법을 설명한다.
 
 .. note::
 
-   There are separate instructions for connecting in order to :ref:`Load Firmware <common-loading-firmware-onto-pixhawk>` for existing Ardupilot firmware installations, or for boards :ref:`without existing Ardupilot firmware <common-loading-firmware-onto-chibios-only-boards>` .
+   기존 Pixhawk 펌웨어 설치를 위해서 Pixhawk이 이미 ArduPilot 펌웨어가 설치된 상태에서 :ref:`Load Firmware <common-loading-firmware-onto-pixhawk>` 와 :ref:`기존 Ardupilot이 없는 상태에서 펌웨어 load <common-loading-firmware-onto-chibios-only-boards>` 가 있다.
 
 
-Setting up the connection
+연결 셋업하기
 =========================
 
-To establish a connection you must first choose the communication
-method/channel you want to use, and then set up the physical hardware
-and Windows device drivers. You can connect the PC and autopilot using
-USB cables, :ref:`Telemetry Radios <copter:common-telemetry-landingpage>`,
-:ref:`Bluetooth <common-mission-planner-bluetooth-connectivity_detailed_connecting_with_mission_planner>`,
-IP connections etc.
+연결하기 위해서 먼저 사용하고자 하는 통신 방법/채널을 선택해야만 한다.  다음으로 물리적인 HW와 Windows 장치 드라이버를 셋업한다. USB 케이블, :ref:`Telemetry Radios <copter:common-telemetry-landingpage>`, :ref:`Bluetooth <common-mission-planner-bluetooth-connectivity_detailed_connecting_with_mission_planner>` , IP 연결 등의 방법을 사용하여 PC와 Pixhawk를 연결할 수 있다.
 
 .. note::
 

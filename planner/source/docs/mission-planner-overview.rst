@@ -1,44 +1,34 @@
 .. _mission-planner-overview:
 
 ========================
-Mission Planner Overview
+Mission Planner 개요
 ========================
 
-Mission Planner is a full-featured ground station application for the
-ArduPilot open source autopilot project. This page contains information
-on the background of Mission Planner and the organization of this site.
+Mission Planner는 ArduPilot 오픈소스 프로젝트로 모든 기능을 갖춘 지상국 어플리케이션이다. 여기서는 Mission Planner에 대한 배경 지식과 이 사이트의 구조에 대해서 소개한다.
 
-What is Mission Planner
+Mission Planner란?
 =======================
 
 .. image:: ../../../images/mission_planner_flight_data.jpg
     :target: ../_images/mission_planner_flight_data.jpg
 
-Mission Planner is a ground control station for Plane, Copter and Rover.
-It is compatible with Windows only. Mission Planner can be used as a
-configuration utility or as a dynamic control supplement for your
-autonomous vehicle. Here are just a few things you can do with Mission
-Planner:
+Mission Planner는 Plane, Copter, Rover를 위한 지상 제어 스테이션이다. Windows 에서만 동작한다. Mission Planner는 설정 도구로 사용할 수 있고 자동 비행을 위한 동적인 제어로 사용할 수 있다. Mission Planner로 할 수 있는 몇 가지만 소개한다:
 
--  Load the :ref:`firmware <common-glossary>` (the software) into the
-   autopilot board (i.e. Pixhawk series) that controls your vehicle.
--  Setup, configure, and tune your vehicle for optimum performance.
--  Plan, save and load autonomous missions into you autopilot with
-   simple point-and-click way-point entry on Google or other maps.
--  Download and analyze mission logs created by your autopilot.
--  Interface with a PC flight simulator to create a full
-   hardware-in-the-loop UAV simulator.
--  With appropriate telemetry hardware you can:
+-  비행체를 제어하는 비행제어 장치인 Pixhawk에 :ref:`firmware <common-glossary>` 소프트웨어를 load한다.
+-  셋업, 설정, 최적 성능을 위한 비행체 튜닝
+-  자동 미션을 계획, 저장 및 Pixhawk에 load한다. 이때 구글이나 다른 지도 상에서 waypoint를 간단히 클릭해서 작업 가능하다.
+-  Pixhawk에서 생성한 mission log를 다운받고 분석한다.
+-  PC 비행 시뮬레이터와 인터페이스 역할로 HITL UAV 시뮬레이터를 생성
+-  텔레메트리 장치로 다음과 같은 일을 수행 :
 
-   -  Monitor your vehicle's status while in operation.
-   -  Record telemetry logs which contain much more information the the
-      on-board autopilot logs.
-   -  View and analyze the telemetry logs.
-   -  Operate your vehicle in FPV (first person view)
+   -  비행하는 동안 비행체의 상태 모니터링
+   -  텔레메트리 log를 기록
+   -  텔레메트리 log 보기 및 분석
+   -  FPV로 비행체 운영
 
-All of these and many more features are covered here.
+위에서 언급한 것과 더 다양한 기능에 대해서 알아보자.
 
-History
+역사
 =======
 
 Mission Planner is a free, open-source, community-supported application
