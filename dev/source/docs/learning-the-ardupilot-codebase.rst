@@ -1,30 +1,22 @@
 .. _learning-the-ardupilot-codebase:
 
 ===============================
-Learning the ArduPilot Codebase
+ArduPilot 코드베이스 익히기
 ===============================
 
-The ArduPilot code base is quite large (about 700k lines for the core
-ardupilot git tree) and can be quite intimidating to a new user. This
-page is meant to give some suggestions on how to come up to speed on the
-code quickly. It assumes you already are familiar with the key concepts
-of C++ and the many of the examples currently assume you will be
-exploring the code on a Linux system.
+ArduPilot 코드 베이스는 대략 700k 라인이다. 따라서 새로운 사용자에게는 겁나게 많다. 여기서는 코드를 빠르게 익힐 수 있는 방법을 제안한다. 이미 C++의 핵심 개념과 많은 예제들에 익숙하다고 가정하고 리눅스에서 해당 코드를 분석해 보자.
 
-This page and the pages linked below are designed to be used as a
-tutorial. You should work through each page step by step, trying things
-for yourself as you go. If you think some important information is missing or could be improved
-then please `open an issue for the wiki <https://github.com/ArduPilot/ardupilot_wiki/issues>`__ and we will try to get to it when we can.
+이 페이지와 아래 링크 페이지는 튜토리얼로 사용할 수 있게 만들어졌다. 각 페지이를 순서대로 스스로 따라가보자. 만약 중요한 정보가 빠졌거나 개선이 필요한 부분에 대해서 알려주면 최대한 수정할 예정이다.
 
-Tutorial steps
+튜터리얼 단계
 --------------
 
 .. toctree::
     :maxdepth: 1
 
-    Introduction <learning-ardupilot-introduction>
-    Library Description <apmcopter-programming-libraries>
-    Library Example Sketches <learning-ardupilot-the-example-sketches>
+    소개 <learning-ardupilot-introduction>
+    Library 설명 <apmcopter-programming-libraries>
+    Library 예제 개요 <learning-ardupilot-the-example-sketches>
     Sensor Drivers <code-overview-sensor-drivers>
     Threading <learning-ardupilot-threading>
     UARTs and the Console <learning-ardupilot-uarts-and-the-console>
@@ -48,11 +40,11 @@ Tutorial steps
 
 .. note::
 
-   There are currently 4 vehicles in ArduPilot (Copter, Plane, Rover, Antenna Tracker) and while there are a lot of common elements between different vehicle types, they are each different. For now we only have a detailed description of the code structure for the Copter code.
+   현재 ArduPilot에서는 4개 비행체가 있지만 서로 다른 비행체 타입 사이에 공통된 요소가 많다. 지금까지 Copter 코드에 대한 코드 구조만 상세하게 설명했었다.
 
-Other Tutorials
+다른 튜터리얼
 ---------------
 
-Although not strictly part of ArduPilot this tutorial may also be useful
+비록 엄격히 말하면 ArduPilot 프로젝트는 아니지만 여기 튜터리얼도 도움이 될 것이다.
 
 - `DroneKit <https://dronekit-python.readthedocs.io/en/latest/>`__

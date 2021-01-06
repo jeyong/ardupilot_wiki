@@ -1,21 +1,18 @@
 .. _learning-ardupilot-introduction:
 
 =================================
-Learning ArduPilot — Introduction
+ArduPilot 익히기 — 도입
 =================================
 
-This page introduces the basic structure of ArduPilot. Before you get
-started you should work out what code exploring system you will use. You
-could just use a web browser and look at https://github.com/ArduPilot/ardupilot/ but you will probably get a lot
-more out of it if you have :ref:`cloned all of the git repositories <where-to-get-the-code>` and use a good programmer's IDE like the ones recommended :ref:`here <code-editing-tools-and-ides>`.
+ArduPilot의 기본 구조에 대해서 알아보자. 시작하기 전에 어떤 코드 탐색 도구를 이용할지 결정해야한다. 그냥 웹브라우져로도 가능하면 그런 경우 https://github.com/ArduPilot/ardupilot/ 를 참고하자. 하지만 :ref:`cloned all of the git repositories <where-to-get-the-code>` 를 가지고 있고 프로그래머를 위한 IDE가 있으면 많은 도움이 된다. :ref:`here <code-editing-tools-and-ides>` 를 참고하자.
 
-Basic structure
+기본 구조
 ===============
 
 .. image:: ../images/ArduPilot_HighLevelArchecture.png
     :target: ../_images/ArduPilot_HighLevelArchecture.png
 
-The basic structure of ArduPilot is broken up into 5 main parts:
+ArduPilot의 기본 구조는 5개의 파트로 구성된다:
 
 -  vehicle code
 -  shared libraries
@@ -23,59 +20,41 @@ The basic structure of ArduPilot is broken up into 5 main parts:
 -  tools directories
 -  external support code (i.e. mavlink, dronekit)
 
-Vehicle Code
+비행체 코드
 ------------
 
-The vehicle directories are the top level directories that define the
-firmware for each vehicle type.  Currently there are 5 vehicle types: Plane, Copter, Rover, Sub and AntennaTracker.
-Although There are a lot of common elements between different vehicle types, they are each different. For now we only have a :ref:`detailed description of the code structure for the Copter code <apmcopter-code-overview>`.
+비행체 디렉토리는 각 비행체 타입을 위한 펌웨어를 정의하는 최상위 디렉토리다. 현재 5가지 비행체 타입이 있다: Plane, Copter, Rover, Sub, AntennaTracker.
 
-Along with the \*.cpp files, each vehicle directory contains a make.inc
-file which lists library dependencies. The Makefiles read this to create
-the -I and -L flags for the build.
+비록 서로 다른 비행체 타입 사이에 많은 공통 요소들이 있지만 그래도 각 비행테 타입은 다른 것이 사실이다. 지금까지 :ref:`Copter 코드의 코드 구조에 대해서 상세 설명 <apmcopter-code-overview>` 하였다.
+
+\*.cpp 파일은 각 비행체 디렉토리는 make.inc 파일을 포함하고 있다. 여기에는 의존하는 라이브러리들의 목록이 있다. Makefiles은 이를 읽어서 빌드를 위해서 -I와 -L flags를 생성한다.
 
 Libraries
 ---------
 
-The `libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ are
-shared amongst the four vehicle types Copter, Plane, Rover and AntennaTracker.  These libraries include sensor drivers, attitude and position estimation (aka :ref:`EKF <ekf>`) and control code (i.e. PID controllers).
-See the :ref:`Library Description <apmcopter-programming-libraries>`, :ref:`Library Example Sketches <learning-ardupilot-the-example-sketches>` and :ref:`Sensor Drivers <code-overview-sensor-drivers>` pages for more details.
+`libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ 는 4가지 비행체 타입 사이에서 공유된다.  이 라이브러리들은 센서 드라이버, 잣 및 위치 추정, 제어 코드를 포함하고 있다. 제사한 내용은 :ref:`Library Description <apmcopter-programming-libraries>`, :ref:`Library Example Sketches <learning-ardupilot-the-example-sketches>` , :ref:`Sensor Drivers <code-overview-sensor-drivers>` 를 참고하자.
 
 AP_HAL
 -------
 
-The AP_HAL layer (Hardware Abstraction Layer) is how we make ArduPilot
-portable to lots of different platforms. There is a top level AP_HAL in
-libraries/AP_HAL that defines the interface that the rest of the code
-has to specific board features, then there is a AP_HAL_XXX
-subdirectory for each board type, for example AP_HAL_AVR for AVR based
-boards, AP_HAL_PX4 for Pixhawk boards and AP_HAL_Linux for Linux based
-boards.
+ArduPilot이 다양한 플랫폼에 포팅이 가능한 것은 AP_HAL 계층(Hardware Abstraction Layer)이 있기 때문이다. libraries/AP_HAL 에는 최상위 AP_HAL이 존재한다. 다양한 보드를 지원하므로 각 보드 타입에 AP_HAL_XXX 하위 디렉토리가 있다. 예로 AP_HAL_AVRsms AVR 기반이고 AP_HAL_PX4는 Pixhawk 보드 그리고 AP_HAL_LINUX는 Linux 기반 보드이다.
 
-Tools directories
+Tools 디렉토리
 ~~~~~~~~~~~~~~~~~
 
-The tools directories are miscellaneous support directories. For
-examples, tools/autotest provides the autotest infrastructure behind the
-`autotest.ardupilot.org <https://autotest.ardupilot.org/>`__ site and
-tools/Replay provides our log replay utility.
+tools 디렉토리는 여러 지원을 담당하는 디렉토리이다. 예제로 tools/autotest는 `autotest.ardupilot.org <https://autotest.ardupilot.org/>`__ 에 있는 autotest 인프라를 제공하고 tools/Replay는 log replay 유틸을 제공한다.
 
-External support code
+외부 지원 코드
 ~~~~~~~~~~~~~~~~~~~~~
 
-On some platforms we need external support code to provide additional
-features or board support. Currently the external trees are:
+일부 플랫폼에서 추가 기능이나 보드 지원 제공하기 위한 외부 지원 코드가 필요하다. 현재 외부 tree는 :
 
--  `PX4NuttX <https://github.com/ArduPilot/PX4NuttX>`__ - the core NuttX
-   RTOS used on Pixhawk boards
--  `PX4Firmware <https://github.com/ArduPilot/PX4Firmware>`__ - the base
-   PX4 middleware and drivers used on Pixhawk boards
--  `uavcan <https://github.com/ArduPilot/uavcan>`__ - the uavcan CANBUS
-   implementation used in ArduPilot
--  `mavlink <https://github.com/mavlink/mavlink>`__ - the mavlink
-   protocol and code generator
+-  `PX4NuttX <https://github.com/ArduPilot/PX4NuttX>`__ - Pixhawk 보드에서 사용되는 RTOS
+-  `PX4Firmware <https://github.com/ArduPilot/PX4Firmware>`__ - Pixhawk 보드에서 사용되는 PX4 미들웨어와 드라이버
+-  `uavcan <https://github.com/ArduPilot/uavcan>`__ - ArduPilot에서 사용되는 uavcan CANBUS 구현
+-  `mavlink <https://github.com/mavlink/mavlink>`__ - mavlink protocol과 code 생성기
 
 .. note::
 
-   Most of these are imported as :ref:`Git Submodules <git-submodules>` when you :ref:`build ArduPilot <building-the-code>`.
+   여기서 다른 대부분은 :ref:`build ArduPilot <building-the-code>` 시에 :ref:`Git Submodules <git-submodules>` 로 import된다.
 

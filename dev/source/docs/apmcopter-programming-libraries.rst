@@ -1,48 +1,41 @@
 .. _apmcopter-programming-libraries:
 
 ===================
-ArduPilot Libraries
+ArduPilot 라이브러리
 ===================
 
-The \ `libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ are
-shared with Copter, Plane and Rover. Below is a high level list of
-libraries and their function.
+\ `libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ 는 Copter, Plane, Rover가 공유한다. 아래는 라이브러리와 그 기능에 대한 목록이다.
 
-**Core libraries:**
+**핵심 libraries:**
 
 -  `AP_AHRS <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_AHRS>`__ -
-   attitude estimation using DCM or EKF
+   DCM이나 EKF를 이용한 자세 추정
 -  `AP_Common <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Common>`__ -
-   core includes required by all sketches and libraries
+   모든 sketches와 라이브러리에서 필요한 것을 포함
 -  `AP_Math <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Math>`__ -
-   various math functions especially useful for vector manipulation
+   vector 처리에 특히 유용한 여러 math 함수
 -  `AC_PID <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_PID>`__ -
    PID(Proportional-Integral-Derivative) controller library
 -  `AP_InertialNav <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_InertialNav>`__ -
-   inertial navigation library for blending accelerometer inputs with
-   gps and baro data
+   가속도 입력을 gps와 baro와 함께 섞어서 inertial navigation 라이브러리
 -  `AC_AttitudeControl <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_AttitudeControl>`__ -
-   ArduCopter's control library includes various functions of attitude, position control based on PID control.
+   ArduCopter 제어 라이브러리로 PID 제어를 기반으로 자세, 위치, 제어의 여러 기능을 포함하고 있다.
    
 -  `AC_WPNav <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_WPNav>`__
    - waypoint navigation library
 -  `AP_Motors <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Motors>`__
-   - multicopter and traditional helicopter motor mixing
+   - 멀티콥터와 전통 헬리콥터 모터 믹싱
 -  `RC_Channel <https://github.com/ArduPilot/ardupilot/tree/master/libraries/RC_Channel>`__ -
-   a library to more convert pwm input/output from APM_RC into internal
-   units such as angles
+   pwm 입력/출력을 APM_RC로부터 내부 unit으로(예로 각도) 변환하는 라이브러리
 -  `AP_HAL <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL>`__,
    `AP_HAL_ChibiOS <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_ChibiOS>`__,
    `AP_HAL_Linux <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_Linux>`__
-   - libraries to implement the "Hardware abstraction layer" which
-   presents an identical interface to the high level code so that it can
-   more easily be ported to different boards.
+   - HAL을 구현하는 라이브러리. 다른 보드들에 쉽게 포팅이 되도록 한다.
 
 **Sensor libraries:**
 
 -  `AP_InertialSensor <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_InertialSensor>`__ -
-   reads gyro and accelerometer data, perform calibration and provides
-   data in standard units (deg/s, m/s) to main code and other libraries
+   gyro와 가속도 데이터를 읽어서 calibration을 수행하고 메인 코드와 다른 라이브러리들에게 표준 단위로(deg/s, m/s) data를 제공한다.
 -  `AP_RangeFinder <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_RangeFinder>`__ -
    sonar and ir distance sensor interfaced library
 -  `AP_Baro <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Baro>`__ -

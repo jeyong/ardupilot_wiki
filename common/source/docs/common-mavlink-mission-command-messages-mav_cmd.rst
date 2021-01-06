@@ -4,75 +4,40 @@
 Mission Commands
 ================
 
-This article describes the mission commands that are supported by Copter, Plane and Rover when switched into Auto mode.
+여기서는 Copter, Plane, Rover에서 Auto 모드로 스위치될때 지원되는 mission 명령을 설명한다.
 
 .. warning::
 
-   This is a work-in-progress and has not been full reviewed.  A better list for :ref:`Copter can be found here <copter:mission-command-list>`
+   현재 작업 중이며 아직 리뷰가 끝나지 않았다. :ref:`Copter can be found here <copter:mission-command-list>` 가 낫다.
 
-Overview
+개요
 ========
 
-The MAVLink protocol defines a large number of
-`MAV_CMD <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L1008>`__
-waypoint command types (sent in a ``MAVLink_mission_item_message``).
-ArduPilot implements handling for the subset of these commands and
-command-parameters that are *most relevant* and meaningful for each of
-the vehicles. Unsupported commands that are sent to a particular
-autopilot will simply be dropped.
+MAVLink 프로토콜은 엄청나게 많은 `MAV_CMD <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L1008>`__ waypoint 명령 타입을 정의하고있다. ArduPilot은 이런 명령의 부분집합과 각 비행체에 의미있고 관련있는 명령-파라미터에 대한 처리를 구현한다. 지원하지 않는 명령은 처리하지 않고 무시된다.
 
-This article lists and describes the commands and command-parameters
-that are supported on each of the vehicle types. Any parameter that is
-"grey" is not supported by the autopilot and will be ignored. They are
-still documented to make it clear which properties that are supported by
-the `MAV_CMD protocol <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L1008>`__
-are not implemented by the vehicle.
+여기서는 각 비행체 타입이 지원하는 명령과 명령 파라미터를 설명한다. "회색"으로 된 파라미터는 Pixhawk에서 지원하지 않으므로 무시된다. `MAV_CMD protocol <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L1008>`__ 에서 지원하는 속성은 해당 비행체에서 구현되지 않는다는 것을 명확히 하기 위해서 문서화해놨다.
 
-Some commands and command-parameters are not implemented because they
-are not relevant for particular vehicle types (for example
-"MAV_CMD_NAV_TAKEOFF" command makes sense for Plane and Copter but
-not Rover, and the pitch parameter only makes sense for Plane). There
-are also some potentially useful command-parameters that are not handled
-because there is a limit to the message size, and a decision has been
-made to prioritize some parameters over others.
+일부 명령과 명령-파라미터는 구현하지 않았는데 왜냐하면 특정 비행체 타입에는 관련이 없기 때문이다. (예제로 "MAV_CMD_NAV_TAKEOFF" 명령은 Rover에는 상관이 없음)
+메시지 크기에 대한 제한 때문에 처리하고 있지는 않지만 향후 유용한 명령-파라미터도 있다. 다른 파라미터보다 우선 순위가 높다는 결정이 내려진다.
 
 .. note::
 
-   There is additional information about the supported commands on
-   Copter (from a Mission Planner perspective) in the :ref:`Copter Mission Command List <copter:mission-command-list>`.
+   Copter에서 지원하는 명령에 대한 추가 정보는 :ref:`Copter Mission Command List <copter:mission-command-list>` 를 참고하자.
 
-Types of commands
+명령의 종류
 -----------------
 
-There are several different types of commands that can be used within
-missions:
+mission 내부에서 사용할 수 있는 여러 종류의 명령이 있다.:
 
--  Navigation commands are used to control the movement of the vehicle,
-   including takeoff, moving to and around waypoints, changing altitude,
-   and landing.
--  DO commands are for auxiliary functions and do not affect the
-   vehicle’s position (for example, setting the camera trigger distance,
-   or setting a servo value).
--  Condition commands are used to delay DO commands until some condition
-   is met, for example the UAV reaches a certain altitude or distance
-   from the waypoint.
+-  Navigation 명령은 비행체의 움직임을 제어하는데 사용한다. 여기에는 takeoff, waypoint 주변 이동, 고도 변경, 착륙이 속한다.
+-  DO 명령은 추가 기능으로 비행체의 위치에 영향을 미치지 않는다. 예제로 카메라 트리거 거리, 서보 값 등이 여기에 속한다.
+-  Condition 명령은 특정 condition을 만족할때까지 DO 명령을 지연시키는데 사용한다. 예제로 UAV가 특정 고도나 waypoint로부터 특정 거리에 도달하는 경우가 해당된다.
 
-During a mission at most one “Navigation” command and one “Do” or
-"Condition" command can be running at one time. A typical mission might
-set a waypoint (NAV command), add a CONDITION command that doesn't
-complete until a certain distance from the destination
-(:ref:`MAV_CMD_CONDITION_DISTANCE <mav_cmd_condition_distance>`), and
-then add a number of DO commands that are executed sequentially (for
-example
-:ref:`MAV_CMD_DO_SET_CAM_TRIGG_DIST <mav_cmd_do_set_cam_trigg_dist>`
-to take pictures at regular intervals) when the condition completes.
+미션동안 기껏해야 1개 “Navigation” 명령과 1개 “Do” 혹은 "Condition" 명령은 한 번에 실행될 수 있다. 일반적인 mission은 waypoint (NAV command)를 설정하고 목적지로부터(:ref:`MAV_CMD_CONDITION_DISTANCE <mav_cmd_condition_distance>`) 특정 거리까지 완료시키지 않는 CONDITION 명령을 추가한다. 그리고 난후에 순차적으로 실행되는 여러 DO 명령을 추가한다. (예제로 특정 조건이 만족되면 :ref:`MAV_CMD_DO_SET_CAM_TRIGG_DIST <mav_cmd_do_set_cam_trigg_dist>` 는 일정한 시간 간격으로 사진을 찍는다)
 
 .. note::
 
-   CONDITION and DO commands are associated with the preceding NAV
-   command: if the UAV reaches the next waypoint before these commands are
-   executed, the next NAV command is loaded and they will be
-   skipped.
+   CONDITION과 DO 명령은 앞단의 NAV 명령과 관련이 있다.: 만약 UAV가 이런 명령들이 실행되기 전에 다음 waypoint에 도달한다면 다음 NAV 명령은 load되고 skip된다.
 
 
 .. _common-mavlink-mission-command-messages-mav_cmd_navigation_commands_frames:
@@ -80,37 +45,20 @@ to take pictures at regular intervals) when the condition completes.
 Frames of reference
 -------------------
 
-Many of the commands (in particular the :ref:`NAV\_ commands <common-mavlink-mission-command-messages-mav_cmd_navigation_commands>`) include position/location
-information. The information is provided relative to a particular "frame
-of reference", which is specified in the message's :ref:`common-mavlink-mission-command-messages-mav_cmd_navigation_commands_frames` field. Copter and Rover Mission use :ref:`MAV_CMD_DO_SET_HOME <mav_cmd_do_set_home>` command to set the
-"home position" in the global coordinate frame (MAV_FRAME_GLOBAL),
-`WGS84 coordinate system <https://en.wikipedia.org/wiki/World_Geodetic_System>`__, where
-altitude is relative to mean sea level. All other commands use the
-MAV_FRAME_GLOBAL_RELATIVE_ALT frame, which uses the same latitude
-and longitude, but sets altitude as relative to the *home position*
-(home altitude = 0).
+많은 명령들이 (특히 :ref:`NAV\_ commands <common-mavlink-mission-command-messages-mav_cmd_navigation_commands>`) 위치에 관한 정보를 포함하고 있다. 이 정보는 특정 "frame of reference"에 따라 제공되며 :ref:`common-mavlink-mission-command-messages-mav_cmd_navigation_commands_frames` 필드에 지정한다. Copter와 Rover Mission은 :ref:`MAV_CMD_DO_SET_HOME <mav_cmd_do_set_home>` 을 사용해서 global coordinate frame (MAV_FRAME_GLOBAL)에서의 "home position"을 설정한다. `WGS84 coordinate system <https://en.wikipedia.org/wiki/World_Geodetic_System>`__ 를 참고하자. 여기서 고도는 평균 해수면을 기준으로 한다. 다른 모든 명령들은 MAV_FRAME_GLOBAL_RELATIVE_ALT frame을 사용하고 이는 동일한 lat와 lon을 사용한다. 하지만 고도는 *home position* (home altitude = 0)을 기준으로 한다.
 
-Plane commands can additionally use MAV_FRAME_GLOBAL_TERRAIN_ALT
-frame of reference. This again has the same WGS84 frame of reference for
-latitude/Longitude, but specifies altitude relative to ground height (as
-defined in a terrain database).
+Plane 명령은 추가적으로 MAV_FRAME_GLOBAL_TERRAIN_ALT frame 을 사용할 수 있다. 이것은 다시 동일한 lat/long에 대해서 WGS84 frame을 가진다. 하지만 지상 높이를 기준으로 고도를 지정한다.(지형도 DB에 정의된 것처럼)
 
 .. note::
 
-   The other frame types defined in the MAVLink protocol (see
-   `MAV_FRAME <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L795>`__)
-   are not supported for mission commands.
+   MAVLink 프로토콜(`MAV_FRAME <https://github.com/ArduPilot/mavlink/blob/master/message_definitions/v1.0/common.xml#L795>`__ ) 에 정의된 다른 frame 타입은 mission 명령에서 지원하지 않는다.
 
-How accurate is the information?
+정보가 얼마나 정확한가?
 --------------------------------
 
-If a command or parameter is marked as supported then it is likely (but
-not guaranteed) that it will behave as indicated. If a command or
-parameter is not listed (or marked as not supported) then it is
-extremely likely that it is not supported on ArduPilot.
+만약 명령과 파라미터가 지원으로 설정되어 있다면 지정한 대로 동작할 것이다.(하지만 보장은 못하지만) 만약 명령이나 파라미터가 목록에 없다면 ArduPilot에서 지원안할 확률이 높다.
 
-The reason for this is that the information was predominantly inferred
-by inspecting the command handlers for messages:
+이런 이유로 해당 정보는 주로 메시지가 해당 명령 처리를 어떻게 할지 추정할 수 있다.:
 
 -  The switch statement in `AP_Mission::mavlink_to_mission_cmd <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_Mission/AP_Mission.cpp#L466>`__
    was inspected to determine which commands are handled by *all*
@@ -122,49 +70,30 @@ by inspecting the command handlers for messages:
    tells us which commands are likely to be supported in each vehicle
    and which parameters are passed to the handler.
 
-The above checks give a very accurate picture of what commands and
-parameters are not supported. They gives a fairly accurate picture of
-what commands/parameters are *likely to be supported*. However this
-indication is not guaranteed to be accurate because a command handler
-could just throw away all the information (and we have not fully checked
-all of these).
+위에 체크는 어떤 명령과 파라미터가 지원되지 않는지를 정확하게 보여준다. 어떤 명령/파라미터가 지원될꺼 같은지 꽤 정확하게 보여준다. 하지만 이런 표시는 정확함을 보장해 주지는 않는다. 왜냐하면 명령 처리자는 모든 정보를 버려버릴 수도 있기 때문이다.(그리고 완벽하게 모든 것을 체크하지는 않았다.)
 
-In addition to the above checks, we have also merged information from
-the :ref:`Copter Mission Command List <copter:mission-command-list>`.
+외에 체크에 추가로 :ref:`Copter Mission Command List <copter:mission-command-list>` 로부터 합쳐진 정보도 가지고 있다.
 
-How to interpret the commands parameters
+commands와 parameters 해석하는 방법
 ----------------------------------------
 
-The parameters for each command are listed in a table. The parameters
-that are "greyed out" are not supported. The command field column (param
-name) uses "bold" text to indicate those parameters that are defined in
-the protocol (normal text is used for "empty" parameters).
+각 명령에 대한 파라미터는 테이블로 제공된다. "회색"으로 된 파라미터들은 더 이상 지원하지 않는다.
+명령 필드 컬럼(param name)은 "볼드"체로 해당 프로토콜에서 정의된 파라미터를 가리킨다.(일반 텍스트는 "empty" 파라미터에 사용된다.)
 
-This allows users/developers to see both what is supported, and what
-protocol fields are not supported in ArduPilot.
+이렇게 하면 사용자/개발자가 지원하는 것과 어떤 프로토콜 필트가 ArduPilot에서 지원되지 않는지 모두를 제공한다.
 
-Using this information with a GCS
+GCS에서 이 정보 사용하기
 ---------------------------------
 
-*Mission Planner* (MP) exposes the full subset of commands and
-parameters supported by ArduPilot, filtered to display just those
-relevant to the currently connected vehicle. Mapping the MP commands to
-this documentation is easy, because it simply names commands using a
-cut-down version of the full command name (e.g. ``DO_SET_SERVO`` rather
-than the full command name: ``MAV_CMD_DO_SET_SERVO``). In addition, this
-document conveniently lists the column label used by Mission Planner
-alongside each of the parameters.
+*Mission Planner* (MP)는 ArduPilot에서 지원하는 명령과 파라미터들의 전체 부분집합을 보여주고 현재 연결된 비행체와 관련된 것들만 필터링해서 보여준다. MP 명령을 이 문서로 매핑하는 것은 쉽다. 왜냐하면 전체 명령 이름을 줄이면 명령이 되기 때문이다.(예제 ``DO_SET_SERVO`` 는  ``MAV_CMD_DO_SET_SERVO`` 의 단축 표현이다.) 추가로 이 문서에서는 각 해당 파라미터 옆에 Mission Planner에서 사용하는 컬럼 라벨을 제공한다.
 
-Other GCSs (APM Planner 2, Tower etc.) may support some other subset of
-commands/parameters and use alternative names/labels for them. In most
-cases the mapping should be obvious.
+달느 GCS(APM Planner 2, Tower 등)은 commands/parameters의 부분 집합을 지원하고 대안으로 names/labels 를 사용할 수도 있다. 대부분의 경우 매핑은 명령해야만 한다.
 
 [site wiki="copter"]
-Commands supported by Copter
+Copter에서 지원하는 명령
 ============================
 
-This list of commands was inferred from the command handler in
-`/ArduCopter/mode_auto.cpp <https://github.com/ArduPilot/ardupilot/blob/master/ArduCopter/mode_auto.cpp#L388>`__. 
+여기에 이는 명령 목록은 `/ArduCopter/mode_auto.cpp <https://github.com/ArduPilot/ardupilot/blob/master/ArduCopter/mode_auto.cpp#L388>`__ 에 있는 command handler로부터 추론했다.
 
 :ref:`MAV_CMD_NAV_WAYPOINT <mav_cmd_nav_waypoint>`
 
@@ -239,11 +168,10 @@ only)
 [/site]
 
 [site wiki="plane"]
-Commands supported by Plane
+Plane에서 지원하는 명령
 ===========================
 
-This list of commands was inferred from the command handler in
-`/ArduPlane/commands_logic.cpp <https://github.com/ArduPilot/ardupilot/blob/master/ArduPlane/commands_logic.cpp#L33>`__. 
+여기에 이는 명령 목록은 `/ArduPlane/commands_logic.cpp <https://github.com/ArduPilot/ardupilot/blob/master/ArduPlane/commands_logic.cpp#L33>`__ 에 있는 command handler로부터 추론했다.
 
 :ref:`MAV_CMD_NAV_WAYPOINT <mav_cmd_nav_waypoint>`
 
@@ -327,11 +255,10 @@ only)
 
 .. _common-mavlink-mission-command-messages-mav_cmd_commands_supported_by_rover:
 
-Commands supported by Rover
+Rover가 지원하는 Commands
 ===========================
 
-This list of commands was inferred from the command handler in
-`/Rover/commands_logic.cpp <https://github.com/ArduPilot/ardupilot/blob/master/Rover/commands_logic.cpp#L25>`__. 
+여기에 이는 명령 목록은 `/Rover/commands_logic.cpp <https://github.com/ArduPilot/ardupilot/blob/master/Rover/commands_logic.cpp#L25>`__ 에 있는 command handler로부터 추론했다.
 
 :ref:`MAV_CMD_NAV_WAYPOINT <mav_cmd_nav_waypoint>`
 
@@ -383,31 +310,24 @@ only)
 Navigation commands
 ===================
 
-Navigation commands are used to control the movement of the vehicle,
-including takeoff, moving to and around waypoints, and landing.
+Navigation 명령은 비행체의 움직임을 제어하는데 사용한다. 여기에는 이륙, waypoint 주변으로 이동, 착륙이 해당된다.
 
-NAV commands have the highest priority. Any DO\_ and CONDITION\_
-commands that have not executed when a NAV command is loaded are skipped
-(for example, if a waypoint completes and the NAV command for another
-waypoint is loaded, and unexecuted DO/CONDITION commands associated with
-the first waypoint are dropped.
+NAV 명령은 가장 높은 우선순위를 가진다. NAV 명령이 load될때 실행되지 않는 DO\_ 와 CONDITION\_ 명령은 skip된다. (예제로 waypoint가 완료되고 다른 waypoint를 위한 NAV 명령이 load되면 첫번째 waypoint와 관련된 예상치 못했던 DO/CONDITION은 무시된다.
 
 .. _mav_cmd_nav_waypoint:
 
 MAV_CMD_NAV_WAYPOINT
 --------------------
 
-Supported by: Copter, Plane, Rover.
+지원: Copter, Plane, Rover.
 
-Navigate to the specified position.
+특정 위치로 네비게이션
 
 [site wiki="copter" heading="off"]
 Copter
 ~~~~~~
 
-The Copter will fly a straight line to the specified latitude, longitude
-and altitude. It will then wait at the point for a specified delay time
-and then proceed to the next waypoint.
+Copter는 특정 위도, 경도, 높이에 대해서 직선으로 비행한다. 지정된 지연 시간동안 해당 지점에서 대기하고 이후에 다음 waypoint를 진행한다.
 
 **Command parameters**
 
@@ -465,7 +385,7 @@ and then proceed to the next waypoint.
    </tbody>
    </table>
 
-Parameters 2-4 are not supported on Copter:
+Parameters 2-4는 Copter에서 지원하지 않는다.:
 
 -  **Hit Rad** - is supposed to hold the distance (in meters) from the
    target point that will qualify the waypoint as complete. This command
